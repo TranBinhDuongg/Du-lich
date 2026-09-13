@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f2eedf"><title>Tripmate AI · Tạo lịch trình</title><link rel="stylesheet" href="assets/css/workspace.css?v=separate-cards2"><script src="assets/js/planner-engine.js?v=photos2" defer></script><script src="assets/js/workspace.js?v=route2" defer></script><script src="assets/js/page-transition.js?v=6"></script></head>
+<body data-screen="plan">
+<header class="studio-header"><a class="studio-logo" href="index.html">Tripmate<span>AI</span></a><nav aria-label="Điều hướng"><a href="index.html">Khám phá</a><a href="plan.html" data-nav="plan">Tạo lịch trình</a><a href="chat.html" data-nav="chat">AI Chatbot</a><a href="saved.html" data-nav="saved">Đã lưu <span id="saved-count">0</span></a></nav></header>
+<main class="studio-main">
+ <section class="page-intro"><div><div class="overline">MỖI CHUYẾN ĐI, MỘT CÂU CHUYỆN</div><h1 id="page-title">Một chuyến đi, <em>thật riêng.</em></h1><p id="page-subtitle">Bạn mang theo cảm hứng. Tripmate giúp bạn sắp xếp hành trình.</p></div><button class="new-trip button secondary" id="new-trip"><span>＋</span> Hành trình mới</button></section>
+ <div id="plan-page" class="studio-grid">
+  <aside class="request-column"><details class="panel request-panel" open><summary><span class="icon-box">⌖</span><span>Chuyến đi của bạn<small>Bắt đầu từ những điều bạn thích</small></span><span class="summary-arrow">⌄</span></summary>
+   <form id="studio-form">
+    <label class="field">Điểm đến<select name="destination"><option value="halong">Hạ Long</option><option value="danang">Đà Nẵng</option><option value="hanoi">Hà Nội</option><option value="dalat">Đà Lạt</option><option value="hoian">Hội An</option><option value="hagiang">Hà Giang – Đồng Văn</option><option value="caobang">Cao Bằng – Trùng Khánh</option><option value="hue">Huế</option><option value="lyson">Lý Sơn</option><option value="cantho">Cần Thơ</option></select></label>
+    <div class="field-row"><label class="field">Số ngày<input type="number" name="days" min="1" max="14" value="3" required><span class="field-unit">ngày</span></label><label class="field">Số người<input type="number" name="people" min="1" max="20" value="2" required><span class="field-unit">người</span></label></div>
+    <label class="field">Ngân sách / người<div class="money-input"><input name="budget" type="number" min="100000" max="100000000" step="10000" value="3000000" required><span>VNĐ</span></div></label>
+    <fieldset><legend>Bạn thích trải nghiệm gì?</legend><div class="interest-grid"><label><input type="checkbox" name="interests" value="Ẩm thực" checked><span>♧ &nbsp; Ẩm thực</span></label><label><input type="checkbox" name="interests" value="Biển" checked><span>≈ &nbsp; Biển</span></label><label><input type="checkbox" name="interests" value="Thiên nhiên"><span>⌁ &nbsp; Thiên nhiên</span></label><label><input type="checkbox" name="interests" value="Văn hóa"><span>▥ &nbsp; Văn hóa</span></label><label><input type="checkbox" name="interests" value="Check-in" checked><span>⊞ &nbsp; Check-in</span></label></div></fieldset>
+    <p id="form-error" class="error" role="alert"></p><button class="button primary generate" type="submit"><span>✧</span> Tạo lịch trình <span>↗</span></button><p class="form-footnote">Thay đổi bất kỳ lúc nào.<br>Mỗi hành trình đều có thể là một khởi đầu mới.</p>
+   </form></details>
+   <div class="gentle-note"><span>✧</span><div><strong>Đi chậm lại một chút.</strong><p>Để khoảng trống cho những điều bất ngờ trên đường đi.</p></div></div>
+  </aside>
+  <section class="itinerary-column" aria-label="Lịch trình của bạn">
+   <article class="destination-cover"><img id="destination-image" src="assets/images/Vinh-ha-long.jpg" alt="Vịnh Hạ Long"><div class="cover-shade"></div><div class="cover-top"><span class="cover-pill">HÀNH TRÌNH ĐƯỢC GỢI Ý</span><span id="cover-weather">VIỆT NAM</span></div><div class="cover-content"><span class="cover-location">⌖ &nbsp; Khám phá</span><h2 id="destination-title">Hạ Long</h2><p id="trip-meta">3 ngày · 2 đêm · 2 người</p></div></article>
+   <div class="itinerary-toolbar"><div class="view-tabs" role="tablist" aria-label="Thông tin lịch trình"><button class="selected" id="timeline-tab" data-tab="timeline" role="tab" aria-selected="true" aria-controls="timeline-content">Lịch trình</button><button id="budget-tab" data-tab="budget" role="tab" aria-selected="false" aria-controls="budget-content">Chi phí dự kiến</button></div><span id="draft-label" class="draft-label"><i></i> Bản mẫu chưa lưu</span></div>
+   <section id="timeline-content" role="tabpanel" aria-labelledby="timeline-tab"><div id="day-tabs" class="day-tabs" role="group" aria-label="Chọn ngày"></div><div id="day-content"></div></section>
+   <section id="budget-content" class="panel budget-full" role="tabpanel" aria-labelledby="budget-tab" hidden></section>
+   <div class="itinerary-bottom"><span>✧ &nbsp; Cần thay đổi? Mở trang trợ lý để trò chuyện.</span><button id="focus-chat" aria-label="Nhắn trợ lý">↗</button></div>
+  </section>
+  <aside class="assistant-column">
+   <section class="panel budget-panel"><div class="panel-heading"><h2>Ngân sách dự kiến</h2><span class="small-icon">◈</span></div><p class="muted caption">Tổng chi phí cho cả nhóm</p><div class="budget-number" id="budget-number"></div><div class="budget-meter"><span id="budget-meter-fill"></span></div><p id="budget-status" class="budget-status"></p><div class="budget-brief" id="budget-brief"></div><button class="save-button button primary" id="save-plan">♡ &nbsp; Lưu hành trình</button><button class="saving-button" id="reduce-cost">↓ &nbsp; Thử phương án tiết kiệm</button></section>
+   <a class="chat-page-link" href="chat.html"><span>✧</span><strong>Chỉnh hành trình cùng trợ lý</strong><p>Đổi địa điểm, tối ưu chi phí và tìm thêm cảm hứng.</p><b>Mở AI Chatbot ↗</b></a>
+   <p class="data-note">10 điểm đến · 120 hoạt động mẫu. Các khoản chi là mức dự trù minh họa, không phải giá vé hiện hành; chưa gồm vé đến điểm đến. Lịch trình dài có thể lặp hoạt động và cần điều chỉnh tuyến di chuyển, giờ mở cửa. Trợ lý hiện dùng kịch bản, chưa kết nối AI trực tiếp.</p>
+  </aside>
+ </div>
+ <footer class="studio-footer"><span>Tripmate AI — Trợ lý đồng hành trong mọi hành trình.</span><span>Made for your next chapter. ↗</span></footer>
+</main><div id="studio-toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body></html>
+

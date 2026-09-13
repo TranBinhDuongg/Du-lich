@@ -1,0 +1,10 @@
+{
+  "name": "tripmate-ai",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node server.js",
+    "test": "node tests/test-planner.cjs && node tests/test-pages.cjs"
+  }
+}
