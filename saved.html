@@ -1,11 +1,228 @@
 <!doctype html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f2eedf"><title>Tripmate AI · Hành trình đã lưu</title><link rel="stylesheet" href="assets/css/workspace.css?v=separate-cards2"><script src="assets/js/planner-engine.js?v=photos2" defer></script><script src="assets/js/workspace.js?v=route2" defer></script><script src="assets/js/page-transition.js?v=6"></script></head>
-<body data-screen="saved">
-<header class="studio-header"><a class="studio-logo" href="index.html">Tripmate<span>AI</span></a><nav aria-label="Điều hướng"><a href="index.html">Khám phá</a><a href="plan.html" data-nav="plan">Tạo lịch trình</a><a href="chat.html" data-nav="chat">AI Chatbot</a><a href="saved.html" data-nav="saved">Đã lưu <span id="saved-count">0</span></a></nav></header>
-<main class="studio-main">
- <section class="page-intro"><div><div class="overline">MỖI CHUYẾN ĐI, MỘT CÂU CHUYỆN</div><h1 id="page-title">Một chuyến đi, <em>thật riêng.</em></h1><p id="page-subtitle">Bạn mang theo cảm hứng. Tripmate giúp bạn sắp xếp hành trình.</p></div><button class="new-trip button secondary" id="new-trip"><span>＋</span> Hành trình mới</button></section>
- <section id="saved-page"><div class="saved-heading"><p>Những chuyến đi bạn muốn giữ lại.</p><span>Chỉ lưu trên trình duyệt này</span></div><div id="studio-saved" class="studio-saved"></div></section>
- <footer class="studio-footer"><span>Tripmate AI — Trợ lý đồng hành trong mọi hành trình.</span><span>Made for your next chapter. ↗</span></footer>
-</main><div id="studio-toast" class="toast" role="status" aria-live="polite" hidden></div>
-</body></html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f2eedf" />
+    <title>Tripmate AI · Hành trình đã lưu</title>
+    <link rel="stylesheet" href="assets/css/workspace.css?v=separate-cards2" />
+    <script src="assets/js/planner-engine.js?v=multi1" defer></script>
+    <script src="assets/js/workspace.js?v=multi2" defer></script>
+    <link rel="stylesheet" href="assets/css/page-transition.css?v=1" />
+    <script src="assets/js/page-transition.js?v=7"></script>
+    <link rel="stylesheet" href="assets/css/function-menu.css?v=1" />
+    <script src="assets/js/menu.js?v=2" defer></script>
+  <script src="assets/js/floating-menu.js?v=1" defer></script></head>
+  <body data-screen="saved">
+    <header class="studio-header">
+      <a class="studio-logo" href="index.html">Tripmate<span>AI</span></a>
+      <div class="header-actions">
+        <button
+          type="button"
+          class="menu-button"
+          aria-label="Mở menu"
+          aria-expanded="false"
+          aria-controls="journey-menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+    <nav
+      id="journey-menu"
+      class="journey-menu immersive-menu"
+      hidden
+      aria-label="Menu Tripmate"
+    >
+      <div class="menu-top">
+        <div class="menu-brand">
+          Tripmate<span>AI</span>
+          <p>Mỗi hành trình, một câu chuyện.</p>
+        </div>
+        <div class="menu-links">
+          <span class="menu-eyebrow">HÀNH TRÌNH CỦA BẠN</span
+          ><a href="index.html" data-nav="home">
+            <small>01</small>Khám phá<span>↗</span></a
+          ><a href="plan.html" data-nav="plan">
+            <small>02</small>Tạo lịch trình<span>↗</span></a
+          ><a href="chat.html" data-nav="chat">
+            <small>03</small>AI Chatbot<span>↗</span></a
+          ><a href="saved.html" data-nav="saved">
+            <small>04</small>Lịch trình của tôi <small id="saved-count">0</small
+            ><span>↗</span>
+          </a>
+        </div>
+        <button class="menu-dismiss" aria-label="Đóng menu">×</button>
+      </div>
+      <div class="menu-gallery">
+        <div class="menu-gallery-heading">
+          <span>ĐI ĐÂU ĐÓ, ĐỂ THẤY NHIỀU HƠN.</span
+          ><span>YOUR NEXT JOURNEY →</span>
+        </div>
+        <div class="menu-film">
+          <div class="menu-film-group">
+            <figure class="menu-destination">
+              <img
+                src="assets/images/Vinh-ha-long.jpg"
+                alt="Hạ Long"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Hạ Long</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/ban-giuoc.jpg"
+                alt="Bản Giốc"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Bản Giốc</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/ma-pi-leng.jpg"
+                alt="Mã Pí Lèng"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Mã Pí Lèng</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/hoi-an.png"
+                alt="Hội An"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Hội An</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/Cau-vang.png"
+                alt="Cầu Vàng"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Cầu Vàng</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/Ly-son.png"
+                alt="Lý Sơn"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Lý Sơn</strong>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="menu-film-group" aria-hidden="true">
+            <figure class="menu-destination">
+              <img
+                src="assets/images/Vinh-ha-long.jpg"
+                alt="Hạ Long"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Hạ Long</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/ban-giuoc.jpg"
+                alt="Bản Giốc"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Bản Giốc</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/ma-pi-leng.jpg"
+                alt="Mã Pí Lèng"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Mã Pí Lèng</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/hoi-an.png"
+                alt="Hội An"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Hội An</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/Cau-vang.png"
+                alt="Cầu Vàng"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Cầu Vàng</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/Ly-son.png"
+                alt="Lý Sơn"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Lý Sơn</strong>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <div class="menu-foot">
+        Tripmate AI — Trợ lý đồng hành trong mọi hành trình.
+      </div>
+    </nav>
+    <main class="studio-main">
+      <section class="page-intro">
+        <div>
+          <div class="overline">MỖI CHUYẾN ĐI, MỘT CÂU CHUYỆN</div>
+          <h1 id="page-title">Một chuyến đi, <em>thật riêng.</em></h1>
+          <p id="page-subtitle">
+            Bạn mang theo cảm hứng. Tripmate giúp bạn sắp xếp hành trình.
+          </p>
+        </div>
+        <button class="new-trip button secondary" id="new-trip">
+          <span>＋</span> Hành trình mới
+        </button>
+      </section>
+      <section id="saved-page">
+        <div class="saved-heading">
+          <p>Những chuyến đi bạn muốn giữ lại.</p>
+          <span>Chỉ lưu trên trình duyệt này</span>
+        </div>
+        <div id="studio-saved" class="studio-saved"></div>
+      </section>
+      <footer class="studio-footer">
+        <span>Tripmate AI — Trợ lý đồng hành trong mọi hành trình.</span
+        ><span>Made for your next chapter. ↗</span>
+      </footer>
+    </main>
+    <div
+      id="studio-toast"
+      class="toast"
+      role="status"
+      aria-live="polite"
+      hidden
+    ></div>
+  </body>
+</html>
+
 

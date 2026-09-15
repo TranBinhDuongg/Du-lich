@@ -2,6 +2,16 @@ const assert=require('node:assert/strict'),E=require('../assets/js/planner-engin
 const v={destination:'danang',days:3,people:2,budget:3000000,interests:['Ẩm thực','Check-in']};
 const plan=E.generate(v);assert.equal(plan.days.length,3);assert.equal(plan.days[0].activities.length,3);
 assert(plan.days[0].activities.every(x=>v.interests.includes(x.tag)));
+const multiIds=["dldt-file-001","dldt-file-002","dldt-file-003"];
+const multi=E.generate({...v,destination:multiIds[0],destinations:multiIds,days:2});
+assert.deepEqual(multi.input.destinations,multiIds);
+assert.deepEqual([...new Set(multi.days[0].activities.map(x=>x.destinationId))],multiIds);
+assert(multi.days.flatMap(x=>x.activities).every(x=>multiIds.includes(x.destinationId)));
+assert.deepEqual(
+ [...new Set(E.changeDay(multi,1).days[0].activities.map(x=>x.destinationId))],
+ multiIds
+);
+assert.throws(()=>E.generate({...v,destinations:[...multiIds,"dldt-file-004"],days:1}));
 assert.equal(E.costs(E.generate({...v,days:1})).perPerson.stay,0);
 assert.equal(E.costs(plan).total,E.costs(plan).totalPerPerson*2);
 const changed=E.command(plan,'Tôi muốn đổi địa điểm ngày 2.');

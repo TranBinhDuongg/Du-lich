@@ -31,4 +31,14 @@ Hiệu ứng khám phá và một phần CSS được phát triển từ tài ng
 
 Các bản thiết kế cũ, ảnh nước ngoài không dùng, log và script sửa một lần đã được dọn. Thư mục tư liệu gốc trong Downloads không bị thay đổi.
 
-Bộ tạo lịch trình hiện có 10 điểm đến và 120 hoạt động mẫu, gồm sáu điểm bổ sung: Hội An, Hà Giang – Đồng Văn, Cao Bằng – Trùng Khánh, Huế, Lý Sơn và Cần Thơ. Chi phí là dữ liệu mô phỏng, không phải báo giá hay giá vé xác minh. Lịch trình được xếp theo sở thích; chưa tối ưu tuyến đường và giờ mở cửa, có thể lặp hoạt động khi chọn nhiều ngày.
+Bộ tạo lịch trình hiện có 10 điểm đến và 120 hoạt động mẫu, gồm sáu điểm bổ sung: Hội An, Hà Giang – Đồng Văn, Cao Bằng, Huế, Lý Sơn và Cần Thơ. Chi phí là dữ liệu mô phỏng, không phải báo giá hay giá vé xác minh. Lịch trình được xếp theo sở thích; chưa tối ưu tuyến đường và giờ mở cửa, có thể lặp hoạt động khi chọn nhiều ngày.
+
+## Phân chia HTML, CSS và JavaScript
+
+- HTML ở thư mục gốc: cấu trúc và nội dung từng trang.
+- assets/css/: giao diện; page-transition.css dành riêng cho hoạt ảnh chuyển trang.
+- assets/js/: xử lý tương tác; workspace-redirect.js chuyển tiếp đường dẫn cũ.
+- workspace.css và workspace.js dùng chung cho tạo lịch trình, chatbot và đã lưu để tránh lặp mã.
+- route.css và route.js dành cho trang mở hành trình (route.html).
+- Các giá trị động như độ dài thanh ngân sách và màu cảnh được JavaScript cập nhật khi dữ liệu thay đổi.
+

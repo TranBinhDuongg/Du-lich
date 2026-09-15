@@ -1,34 +1,525 @@
 <!doctype html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f2eedf"><title>Tripmate AI · Tạo lịch trình</title><link rel="stylesheet" href="assets/css/workspace.css?v=separate-cards2"><script src="assets/js/planner-engine.js?v=photos2" defer></script><script src="assets/js/workspace.js?v=route2" defer></script><script src="assets/js/page-transition.js?v=6"></script></head>
-<body data-screen="plan">
-<header class="studio-header"><a class="studio-logo" href="index.html">Tripmate<span>AI</span></a><nav aria-label="Điều hướng"><a href="index.html">Khám phá</a><a href="plan.html" data-nav="plan">Tạo lịch trình</a><a href="chat.html" data-nav="chat">AI Chatbot</a><a href="saved.html" data-nav="saved">Đã lưu <span id="saved-count">0</span></a></nav></header>
-<main class="studio-main">
- <section class="page-intro"><div><div class="overline">MỖI CHUYẾN ĐI, MỘT CÂU CHUYỆN</div><h1 id="page-title">Một chuyến đi, <em>thật riêng.</em></h1><p id="page-subtitle">Bạn mang theo cảm hứng. Tripmate giúp bạn sắp xếp hành trình.</p></div><button class="new-trip button secondary" id="new-trip"><span>＋</span> Hành trình mới</button></section>
- <div id="plan-page" class="studio-grid">
-  <aside class="request-column"><details class="panel request-panel" open><summary><span class="icon-box">⌖</span><span>Chuyến đi của bạn<small>Bắt đầu từ những điều bạn thích</small></span><span class="summary-arrow">⌄</span></summary>
-   <form id="studio-form">
-    <label class="field">Điểm đến<select name="destination"><option value="halong">Hạ Long</option><option value="danang">Đà Nẵng</option><option value="hanoi">Hà Nội</option><option value="dalat">Đà Lạt</option><option value="hoian">Hội An</option><option value="hagiang">Hà Giang – Đồng Văn</option><option value="caobang">Cao Bằng – Trùng Khánh</option><option value="hue">Huế</option><option value="lyson">Lý Sơn</option><option value="cantho">Cần Thơ</option></select></label>
-    <div class="field-row"><label class="field">Số ngày<input type="number" name="days" min="1" max="14" value="3" required><span class="field-unit">ngày</span></label><label class="field">Số người<input type="number" name="people" min="1" max="20" value="2" required><span class="field-unit">người</span></label></div>
-    <label class="field">Ngân sách / người<div class="money-input"><input name="budget" type="number" min="100000" max="100000000" step="10000" value="3000000" required><span>VNĐ</span></div></label>
-    <fieldset><legend>Bạn thích trải nghiệm gì?</legend><div class="interest-grid"><label><input type="checkbox" name="interests" value="Ẩm thực" checked><span>♧ &nbsp; Ẩm thực</span></label><label><input type="checkbox" name="interests" value="Biển" checked><span>≈ &nbsp; Biển</span></label><label><input type="checkbox" name="interests" value="Thiên nhiên"><span>⌁ &nbsp; Thiên nhiên</span></label><label><input type="checkbox" name="interests" value="Văn hóa"><span>▥ &nbsp; Văn hóa</span></label><label><input type="checkbox" name="interests" value="Check-in" checked><span>⊞ &nbsp; Check-in</span></label></div></fieldset>
-    <p id="form-error" class="error" role="alert"></p><button class="button primary generate" type="submit"><span>✧</span> Tạo lịch trình <span>↗</span></button><p class="form-footnote">Thay đổi bất kỳ lúc nào.<br>Mỗi hành trình đều có thể là một khởi đầu mới.</p>
-   </form></details>
-   <div class="gentle-note"><span>✧</span><div><strong>Đi chậm lại một chút.</strong><p>Để khoảng trống cho những điều bất ngờ trên đường đi.</p></div></div>
-  </aside>
-  <section class="itinerary-column" aria-label="Lịch trình của bạn">
-   <article class="destination-cover"><img id="destination-image" src="assets/images/Vinh-ha-long.jpg" alt="Vịnh Hạ Long"><div class="cover-shade"></div><div class="cover-top"><span class="cover-pill">HÀNH TRÌNH ĐƯỢC GỢI Ý</span><span id="cover-weather">VIỆT NAM</span></div><div class="cover-content"><span class="cover-location">⌖ &nbsp; Khám phá</span><h2 id="destination-title">Hạ Long</h2><p id="trip-meta">3 ngày · 2 đêm · 2 người</p></div></article>
-   <div class="itinerary-toolbar"><div class="view-tabs" role="tablist" aria-label="Thông tin lịch trình"><button class="selected" id="timeline-tab" data-tab="timeline" role="tab" aria-selected="true" aria-controls="timeline-content">Lịch trình</button><button id="budget-tab" data-tab="budget" role="tab" aria-selected="false" aria-controls="budget-content">Chi phí dự kiến</button></div><span id="draft-label" class="draft-label"><i></i> Bản mẫu chưa lưu</span></div>
-   <section id="timeline-content" role="tabpanel" aria-labelledby="timeline-tab"><div id="day-tabs" class="day-tabs" role="group" aria-label="Chọn ngày"></div><div id="day-content"></div></section>
-   <section id="budget-content" class="panel budget-full" role="tabpanel" aria-labelledby="budget-tab" hidden></section>
-   <div class="itinerary-bottom"><span>✧ &nbsp; Cần thay đổi? Mở trang trợ lý để trò chuyện.</span><button id="focus-chat" aria-label="Nhắn trợ lý">↗</button></div>
-  </section>
-  <aside class="assistant-column">
-   <section class="panel budget-panel"><div class="panel-heading"><h2>Ngân sách dự kiến</h2><span class="small-icon">◈</span></div><p class="muted caption">Tổng chi phí cho cả nhóm</p><div class="budget-number" id="budget-number"></div><div class="budget-meter"><span id="budget-meter-fill"></span></div><p id="budget-status" class="budget-status"></p><div class="budget-brief" id="budget-brief"></div><button class="save-button button primary" id="save-plan">♡ &nbsp; Lưu hành trình</button><button class="saving-button" id="reduce-cost">↓ &nbsp; Thử phương án tiết kiệm</button></section>
-   <a class="chat-page-link" href="chat.html"><span>✧</span><strong>Chỉnh hành trình cùng trợ lý</strong><p>Đổi địa điểm, tối ưu chi phí và tìm thêm cảm hứng.</p><b>Mở AI Chatbot ↗</b></a>
-   <p class="data-note">10 điểm đến · 120 hoạt động mẫu. Các khoản chi là mức dự trù minh họa, không phải giá vé hiện hành; chưa gồm vé đến điểm đến. Lịch trình dài có thể lặp hoạt động và cần điều chỉnh tuyến di chuyển, giờ mở cửa. Trợ lý hiện dùng kịch bản, chưa kết nối AI trực tiếp.</p>
-  </aside>
- </div>
- <footer class="studio-footer"><span>Tripmate AI — Trợ lý đồng hành trong mọi hành trình.</span><span>Made for your next chapter. ↗</span></footer>
-</main><div id="studio-toast" class="toast" role="status" aria-live="polite" hidden></div>
-</body></html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f2eedf" />
+    <title>Tripmate AI · Tạo lịch trình</title>
+    <link rel="stylesheet" href="assets/css/workspace.css?v=multi1" />
+    <script src="assets/js/planner-engine.js?v=multi1" defer></script>
+    <script src="assets/js/workspace.js?v=multi2" defer></script>
+    <link rel="stylesheet" href="assets/css/page-transition.css?v=1" />
+    <script src="assets/js/page-transition.js?v=7"></script>
+    <link rel="stylesheet" href="assets/css/function-menu.css?v=1" />
+    <script src="assets/js/menu.js?v=2" defer></script>
+  <script src="assets/js/floating-menu.js?v=1" defer></script></head>
+  <body data-screen="plan">
+    <header class="studio-header">
+      <a class="studio-logo" href="index.html">Tripmate<span>AI</span></a>
+      <div class="header-actions">
+        <button
+          type="button"
+          class="menu-button"
+          aria-label="Mở menu"
+          aria-expanded="false"
+          aria-controls="journey-menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+    <nav
+      id="journey-menu"
+      class="journey-menu immersive-menu"
+      hidden
+      aria-label="Menu Tripmate"
+    >
+      <div class="menu-top">
+        <div class="menu-brand">
+          Tripmate<span>AI</span>
+          <p>Mỗi hành trình, một câu chuyện.</p>
+        </div>
+        <div class="menu-links">
+          <span class="menu-eyebrow">HÀNH TRÌNH CỦA BẠN</span
+          ><a href="index.html" data-nav="home">
+            <small>01</small>Khám phá<span>↗</span></a
+          ><a href="plan.html" data-nav="plan">
+            <small>02</small>Tạo lịch trình<span>↗</span></a
+          ><a href="chat.html" data-nav="chat">
+            <small>03</small>AI Chatbot<span>↗</span></a
+          ><a href="saved.html" data-nav="saved">
+            <small>04</small>Lịch trình của tôi <small id="saved-count">0</small
+            ><span>↗</span>
+          </a>
+        </div>
+        <button class="menu-dismiss" aria-label="Đóng menu">×</button>
+      </div>
+      <div class="menu-gallery">
+        <div class="menu-gallery-heading">
+          <span>ĐI ĐÂU ĐÓ, ĐỂ THẤY NHIỀU HƠN.</span
+          ><span>YOUR NEXT JOURNEY →</span>
+        </div>
+        <div class="menu-film">
+          <div class="menu-film-group">
+            <figure class="menu-destination">
+              <img
+                src="assets/images/Vinh-ha-long.jpg"
+                alt="Hạ Long"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Hạ Long</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/ban-giuoc.jpg"
+                alt="Bản Giốc"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Bản Giốc</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/ma-pi-leng.jpg"
+                alt="Mã Pí Lèng"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Mã Pí Lèng</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/hoi-an.png"
+                alt="Hội An"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Hội An</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/Cau-vang.png"
+                alt="Cầu Vàng"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Cầu Vàng</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/Ly-son.png"
+                alt="Lý Sơn"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Lý Sơn</strong>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="menu-film-group" aria-hidden="true">
+            <figure class="menu-destination">
+              <img
+                src="assets/images/Vinh-ha-long.jpg"
+                alt="Hạ Long"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Hạ Long</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/ban-giuoc.jpg"
+                alt="Bản Giốc"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Bản Giốc</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/ma-pi-leng.jpg"
+                alt="Mã Pí Lèng"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Mã Pí Lèng</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/hoi-an.png"
+                alt="Hội An"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Hội An</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/Cau-vang.png"
+                alt="Cầu Vàng"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Cầu Vàng</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/Ly-son.png"
+                alt="Lý Sơn"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Lý Sơn</strong>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <div class="menu-foot">
+        Tripmate AI — Trợ lý đồng hành trong mọi hành trình.
+      </div>
+    </nav>
+    <main class="studio-main">
+      <section class="page-intro">
+        <div>
+          <div class="overline">MỖI CHUYẾN ĐI, MỘT CÂU CHUYỆN</div>
+          <h1 id="page-title">Một chuyến đi, <em>thật riêng.</em></h1>
+          <p id="page-subtitle">
+            Bạn mang theo cảm hứng. Tripmate giúp bạn sắp xếp hành trình.
+          </p>
+        </div>
+        <button class="new-trip button secondary" id="new-trip">
+          <span>＋</span> Hành trình mới
+        </button>
+      </section>
+      <div id="plan-page" class="studio-grid">
+        <aside class="request-column">
+          <details class="panel request-panel" open>
+            <summary>
+              <span class="icon-box">⌖</span
+              ><span
+                >Chuyến đi của bạn<small
+                  >Bắt đầu từ những điều bạn thích</small
+                ></span
+              ><span class="summary-arrow">⌄</span>
+            </summary>
+            <form id="studio-form">
+              <label class="field"
+                >Tỉnh / thành phố<select name="province" aria-label="Tỉnh hoặc thành phố"></select></label
+              >
+              <label class="field"
+                >Điểm đến<select name="destination">
+                  <option value="dldt-file-001">Bãi Dứa - Bình Định</option>
+                  <option value="dldt-file-002">Bãi Kỳ Co - Bình Định</option>
+                  <option value="dldt-file-003">Eo Gió - Bình Định</option>
+                  <option value="dldt-file-004">Ghềnh Ráng - Tiên Sa - Bình Định</option>
+                  <option value="dldt-file-005">Tháp Bánh Ít - Bình Định</option>
+                  <option value="dldt-file-006">Thác Bản Giốc</option>
+                  <option value="dldt-file-007">Cao nguyên đá Đồng Văn</option>
+                  <option value="dldt-file-008">Cột cờ Lũng Cú</option>
+                  <option value="dldt-file-009">Ruộng bậc thang Hoàng Su Phì</option>
+                  <option value="dldt-file-010">Thung lũng Sủng Là</option>
+                  <option value="dldt-file-011">Đèo Mã Pí Lèng</option>
+                  <option value="dldt-file-012">háp Bà Ponagar (Khánh Hòa)</option>
+                  <option value="dldt-file-013">Hòn Tằm (Khánh Hòa)(1)</option>
+                  <option value="dldt-file-014">Hòn Tằm (Khánh Hòa)</option>
+                  <option value="dldt-file-015">Thủy cung Trí Nguyên _ VinWonders Nha Trang (Khánh Hòa)</option>
+                  <option value="dldt-file-016">VinWonders Nha Trang (Đảo Hòn Tre, Khánh Hòa)</option>
+                  <option value="dldt-file-017">Đảo Điệp Sơn (Khánh Hòa)</option>
+                  <option value="dldt-file-018">Chùa Thiên Mụ (Thừa Thiên Huế)</option>
+                  <option value="dldt-file-019">Cầu Trường Tiền lúc hoàng hôn (Thừa Thiên Huế)</option>
+                  <option value="dldt-file-020">Cầu Trường Tiền nhìn qua nhành phượng đỏ (Thừa Thiên Huế)</option>
+                  <option value="dldt-file-021">Ngọ Môn - Đại Nội Huế (Thừa Thiên Huế)</option>
+                  <option value="dldt-file-022">Vịnh Lăng Cô và đèo Hải Vân (Thừa Thiên Huế)</option>
+                  <option value="dldt-file-023">Bàu Trắng (Bình Thuận)</option>
+                  <option value="dldt-file-024">Vịnh Vĩnh Hy (Ninh Thuận)</option>
+                  <option value="dldt-file-025">Đảo Lý Sơn (Quảng Ngãi)</option>
+                  <option value="dldt-file-026">Đồi cát Nam Cương (Ninh Thuận)</option>
+                  <option value="dldt-file-027">Đồng cừu An Hòa (Ninh Thuận)</option>
+                  <option value="dldt-file-028">Bãi Xép (Phú Yên)</option>
+                  <option value="dldt-file-029">Gành Đá Đĩa (Phú Yên)</option>
+                  <option value="dldt-file-030">Hải đăng Đại Lãnh _ Mũi Điện (Phú Yên)</option>
+                  <option value="dldt-file-031">Tháp Nghinh Phong (Phú Yên)</option>
+                  <option value="dldt-file-032">Cổng Tò Vò (Lý Sơn, Quảng Ngãi)</option>
+                  <option value="dldt-file-033">Hang Câu (Lý Sơn, Quảng Ngãi)</option>
+                  <option value="dldt-file-034">Đảo Lý Sơn (Quảng Ngãi)</option>
+                  <option value="dldt-file-035">Biển Nhật Lệ _ Bán đảo Bảo Ninh (Quảng Bình)</option>
+                  <option value="dldt-file-036">Hang Sơn Đoòng (Quảng Bình)</option>
+                  <option value="dldt-file-037">Hang Én (Quảng Bình)</option>
+                  <option value="dldt-file-038">Suối Nước Moọc (Quảng Bình)</option>
+                  <option value="dldt-file-039">Động Phong Nha (Quảng Bình)</option>
+                  <option value="dldt-file-040">Động Thiên Đường (Quảng Bình)</option>
+                  <option value="dldt-file-041">Cù Lao Chàm (Quảng Nam)</option>
+                  <option value="dldt-file-042">Phố cổ Hội An (Quảng Nam)</option>
+                  <option value="dldt-file-043">Thánh địa Mỹ Sơn (Quảng Nam)</option>
+                  <option value="dldt-file-044">VinWonders Nam Hội An (Quảng Nam)</option>
+                  <option value="dldt-file-045">Bãi biển Mỹ Khê (Đà Nẵng)</option>
+                  <option value="dldt-file-046">Chùa Linh Ứng - Bán đảo Sơn Trà (Đà Nẵng)</option>
+                  <option value="dldt-file-047">Cầu Rồng phun lửa về đêm (Đà Nẵng)</option>
+                  <option value="dldt-file-048">Cầu Vàng - Ba Na Hills (Đà Nẵng)</option>
+                  <option value="dldt-file-049">Động Huyền Không - Ngũ Hành Sơn (Đà Nẵng)</option>
+                  <option value="dldt-file-050">bến ninh kiều</option>
+                  <option value="dldt-file-051">Chùa Dơi- Sóc Trăng</option>
+                  <option value="dldt-file-052">Chùa Khleang- Sóc Trăng</option>
+                  <option value="dldt-file-053">Chùa Vĩnh Tràng- Tiền Giang</option>
+                  <option value="dldt-file-054">chợ cái răng</option>
+                  <option value="dldt-file-055">Cù Lao Thới Sơn- Tiền Giang</option>
+                  <option value="dldt-file-056">Du lịch Cồn Phụng- Bến Tre</option>
+                  <option value="dldt-file-057">Hà Tiên- Kiêng Giang</option>
+                  <option value="dldt-file-058">Làng hoa Sa Đéc- Đồng Tháp</option>
+                  <option value="dldt-file-059">Mũi Cà Mau- Cà Mau</option>
+                  <option value="dldt-file-060">nhà cổ bình thủy</option>
+                  <option value="dldt-file-061">Núi Cấm-An Giang</option>
+                  <option value="dldt-file-062">Núi Sam- An Giang</option>
+                  <option value="dldt-file-063">Rừng quốc gia u Minh Hạ- Cà Mau</option>
+                  <option value="dldt-file-064">Rừng Tràm Trà Sư- An Giang</option>
+                  <option value="dldt-file-065">Vườn quốc gia Tràm Chim- Đồng Tháp</option>
+                  <option value="dldt-file-066">Đảo Nam Du- Kiên Giang</option>
+                  <option value="dldt-file-067">Đảo Phú Quốc-Kiên Giang</option>
+                  <option value="dldt-file-068">Chợ Bến Thành</option>
+                  <option value="dldt-file-069">Dinh Độc Lập-TPHCM</option>
+                  <option value="dldt-file-070">Khu du lịch Bửu Long ĐỒNG NAI</option>
+                  <option value="dldt-file-071">Nhà Thờ Đức Bà-TPHCM</option>
+                  <option value="dldt-file-072">Núi Nhỏ VŨNG TÀU</option>
+                  <option value="dldt-file-073">phố đi bộ Nguyễn Huệ</option>
+                  <option value="dldt-file-074">Tây Ninh – Núi Bà Đen...</option>
+                  <option value="dldt-file-075">Tây Ninh – Núi Bà Đen</option>
+                  <option value="dldt-file-076">Tòa Thánh Cao Đài TÂY NINH</option>
+                  <option value="dldt-file-077">tượng Chúa Kitô- VŨNG TÀU</option>
+                  <option value="dldt-file-078">Vũng Tàu – Bãi Sau</option>
+                  <option value="dldt-file-079">Địa đạo Củ Chi – di tích lịch sử nổi tiếng...</option>
+                  <option value="dldt-file-080">Địa đạo Củ Chi – di tích lịch sử nổi tiếng.</option>
+                  <option value="dldt-file-081">Đồng Nai – Vườn quốc gia Cát Tiên</option>
+                </select></label
+              >
+              <button class="add-destination" id="add-destination" type="button">
+                ＋ Thêm địa điểm vào chuyến đi
+              </button>
+              <div
+                class="selected-destinations"
+                id="selected-destinations"
+                aria-live="polite"
+              ></div>
+              <div class="field-row">
+                <label class="field"
+                  >Số ngày<input
+                    type="number"
+                    name="days"
+                    min="1"
+                    max="14"
+                    value="3"
+                    required
+                  /></label
+                ><label class="field"
+                  >Số người<input
+                    type="number"
+                    name="people"
+                    min="1"
+                    max="20"
+                    value="2"
+                    required
+                  /></label
+                >
+              </div>
+              <label class="field"
+                >Ngân sách / người
+                <div class="money-input">
+                  <input
+                    name="budget"
+                    type="number"
+                    min="100000"
+                    max="100000000"
+                    step="10000"
+                    value="3000000"
+                    required
+                  /><span>VNĐ</span>
+                </div></label
+              >
+              <fieldset>
+                <legend>Bạn thích trải nghiệm gì?</legend>
+                <div class="interest-grid">
+                  <label
+                    ><input
+                      type="checkbox"
+                      name="interests"
+                      value="Ẩm thực"
+                      checked
+                    /><span>♧ &nbsp; Ẩm thực</span></label
+                  ><label
+                    ><input
+                      type="checkbox"
+                      name="interests"
+                      value="Biển"
+                      checked
+                    /><span>≈ &nbsp; Biển</span></label
+                  ><label
+                    ><input
+                      type="checkbox"
+                      name="interests"
+                      value="Thiên nhiên"
+                    /><span>⌁ &nbsp; Thiên nhiên</span></label
+                  ><label
+                    ><input
+                      type="checkbox"
+                      name="interests"
+                      value="Văn hóa"
+                    /><span>▥ &nbsp; Văn hóa</span></label
+                  ><label
+                    ><input
+                      type="checkbox"
+                      name="interests"
+                      value="Check-in"
+                      checked
+                    /><span>⊞ &nbsp; Check-in</span></label
+                  >
+                </div>
+              </fieldset>
+              <p id="form-error" class="error" role="alert"></p>
+              <button class="button primary generate" type="submit">
+                <span>✧</span> Tạo lịch trình <span>↗</span>
+              </button>
+              <p class="form-footnote">
+                Thay đổi bất kỳ lúc nào.<br />Mỗi hành trình đều có thể là một
+                khởi đầu mới.
+              </p>
+            </form>
+          </details>
+          <div class="gentle-note">
+            <span>✧</span>
+            <div>
+              <strong>Đi chậm lại một chút.</strong>
+              <p>Để khoảng trống cho những điều bất ngờ trên đường đi.</p>
+            </div>
+          </div>
+        </aside>
+        <section class="itinerary-column" aria-label="Lịch trình của bạn">
+          <article class="destination-cover">
+            <img
+              id="destination-image"
+              src="assets/images/Vinh-ha-long.jpg"
+              alt="Vịnh Hạ Long"
+            />
+            <div class="cover-shade"></div>
+            <div class="cover-top">
+              <span class="cover-pill">HÀNH TRÌNH ĐƯỢC GỢI Ý</span
+              ><span id="cover-weather">VIỆT NAM</span>
+            </div>
+            <div class="cover-content">
+              <span class="cover-location">⌖ &nbsp; Khám phá</span>
+              <h2 id="destination-title">Hạ Long</h2>
+              <p id="trip-meta">3 ngày · 2 đêm · 2 người</p>
+            </div>
+          </article>
+          <div class="itinerary-toolbar">
+            <div
+              class="view-tabs"
+              role="tablist"
+              aria-label="Thông tin lịch trình"
+            >
+              <button
+                class="selected"
+                id="timeline-tab"
+                data-tab="timeline"
+                role="tab"
+                aria-selected="true"
+                aria-controls="timeline-content"
+              >
+                Lịch trình</button
+              ><button
+                id="budget-tab"
+                data-tab="budget"
+                role="tab"
+                aria-selected="false"
+                aria-controls="budget-content"
+              >
+                Chi phí dự kiến
+              </button>
+            </div>
+            <span id="draft-label" class="draft-label"
+              ><i></i> Bản mẫu chưa lưu</span
+            >
+          </div>
+          <section
+            id="timeline-content"
+            role="tabpanel"
+            aria-labelledby="timeline-tab"
+          >
+            <div
+              id="day-tabs"
+              class="day-tabs"
+              role="group"
+              aria-label="Chọn ngày"
+            ></div>
+            <div id="day-content"></div>
+          </section>
+          <section
+            id="budget-content"
+            class="panel budget-full"
+            role="tabpanel"
+            aria-labelledby="budget-tab"
+            hidden
+          ></section>
+          <div class="itinerary-bottom">
+            <span>✧ &nbsp; Cần thay đổi? Mở trang trợ lý để trò chuyện.</span
+            ><button id="focus-chat" aria-label="Nhắn trợ lý">↗</button>
+          </div>
+        </section>
+        <aside class="assistant-column">
+          <section class="panel budget-panel">
+            <div class="panel-heading">
+              <h2>Ngân sách dự kiến</h2>
+              <span class="small-icon">◈</span>
+            </div>
+            <p class="muted caption">Tổng chi phí cho cả nhóm</p>
+            <div class="budget-number" id="budget-number"></div>
+            <div class="budget-meter"><span id="budget-meter-fill"></span></div>
+            <p id="budget-status" class="budget-status"></p>
+            <div class="budget-brief" id="budget-brief"></div>
+            <button class="save-button button primary" id="save-plan">
+              ♡ &nbsp; Lưu hành trình</button
+            ><button class="saving-button" id="reduce-cost">
+              ↓ &nbsp; Thử phương án tiết kiệm
+            </button>
+          </section>
+          <a class="chat-page-link" href="chat.html"
+            ><span>✧</span><strong>Chỉnh hành trình cùng trợ lý</strong>
+            <p>Đổi địa điểm, tối ưu chi phí và tìm thêm cảm hứng.</p>
+            <b>Mở AI Chatbot ↗</b></a
+          >
+          <p class="data-note">
+            10 điểm đến · 120 hoạt động mẫu. Các khoản chi là mức dự trù minh
+            họa, không phải giá vé hiện hành; chưa gồm vé đến điểm đến. Lịch
+            trình dài có thể lặp hoạt động và cần điều chỉnh tuyến di chuyển,
+            giờ mở cửa. Trợ lý hiện dùng kịch bản, chưa kết nối AI trực tiếp.
+          </p>
+        </aside>
+      </div>
+      <footer class="studio-footer">
+        <span>Tripmate AI — Trợ lý đồng hành trong mọi hành trình.</span
+        ><span>Made for your next chapter. ↗</span>
+      </footer>
+    </main>
+    <div
+      id="studio-toast"
+      class="toast"
+      role="status"
+      aria-live="polite"
+      hidden
+    ></div>
+  </body>
+</html>
+
+
+
 

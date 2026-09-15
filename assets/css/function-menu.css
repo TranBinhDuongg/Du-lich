@@ -1,0 +1,659 @@
+/* Full-screen destination menu */
+.studio-header .header-actions {
+  margin-left: auto;
+}
+.studio-header .menu-button {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 56px;
+  height: 56px;
+  padding: 15px;
+  border: 1px solid #ffffff65;
+  border-radius: 14px;
+  background: #ffffff15;
+  backdrop-filter: blur(14px);
+}
+.studio-header .menu-button span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: currentColor;
+}
+#journey-menu.immersive-menu {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  max-width: none;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: #f2eedf;
+  color: #253e35;
+  z-index: 9000;
+  overflow: auto;
+  box-shadow: none;
+  backdrop-filter: none;
+  display: block;
+  font-family: inherit, Arial, sans-serif;
+}
+#journey-menu[hidden] {
+  display: none !important;
+}
+.menu-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 8vw;
+  padding: 60px 9vw 36px;
+  min-height: 48vh;
+}
+.menu-brand {
+  font-size: 48px;
+  font-weight: 500;
+  letter-spacing: -2px;
+  line-height: 1.2;
+}
+.menu-brand > span {
+  font-size: 11px;
+  letter-spacing: 1px;
+  border: 1px solid #8e9b87;
+  padding: 5px 7px;
+  border-radius: 5px;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+.menu-brand p {
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  color: #839080;
+  margin-top: 18px;
+}
+.menu-links {
+  width: 43%;
+  max-width: 500px;
+}
+.menu-eyebrow {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  color: #81917f;
+  margin-bottom: 14px;
+}
+#journey-menu .menu-links a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid #253e3520;
+  border-radius: 0;
+  color: #253e35;
+  font:
+    400 clamp(23px, 2.8vw, 40px) / 1.4 inherit,
+    Arial,
+    sans-serif;
+  text-align: left;
+  transition:
+    padding 0.3s,
+    color 0.3s;
+}
+#journey-menu .menu-links a:hover {
+  padding-left: 12px;
+  color: #738661;
+}
+.menu-links a small {
+  font-size: 10px;
+  margin-right: 20px;
+  color: #8b987f;
+}
+.menu-links a > span {
+  margin-left: auto;
+  font-size: 24px;
+}
+#journey-menu .menu-dismiss {
+  position: absolute;
+  right: 25px;
+  top: 23px;
+  width: 43px;
+  height: 43px;
+  border: 1px solid #253e3530;
+  border-radius: 50%;
+  background: none;
+  color: #253e35;
+  font: 300 30px/1 Arial;
+}
+.menu-gallery {
+  overflow: hidden;
+  padding-top: 15px;
+}
+.menu-gallery-heading {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 9vw 18px;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #7a896f;
+}
+.menu-film {
+  display: flex;
+  width: max-content;
+  animation: menu-drift 65s linear infinite;
+  will-change: transform;
+}
+.menu-film-group {
+  display: flex;
+  gap: 22px;
+  padding-right: 22px;
+  flex-shrink: 0;
+}
+.menu-destination {
+  position: relative;
+  margin: 0;
+  width: 29vw;
+  min-width: 240px;
+  height: 29vh;
+  min-height: 180px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.menu-destination img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.menu-destination:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent 40%, #102a245c);
+}
+.menu-destination figcaption {
+  position: absolute;
+  z-index: 1;
+  bottom: 20px;
+  left: 23px;
+  color: #fff;
+}
+.menu-destination figcaption span {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+}
+.menu-destination strong {
+  font-size: 28px;
+  font-weight: 400;
+}
+.menu-foot {
+  padding: 24px 9vw;
+  color: #85917e;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+@keyframes menu-drift {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@media (max-width: 700px) {
+  .menu-top {
+    padding: 70px 7vw 20px;
+    display: block;
+  }
+  .menu-brand {
+    font-size: 34px;
+  }
+  .menu-brand p {
+    margin-top: 8px;
+  }
+  .menu-links {
+    width: 100%;
+    margin-top: 28px;
+  }
+  .menu-gallery-heading {
+    padding: 0 7vw 15px;
+  }
+  .menu-gallery-heading span:last-child {
+    display: none;
+  }
+  .menu-destination {
+    width: 65vw;
+    height: 24vh;
+  }
+  .menu-foot {
+    padding: 20px 7vw;
+  }
+}
+
+.studio-header .menu-button {
+  width: 40px;
+  height: 40px;
+  padding: 9px;
+  gap: 5px;
+  border: 1px solid #ffffff28;
+  border-radius: 9px;
+  background: transparent;
+  backdrop-filter: blur(6px);
+  box-shadow: none;
+  transition:
+    background 0.25s,
+    border-color 0.25s;
+}
+.studio-header .menu-button:hover {
+  background: #ffffff0d;
+  border-color: #ffffff65;
+}
+.studio-header .menu-button span {
+  width: 19px;
+  height: 1px;
+}
+#journey-menu.immersive-menu {
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  max-height: none;
+  min-height: 100dvh;
+  max-width: none;
+  margin: 0;
+  animation: none;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+/* Minimal close control and a smaller, slower destination strip. */
+#journey-menu .menu-dismiss {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+#journey-menu .menu-destination {
+  width: 22vw;
+  min-width: 190px;
+  height: 22vh;
+  min-height: 140px;
+  max-height: 210px;
+}
+#journey-menu .menu-destination figcaption {
+  bottom: 15px;
+  left: 17px;
+}
+#journey-menu .menu-destination strong {
+  font-size: 23px;
+}
+#journey-menu .menu-film {
+  animation: menu-drift-left 100s linear infinite;
+}
+@keyframes menu-drift-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (max-width: 700px) {
+  #journey-menu .menu-destination {
+    width: 48vw;
+    min-width: 160px;
+    height: 19vh;
+    min-height: 130px;
+  }
+}
+/* Airier menu proportions. */
+#journey-menu .menu-brand {
+  font-size: 38px;
+  letter-spacing: -1.5px;
+}
+#journey-menu .menu-brand > span {
+  font-size: 9px;
+  padding: 4px 6px;
+}
+#journey-menu .menu-brand p {
+  font-size: 11px;
+  margin-top: 14px;
+}
+#journey-menu .menu-links a {
+  font-size: clamp(21px, 2.3vw, 32px);
+  padding: 9px 0;
+}
+#journey-menu .menu-links a > span {
+  font-size: 20px;
+}
+#journey-menu .menu-gallery {
+  padding-top: 45px;
+}
+#journey-menu .menu-destination {
+  width: 19vw;
+  min-width: 170px;
+  height: 19vh;
+  min-height: 125px;
+  max-height: 180px;
+}
+#journey-menu .menu-destination strong {
+  font-size: 20px;
+}
+@media (max-width: 700px) {
+  #journey-menu .menu-brand {
+    font-size: 30px;
+  }
+  #journey-menu .menu-links a {
+    font-size: 23px;
+  }
+  #journey-menu .menu-gallery {
+    padding-top: 30px;
+  }
+  #journey-menu .menu-destination {
+    width: 43vw;
+    min-width: 145px;
+    height: 17vh;
+    min-height: 115px;
+  }
+}
+/* Balance the menu around a shared content grid. */
+#journey-menu.immersive-menu {
+  display: flex;
+  flex-direction: column;
+}
+#journey-menu .menu-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 8vw;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  min-height: 0;
+  padding: clamp(65px, 10vh, 110px) 9vw 35px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+#journey-menu .menu-brand {
+  padding-top: 25px;
+}
+#journey-menu .menu-links {
+  width: 100%;
+  max-width: 420px;
+  justify-self: end;
+  margin-top: 0;
+}
+#journey-menu .menu-gallery {
+  margin-top: auto;
+  padding-top: 30px;
+  flex-shrink: 0;
+}
+#journey-menu .menu-gallery-heading {
+  max-width: 1440px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+#journey-menu .menu-foot {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px 9vw 30px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+#journey-menu .menu-dismiss {
+  top: 28px;
+  right: 4vw;
+  text-align: center;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+}
+@media (max-width: 700px) {
+  #journey-menu .menu-top {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 65px 7vw 22px;
+  }
+  #journey-menu .menu-brand {
+    padding-top: 0;
+  }
+  #journey-menu .menu-links {
+    max-width: none;
+  }
+  #journey-menu .menu-gallery {
+    padding-top: 20px;
+  }
+  #journey-menu .menu-foot {
+    padding: 20px 7vw;
+  }
+}
+/* Spread menu content toward the viewport edges. */
+#journey-menu .menu-top {
+  max-width: none;
+  margin: 0;
+  padding-left: 4vw;
+  padding-right: 4vw;
+}
+#journey-menu .menu-gallery-heading {
+  max-width: none;
+  padding-left: 4vw;
+  padding-right: 4vw;
+}
+#journey-menu .menu-foot {
+  max-width: none;
+  padding-left: 4vw;
+  padding-right: 4vw;
+}
+@media (max-width: 700px) {
+  #journey-menu .menu-top,
+  #journey-menu .menu-gallery-heading,
+  #journey-menu .menu-foot {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+/* Anchor the menu logo in the upper-left corner. */
+#journey-menu .menu-brand {
+  position: absolute;
+  top: 28px;
+  left: 4vw;
+  padding-top: 0;
+}
+#journey-menu .menu-links {
+  grid-column: 2;
+}
+@media (max-width: 700px) {
+  #journey-menu .menu-brand {
+    top: 24px;
+    left: 24px;
+  }
+  #journey-menu .menu-top {
+    padding-top: 125px;
+  }
+  #journey-menu .menu-links {
+    grid-column: 1;
+  }
+}
+#journey-menu .menu-brand {
+  top: 44px;
+}
+@media (max-width: 700px) {
+  #journey-menu .menu-brand {
+    top: 36px;
+  }
+}
+/* Raise the destination strip slightly while preserving its spacing. */
+#journey-menu .menu-gallery {
+  position: relative;
+  top: -24px;
+}
+
+.studio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  background: transparent;
+  border-bottom: 0;
+  box-shadow: none;
+}
+.studio-header .header-actions {
+  margin-left: auto;
+}
+.studio-header .menu-button {
+  color: #284c43;
+  border-color: #284c4330;
+  width: 40px;
+  height: 40px;
+  padding: 9px;
+  gap: 5px;
+  cursor: pointer;
+}
+.studio-header .menu-button span {
+  width: 19px;
+  height: 1px;
+}
+.studio-header .menu-button:hover {
+  background: #284c430a;
+  border-color: #284c4370;
+}
+#journey-menu .menu-links a {
+  text-decoration: none;
+  font-family: inherit;
+}
+#journey-menu .menu-links a[aria-current="page"] {
+  color: #56825f;
+}
+#journey-menu #saved-count {
+  margin-left: 10px;
+}
+#journey-menu .menu-dismiss {
+  cursor: pointer;
+}
+#journey-menu :focus-visible {
+  outline: 2px solid #56825f;
+  outline-offset: 5px;
+}
+
+/* Keep the menu trigger reachable while scrolling. */
+.studio-header .menu-button {
+  position: fixed;
+  top: 24px;
+  right: max(24px, env(safe-area-inset-right));
+  z-index: 8000;
+}
+@media (max-width: 700px) {
+  .studio-header .menu-button {
+    top: max(16px, env(safe-area-inset-top));
+    right: max(16px, env(safe-area-inset-right));
+  }
+}
+/* Shared header measurements keep logo and fixed menu aligned. */
+.studio-header {
+  --header-inset: 24px;
+  --header-height: 88px;
+  height: var(--header-height);
+  min-height: var(--header-height);
+  padding: 0 max(var(--header-inset), env(safe-area-inset-right)) 0 max(var(--header-inset), env(safe-area-inset-left));
+  align-items: center;
+}
+.studio-header .studio-logo {
+  line-height: 40px;
+  margin: 0;
+}
+.studio-header .menu-button {
+  top: calc((var(--header-height) - 40px) / 2);
+  right: max(var(--header-inset), env(safe-area-inset-right));
+  margin: 0;
+  box-sizing: border-box;
+}
+@media (max-width: 740px) {
+  .studio-header {
+    --header-inset: 20px;
+    --header-height: 80px;
+  }
+}
+/* Align the logo box and menu box to the same vertical starting point. */
+.studio-header {
+  position: relative;
+}
+.studio-header .studio-logo {
+  position: absolute;
+  top: calc((var(--header-height) - 40px) / 2);
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  padding: 0;
+  transform: translateY(2px);
+}
+.studio-header .studio-logo > span {
+  line-height: 1;
+}
+.studio-header .menu-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  min-height: 40px;
+  line-height: 1;
+}
+.studio-header .menu-button span {
+  flex-shrink: 0;
+  margin: 0;
+}
+/* Match the header edges to the centered page content. */
+.studio-header {
+  --header-inset: calc(max(0px, (100vw - 1570px) / 2) + 4.1vw);
+}
+.studio-header .studio-logo {
+  left: max(var(--header-inset), env(safe-area-inset-left));
+}
+@media (max-width: 740px) {
+  .studio-header {
+    --header-inset: 18px;
+  }
+}
+/* Scroll naturally with the header instead of staying fixed on screen. */
+.studio-header .menu-button {
+  position: absolute;
+}
+/* The floating control enters softly after the header leaves the viewport. */
+.studio-header .menu-button.is-floating {
+  position: fixed;
+  top: max(20px, env(safe-area-inset-top));
+  background: rgba(242, 238, 223, 0.9);
+  backdrop-filter: blur(12px);
+  border-color: #284c4324;
+  box-shadow: 0 5px 20px #253e3512;
+}
+/* Continuous scroll following: no position switch or repeated fade-in. */
+.studio-header .menu-button.menu-follows-scroll {
+  position: fixed;
+  top: max(20px, env(safe-area-inset-top));
+  transform: translate3d(0, var(--menu-scroll-offset, 0px), 0);
+  transition: background-color 450ms ease, border-color 450ms ease, box-shadow 450ms ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .studio-header .menu-button.menu-follows-scroll {
+    transition: none;
+  }
+}
+/* Transparent menu control, including its floating and hover states. */
+.studio-header .menu-button,
+.studio-header .menu-button:hover,
+.studio-header .menu-button.is-floating,
+.studio-header .menu-button.is-floating:hover {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+
+

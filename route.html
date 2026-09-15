@@ -1,1 +1,234 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tripmate · Đường hành trình</title><link rel="stylesheet" href="assets/css/workspace.css?v=separate-cards2"><link rel="stylesheet" href="assets/css/route.css?v=photos7"><script src="assets/js/page-transition.js?v=6"></script><script src="assets/js/planner-engine.js?v=photos2" defer></script><script src="assets/js/route.js?v=photos7" defer></script></head><body><header class="studio-header"><a class="studio-logo" href="index.html">Tripmate<span>AI</span></a><nav aria-label="Điều hướng"><a href="index.html">Khám phá</a><a href="plan.html" data-nav="plan">Tạo lịch trình</a><a href="chat.html" data-nav="chat">AI Chatbot</a><a href="saved.html" data-nav="saved">Đã lưu</a></nav></header><main class="studio-main"><a class="route-back" href="saved.html">← Trở về bộ sưu tập hành trình</a><section class="route-hero"><img id="route-photo" hidden alt=""><span class="hero-label">YOUR PERSONAL JOURNEY</span><div class="hero-copy"><div class="overline">NHẬT KÝ NHỮNG CHUYẾN ĐI</div><h1 id="route-title">Hành trình của bạn</h1><p id="route-meta"></p></div></section><p id="route-error" class="route-error" role="alert"></p><div id="route-content" class="route-layout"><aside class="panel route-summary"><span class="summary-eyebrow">CHUYẾN ĐI TRONG TẦM TAY</span><h2>Tổng dự toán cả nhóm</h2><strong id="route-total"></strong><p>Chi phí minh họa, chưa bao gồm vé đến điểm đến.</p><nav id="route-days" class="route-days" aria-label="Chọn ngày"></nav><button id="edit-route" class="button primary">Chỉnh sửa lịch trình ↗</button><button id="chat-route" class="button secondary">Điều chỉnh cùng trợ lý</button><p class="summary-bottom">Đi chậm một chút, để dành chỗ cho những trải nghiệm bất ngờ.</p></aside><section><p class="route-caption">Sơ đồ thứ tự các điểm dừng theo ngày, không phải bản đồ hoặc tuyến đường thực tế.</p><div id="route-path"></div></section></div></main></body></html>
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Tripmate · Đường hành trình</title>
+    <link rel="stylesheet" href="assets/css/workspace.css?v=separate-cards2" />
+    <link rel="stylesheet" href="assets/css/route.css?v=photos7" />
+    <link rel="stylesheet" href="assets/css/page-transition.css?v=1" />
+    <script src="assets/js/page-transition.js?v=7"></script>
+    <script src="assets/js/planner-engine.js?v=multi1" defer></script>
+    <script src="assets/js/route.js?v=multi1" defer></script>
+    <link rel="stylesheet" href="assets/css/function-menu.css?v=1" />
+    <script src="assets/js/menu.js?v=2" defer></script>
+  <script src="assets/js/floating-menu.js?v=1" defer></script></head>
+  <body>
+    <header class="studio-header">
+      <a class="studio-logo" href="index.html">Tripmate<span>AI</span></a>
+      <div class="header-actions">
+        <button
+          type="button"
+          class="menu-button"
+          aria-label="Mở menu"
+          aria-expanded="false"
+          aria-controls="journey-menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+    <nav
+      id="journey-menu"
+      class="journey-menu immersive-menu"
+      hidden
+      aria-label="Menu Tripmate"
+    >
+      <div class="menu-top">
+        <div class="menu-brand">
+          Tripmate<span>AI</span>
+          <p>Mỗi hành trình, một câu chuyện.</p>
+        </div>
+        <div class="menu-links">
+          <span class="menu-eyebrow">HÀNH TRÌNH CỦA BẠN</span
+          ><a href="index.html" data-nav="home">
+            <small>01</small>Khám phá<span>↗</span></a
+          ><a href="plan.html" data-nav="plan">
+            <small>02</small>Tạo lịch trình<span>↗</span></a
+          ><a href="chat.html" data-nav="chat">
+            <small>03</small>AI Chatbot<span>↗</span></a
+          ><a href="saved.html" data-nav="saved">
+            <small>04</small>Lịch trình của tôi <small id="saved-count">0</small
+            ><span>↗</span>
+          </a>
+        </div>
+        <button class="menu-dismiss" aria-label="Đóng menu">×</button>
+      </div>
+      <div class="menu-gallery">
+        <div class="menu-gallery-heading">
+          <span>ĐI ĐÂU ĐÓ, ĐỂ THẤY NHIỀU HƠN.</span
+          ><span>YOUR NEXT JOURNEY →</span>
+        </div>
+        <div class="menu-film">
+          <div class="menu-film-group">
+            <figure class="menu-destination">
+              <img
+                src="assets/images/Vinh-ha-long.jpg"
+                alt="Hạ Long"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Hạ Long</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/ban-giuoc.jpg"
+                alt="Bản Giốc"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Bản Giốc</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/ma-pi-leng.jpg"
+                alt="Mã Pí Lèng"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Mã Pí Lèng</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/hoi-an.png"
+                alt="Hội An"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Hội An</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/Cau-vang.png"
+                alt="Cầu Vàng"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Cầu Vàng</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/Ly-son.png"
+                alt="Lý Sơn"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Lý Sơn</strong>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="menu-film-group" aria-hidden="true">
+            <figure class="menu-destination">
+              <img
+                src="assets/images/Vinh-ha-long.jpg"
+                alt="Hạ Long"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Hạ Long</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/ban-giuoc.jpg"
+                alt="Bản Giốc"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Bản Giốc</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/ma-pi-leng.jpg"
+                alt="Mã Pí Lèng"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Mã Pí Lèng</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/hoi-an.png"
+                alt="Hội An"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Hội An</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/Cau-vang.png"
+                alt="Cầu Vàng"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Cầu Vàng</strong>
+              </figcaption>
+            </figure>
+            <figure class="menu-destination">
+              <img
+                src="assets/images/Ly-son.png"
+                alt="Lý Sơn"
+                loading="eager"
+              />
+              <figcaption>
+                <span>VIỆT NAM</span><strong>Lý Sơn</strong>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <div class="menu-foot">
+        Tripmate AI — Trợ lý đồng hành trong mọi hành trình.
+      </div>
+    </nav>
+    <main class="studio-main">
+      <a class="route-back" href="saved.html">← Trở về bộ sưu tập hành trình</a>
+      <section class="route-hero">
+        <img id="route-photo" hidden alt="" /><span class="hero-label"
+          >YOUR PERSONAL JOURNEY</span
+        >
+        <div class="hero-copy">
+          <div class="overline">NHẬT KÝ NHỮNG CHUYẾN ĐI</div>
+          <h1 id="route-title">Hành trình của bạn</h1>
+          <p id="route-meta"></p>
+        </div>
+      </section>
+      <p id="route-error" class="route-error" role="alert"></p>
+      <div id="route-content" class="route-layout">
+        <aside class="panel route-summary">
+          <span class="summary-eyebrow">CHUYẾN ĐI TRONG TẦM TAY</span>
+          <h2>Tổng dự toán cả nhóm</h2>
+          <strong id="route-total"></strong>
+          <p>Chi phí minh họa, chưa bao gồm vé đến điểm đến.</p>
+          <nav id="route-days" class="route-days" aria-label="Chọn ngày"></nav>
+          <button id="edit-route" class="button primary">
+            Chỉnh sửa lịch trình ↗</button
+          ><button id="chat-route" class="button secondary">
+            Điều chỉnh cùng trợ lý
+          </button>
+          <p class="summary-bottom">
+            Đi chậm một chút, để dành chỗ cho những trải nghiệm bất ngờ.
+          </p>
+        </aside>
+        <section>
+          <p class="route-caption">
+            Sơ đồ thứ tự các điểm dừng theo ngày, không phải bản đồ hoặc tuyến
+            đường thực tế.
+          </p>
+          <div id="route-path"></div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
+
+
