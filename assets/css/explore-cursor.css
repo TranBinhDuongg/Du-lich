@@ -1,0 +1,12 @@
+.explore-cursor {position:fixed;top:0;left:0;z-index:100;pointer-events:none;color:#fff;opacity:0;transition:opacity .2s ease;will-change:transform}
+.explore-cursor.visible {opacity:.4}
+.explore-cursor-ring {position:absolute;width:80px;height:80px;left:-40px;top:-40px;border:2px solid currentColor;border-radius:50%;box-sizing:border-box;transition:transform .5s ease,background-color .5s ease}
+.explore-cursor-label {position:absolute;left:62px;top:0;transform:translateY(-50%);white-space:nowrap;font-size:11px;font-weight:600;letter-spacing:.5px;text-shadow:0 1px 8px #0008}
+.explore-cursor.label-left .explore-cursor-label {left:auto;right:62px}
+.explore-cursor.holding .explore-cursor-ring {transform:scale(.7);background:#ffffff18}
+.home-experience > .screen-hold-ring {display:none !important}
+@media (prefers-reduced-motion:reduce) {.explore-cursor,.explore-cursor-ring {transition:none}}
+
+
+
+

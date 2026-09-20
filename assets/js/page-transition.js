@@ -1,5 +1,20 @@
 (() => {
   "use strict";
+  // This script runs in the head, before the body can display stale placeholders.
+  const root = document.documentElement;
+  root.classList.add('page-initializing');
+  const ready = async () => {
+    try {
+      if (document.fonts) await Promise.race([
+        document.fonts.ready,
+        new Promise(resolve => setTimeout(resolve, 800)),
+      ]);
+    } finally {
+      root.classList.remove('page-initializing');
+    }
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ready, { once: true });
+  else ready();
   const key = "tripmate.transition",
     pairs = [
       ["#023323", "#ccff90"],
@@ -85,6 +100,8 @@
   });
   if (
     incoming &&
+    incoming.url === location.href &&
+    performance.getEntriesByType('navigation')[0]?.type !== 'reload' &&
     Date.now() - incoming.time < 15000 &&
     pairs.some((p) => JSON.stringify(p) === JSON.stringify(incoming.pair))
   ) {
@@ -118,6 +135,6 @@
     else reveal();
   }
   window.addEventListener("pageshow", (event) => {
-    if (event.persisted) reset();
+    if (event.persisted) { root.classList.remove('page-initializing'); reset(); }
   });
 })();

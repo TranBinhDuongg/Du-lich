@@ -46,91 +46,6 @@ document.addEventListener("keydown", (event) => {
     menuButton.focus();
   }
 });
-document.querySelectorAll('a[href^="#"]').forEach((link) =>
-  link.addEventListener("click", (event) => {
-    const section = document.querySelector(link.getAttribute("href"));
-    if (!section) return;
-    event.preventDefault();
-    journey.scrollTo({ left: section.offsetLeft, behavior: scrollBehavior() });
-    menu.hidden = true;
-    menuButton.setAttribute("aria-expanded", "false");
-  }),
-);
-const move = (direction) =>
-  journey.scrollBy({
-    left: direction * journey.clientWidth * 0.75,
-    behavior: scrollBehavior(),
-  });
-document.getElementById("previous").addEventListener("click", () => move(-1));
-document.getElementById("next").addEventListener("click", () => move(1));
-journey.addEventListener("keydown", (event) => {
-  if (event.target !== journey) return;
-  if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
-    event.preventDefault();
-    move(event.key === "ArrowRight" ? 1 : -1);
-  }
-});
-journey.addEventListener(
-  "wheel",
-  (event) => {
-    if (event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY))
-      return;
-    event.preventDefault();
-    journey.scrollLeft +=
-      event.deltaY *
-      (event.deltaMode === 1
-        ? 20
-        : event.deltaMode === 2
-          ? journey.clientWidth
-          : 1);
-  },
-  { passive: false },
-);
-let drag;
-journey.addEventListener("pointerdown", (event) => {
-  if (
-    event.pointerType !== "mouse" ||
-    event.button !== 0 ||
-    event.target.closest("button,a,input")
-  )
-    return;
-  drag = { x: event.clientX, scroll: journey.scrollLeft, id: event.pointerId };
-  journey.setPointerCapture(event.pointerId);
-  journey.classList.add("dragging");
-});
-journey.addEventListener("pointermove", (event) => {
-  if (drag) journey.scrollLeft = drag.scroll - (event.clientX - drag.x);
-});
-function stopDrag() {
-  drag = null;
-  journey.classList.remove("dragging");
-}
-journey.addEventListener("pointerup", stopDrag);
-journey.addEventListener("pointercancel", stopDrag);
-journey.addEventListener("lostpointercapture", stopDrag);
-function updateProgress() {
-  const max = journey.scrollWidth - journey.clientWidth;
-  const amount = max > 0 ? journey.scrollLeft / max : 0;
-  progress.firstElementChild.style.width = `${amount * 100}%`;
-  progress.setAttribute("aria-valuenow", String(Math.round(amount * 100)));
-  document.getElementById("previous").disabled = journey.scrollLeft < 2;
-  document.getElementById("next").disabled = journey.scrollLeft >= max - 2;
-}
-journey.addEventListener("scroll", updateProgress, { passive: true });
-window.addEventListener("resize", updateProgress);
-updateProgress();
-document.querySelectorAll("[data-hotel]").forEach((button) =>
-  button.addEventListener("click", () => {
-    const image = document.getElementById(button.dataset.hotel);
-    image.src = button.dataset.image;
-    image.alt = `${button.textContent} — lưu trú tham khảo`;
-    button.parentElement.querySelectorAll("button").forEach((option) => {
-      option.classList.toggle("selected", option === button);
-      option.setAttribute("aria-pressed", String(option === button));
-    });
-  }),
-);
-
 /* Homepage transitions inspired by Travelshift. No external animation libraries. */
 (() => {
   "use strict";
@@ -144,13 +59,14 @@ document.querySelectorAll("[data-hotel]").forEach((button) =>
   const footer = document.querySelector(".journey-footer");
   const scenes = [
     {
-      name: "Hạ Long",
+      name: "Việt Nam",
+      region: "KHÁM PHÁ VIỆT NAM",
       image: "assets/images/Vinh-ha-long.jpg",
       bg: "#0a3d4a",
       ink: "#b2ebf2",
-      baseline: "Ngàn đảo, một kỳ quan.",
+      baseline: "Một Việt Nam, muôn hành trình.",
       description:
-        "Vươn ra biển giữa những đảo đá.<br>Cảnh đẹp còn đó, hành trình đang chờ.",
+        "Từ núi rừng đến biển đảo, từ phố cổ đến miền sông nước.<br>Cùng Tripmate khám phá cảnh sắc, văn hóa và hương vị Việt Nam.",
     },
     {
       name: "Bản Giốc",
@@ -603,30 +519,21 @@ document.querySelectorAll("[data-hotel]").forEach((button) =>
     const scene = scenes[index];
     document.body.style.setProperty("--scene-bg", scene.bg);
     document.body.style.setProperty("--scene-ink", scene.ink);
-    setTitle(scene.name, direction);
-    document.getElementById("home-baseline").textContent = scene.baseline;
-    document.getElementById("home-description").innerHTML = scene.description;
+    setTitle("Việt Nam", direction);
+    document.getElementById("home-baseline").textContent = scenes[0].baseline;
+    document.getElementById("home-description").innerHTML = scenes[0].description;
     document.getElementById("home-region").textContent =
-      "VIỆT NAM / " + scene.name.toLocaleUpperCase("vi-VN");
+      "KHÁM PHÁ VIỆT NAM";
     document.getElementById("home-counter").textContent =
       String(index + 1).padStart(2, "0") +
       " / " +
       String(scenes.length).padStart(2, "0");
     document.getElementById("home-explore").firstChild.textContent =
-      index === 0 ? "Khám phá hành trình " : "Hỏi về điểm đến ";
+      "Khám phá hành trình ";
     dots.forEach((dot, i) =>
       dot.setAttribute("aria-pressed", String(i === index)),
     );
     status.textContent = "Điểm đến " + scene.name;
-    const copy = home.querySelector(".home-description");
-    if (!motion.matches && copy.animate)
-      copy.animate(
-        [
-          { opacity: 0, transform: "translateY(18px)" },
-          { opacity: 1, transform: "translateY(0)" },
-        ],
-        { duration: 850, easing: "cubic-bezier(.16,1,.3,1)" },
-      );
   }
   async function switchScene(index, direction = 1) {
     originalHold = null;
@@ -681,32 +588,14 @@ document.querySelectorAll("[data-hotel]").forEach((button) =>
   function showHome() {
     active = true;
     home.hidden = false;
-    journey.hidden = true;
-    journey.inert = true;
-    footer.hidden = true;
     document.body.classList.add("is-home");
     menu.hidden = true;
     menuButton.setAttribute("aria-expanded", "false");
     wake();
   }
   function showJourney() {
-    originalHold = null;
-    originalSettle = null;
-    active = false;
-    home.hidden = true;
-    journey.hidden = false;
-    journey.inert = false;
-    footer.hidden = false;
-    document.body.classList.remove("is-home");
-    if (transition) {
-      const done = transition.done;
-      transition = null;
-      done();
-    }
-    if (frame) cancelAnimationFrame(frame);
-    frame = 0;
-    journey.focus({ preventScroll: true });
-    window.dispatchEvent(new Event("resize"));
+    if (window.TripMateNavigate) window.TripMateNavigate("explore.html");
+    else location.href = "explore.html";
   }
   document.querySelector(".wordmark").addEventListener(
     "click",
@@ -718,17 +607,8 @@ document.querySelectorAll("[data-hotel]").forEach((button) =>
     },
     true,
   );
-  menu
-    .querySelectorAll("a")
-    .forEach((link) => link.addEventListener("click", showJourney, true));
-  document.getElementById("home-explore").addEventListener("click", () => {
-    if (current === 0) {
-      showJourney();
-      return;
-    }
-    openChat();
-    sendMessage("Mình muốn khám phá " + scenes[current].name + ".");
-  });
+
+  document.getElementById("home-explore").addEventListener("click", showJourney);
   document
     .getElementById("home-prev")
     .addEventListener("click", () => next(-1));
@@ -821,8 +701,7 @@ document.querySelectorAll("[data-hotel]").forEach((button) =>
   screenRing.className = "screen-hold-ring";
   screenRing.setAttribute("aria-hidden", "true");
   home.append(screenRing);
-  home.querySelector(".home-instruction").textContent =
-    "Nhấn giữ chuột trái để đổi điểm đến";
+  
   holdScene(home, () => next(1));
   const shuffle = document.getElementById("home-shuffle");
   shuffle.setAttribute("aria-label", "Giữ chuột trái để đổi điểm đến");
@@ -961,8 +840,7 @@ document.querySelectorAll("[data-hotel]").forEach((button) =>
   showHome();
   updateCopy(0, 1);
   initGL();
-  home.classList.add("entering");
-  setTimeout(() => home.classList.remove("entering"), 1900);
 })();
+
 
 

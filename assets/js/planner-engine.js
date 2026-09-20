@@ -393,8 +393,9 @@
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .replace(/đ/g, "d");
+    if (/\b(khong|dung|cho|chua can)\s+(muon\s+|can\s+)?(doi|thay|giam|tiet kiem)\b/.test(q) || /\b(thoi tiet|du bao)\b/.test(q)) return null;
     const day = q.match(/ngay\s*(\d+)/);
-    if (/doi|thay/.test(q) && /ngay/.test(q)) {
+    if (/\b(doi (dia diem |hoat dong )?ngay|thay (doi |hoat dong )?ngay)\b/.test(q)) {
       if (!plan)
         return {
           reply:

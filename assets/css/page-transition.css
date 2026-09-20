@@ -1,3 +1,8 @@
+/* Show the current page only after deferred scripts have restored its content. */
+html.page-initializing { background: #f2eedf; }
+html.page-initializing[data-page="home"] { background: #0a3d4a; }
+html.page-initializing body { visibility: hidden; }
+
 @font-face {
   font-family: TripmateBrand;
   src: url("../fonts/EuclidSquare-Medium.woff") format("woff");

@@ -1,0 +1,29 @@
+/* Warm paper and forest green for the horizontal discovery experience. */
+body:not(.is-home){background:#f2eedf;color:#294b40}
+body:not(.is-home) .site-header{color:#294b40;background:linear-gradient(#f2eedf 65%,#f2eedf00)}
+body:not(.is-home) .site-header .menu-button,body:not(.is-home) .ai-label{border-color:#294b4035}
+#journey{background:#f2eedf;color:#294b40}
+#journey .tripBlock__title>span{color:#819469}
+#journey .tripImageItem{border-radius:18px;box-shadow:0 18px 40px #223f3210}
+#journey .journey-group{gap:45px;padding:0 65px}
+#journey .tripTextItem{width:440px}
+#journey .tripTextItem__wrapper{background:#fbfaf4;border:1px solid #d9dfcf;border-radius:20px;padding:38px;min-height:0}
+#journey .tripTextItem__title{font-size:42px;color:#294b40}
+#journey .tripTextItem__desc{font-size:15px;line-height:1.8;margin-top:20px;opacity:1;color:#71816f}
+#journey .tripTextItem__wrapper>button{background:none;border:0;border-bottom:1px solid #b8c4ad;color:#496c56;padding:10px 0;margin-top:18px;font-size:12px}
+.explore-caption{max-width:320px;margin:22px 0;font-size:14px;line-height:1.8;color:#75836e}
+.explore-quick{display:flex;flex-wrap:wrap;gap:8px;max-width:360px}
+.explore-quick button{border:1px solid #cad4bf;background:transparent;color:#355845;padding:9px 13px;border-radius:20px;font-size:11px;transition:background .2s}
+.explore-quick button:hover{background:#e0e8d4}
+.explore-category{font-size:10px;letter-spacing:1.4px;color:#86946f;margin-bottom:20px}
+.explore-actions{display:flex;align-items:center;flex-wrap:wrap;gap:18px;margin-top:25px}
+.explore-plan{display:inline-flex;padding:14px 18px;background:#315d4c;color:#fff;border-radius:25px;text-decoration:none;font-size:12px}
+.explore-more{border:0;border-bottom:1px solid #829576;padding:9px 0;background:none;color:#496c56;font-size:12px}
+body:not(.is-home) .journey-footer{color:#294b40;background:linear-gradient(transparent,#f2eedf)}
+body:not(.is-home) .progress{background:#294b4025}body:not(.is-home) .progress>span{background:#648569}
+body:not(.is-home) .journey-controls button{color:#294b40;border-color:#294b4030}
+.explore-detail{position:fixed;inset:0;margin:auto;width:min(540px,calc(100vw - 36px));max-height:85dvh;overflow:auto;border:1px solid #d5dec9;border-radius:22px;padding:40px;background:#f7f4e9;color:#294b40;box-shadow:0 25px 90px #102c3440;font-family:EuclidSquare,Arial,sans-serif}
+.explore-detail::backdrop{background:#142b2866;backdrop-filter:blur(5px)}
+.explore-detail h2{font-size:38px;margin:0 0 28px;font-weight:400}.explore-detail h3{font-size:14px;margin:22px 0 10px}.explore-detail p{font-size:14px;line-height:1.8}.explore-detail .explore-note{font-size:11px;color:#7b886f;margin:22px 0}.explore-close{position:absolute;right:18px;top:12px;font-size:30px;background:none;border:0;color:#294b40}
+@media(max-width:700px){#journey .journey-group{gap:22px;padding:0 25px}#journey .tripTextItem{width:310px}#journey .tripTextItem__wrapper{padding:25px}#journey .tripTextItem__title{font-size:32px}.explore-detail{padding:30px 24px}}
+@media(max-height:700px){#journey .tripBlock__title{font-size:70px}#journey .back-button{margin-top:14px}.explore-caption{margin:12px 0}.explore-quick button{padding:7px 11px}}

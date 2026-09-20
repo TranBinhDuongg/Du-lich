@@ -750,8 +750,8 @@ dialog::backdrop {
 
 /* Travelshift homepage motion: shaped WebGL images, kinetic type, timeline. */
 body.is-home {
-  --scene-bg: #73272c;
-  --scene-ink: #b3e5fc;
+  --scene-bg: #0a3d4a;
+  --scene-ink: #b2ebf2;
   background: var(--scene-bg);
   transition: background 1.1s cubic-bezier(0.22, 1, 0.36, 1);
 }

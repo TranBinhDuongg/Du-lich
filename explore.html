@@ -1,33 +1,33 @@
 <!doctype html>
-<html lang="vi" data-page="home">
+<html lang="vi">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>TripMate AI — Khám phá hành trình</title>
+    <title>TripMate AI — Khám phá Việt Nam</title>
     <meta
       name="description"
       content="TripMate AI – Trợ lý đồng hành trong mọi hành trình. Khám phá những điểm đến nổi bật tại Việt Nam."
     />
-    <meta name="theme-color" content="#0a3d4a" />
+    <meta name="theme-color" content="#73272c" />
     <link rel="stylesheet" href="assets/css/travelshift.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
     
-    <script src="assets/js/texture-assets.js" defer></script>
-    <script src="assets/js/journey.js?v=ready-20260920" defer></script>
+    
+    <script src="assets/js/explore-page.js?v=1" defer></script>
     <link rel="stylesheet" href="assets/css/planner.css?v=menu-gallery9" />
     <script src="assets/js/planner-engine.js?v=multi1" defer></script><script src="assets/js/chat-format.js" defer></script><script src="assets/js/chatbot.js?v=2" defer></script><script src="assets/js/script.js?v=2" defer></script>
     <script src="assets/js/planner.js?v=pages2" defer></script>
     <link rel="stylesheet" href="assets/css/page-transition.css?v=ready-20260920" />
     <script src="assets/js/page-transition.js?v=ready-20260920"></script>
     <script src="assets/js/menu.js?v=1" defer></script>
-  <link rel="stylesheet" href="assets/css/explore-cursor.css"><script src="assets/js/explore-cursor.js" defer></script><link rel="stylesheet" href="assets/css/chat-ui.css" />
+  <link rel="stylesheet" href="assets/css/journey-extras.css"><script src="assets/js/journey-extras.js" defer></script><link rel="stylesheet" href="assets/css/chat-ui.css" />
 </head>
-  <body class="is-home">
+  <body >
 
     <header class="site-header">
       <a
         class="wordmark"
-        href="#intro"
+        href="index.html"
         aria-label="TripMate AI, về trang khám phá"
         >Tripmate<span class="ai-label">AI</span></a
       >
@@ -204,56 +204,31 @@
       </div>
     </nav>
 
-    <section
-      class="home-experience"
-      id="home-experience"
-      aria-label="Khám phá điểm đến"
-      tabindex="0"
-    >
-      <div class="home-orbit" aria-hidden="true"></div>
-      <div class="home-art" aria-hidden="true">
-        <img
-          id="home-fallback"
-          src="assets/images/Vinh-ha-long.jpg"
-          alt=""
-        /><canvas id="home-canvas"></canvas>
-      </div>
-      <div class="home-title-wrap">
-        <span class="home-kicker">TRIPMATE AI · YOUR NEXT JOURNEY</span>
-        <h1 class="home-title" id="home-title">Việt Nam.</h1>
-      </div>
-      <div class="home-description">
-        <span id="home-region">KHÁM PHÁ VIỆT NAM</span>
-        <h2 id="home-baseline">Một Việt Nam, muôn hành trình.</h2>
-        <p id="home-description">Từ núi rừng đến biển đảo, từ phố cổ đến miền sông nước.<br>Cùng Tripmate khám phá cảnh sắc, văn hóa và hương vị Việt Nam.</p>
-        <button id="home-explore">Khám phá hành trình <span>↗</span></button>
-      </div>
-      <button
-        class="home-shuffle"
-        id="home-shuffle"
-        aria-label="Khám phá điểm đến ngẫu nhiên"
-      >
-        <span>⤨</span><small>ĐỔI ĐIỂM ĐẾN</small>
-      </button>
-      <div class="home-bottom">
-        
-        <div class="home-dots" role="group" aria-label="Chọn điểm đến"></div>
-        <div class="home-arrows">
-          <button id="home-prev" aria-label="Điểm đến trước">←</button
-          ><span id="home-counter">01 / 06</span
-          ><button id="home-next" aria-label="Điểm đến tiếp theo">→</button>
-        </div>
-      </div>
-      <span
-        class="sr-only"
-        id="home-status"
-        role="status"
-        aria-live="polite"
-      ></span>
-    </section>
+    
 
-    
-    
+    <main
+      class="tripPage tripBlock darkBg"
+      id="journey"
+      tabindex="0"
+      aria-label="Khám phá Việt Nam"
+    ><div class="journey-track"><section class="intro" id="intro"><div class="tripBlock__introWrapper"><h1 class="tripBlock__title">Khám phá<br><span>Việt Nam.</span></h1><button class="back-button" data-open-chat>Đồng hành cùng Tripmate ↗</button></div></section><section class="journey-group" id="day-1"><figure class="tripImageItem tripBlock__item"><img src="assets/images/Vinh-ha-long.jpg" alt="Hạ Long" loading="lazy"></figure><article class="tripTextItem tripBlock__item"><div class="tripTextItem__wrapper"><h2 class="tripTextItem__title">Hạ Long</h2><p class="tripTextItem__desc">Vươn ra biển giữa những đảo đá. Cảnh đẹp còn đó, hành trình đang chờ.</p><button data-open-chat>Hỏi trợ lý ↗</button></div></article></section><section class="journey-group" id="day-2"><figure class="tripImageItem tripBlock__item"><img src="assets/images/ban-giuoc.jpg" alt="Bản Giốc" loading="lazy"></figure><article class="tripTextItem tripBlock__item"><div class="tripTextItem__wrapper"><h2 class="tripTextItem__title">Bản Giốc</h2><p class="tripTextItem__desc">Thác nước giữa núi rừng.</p><button data-open-chat>Hỏi trợ lý ↗</button></div></article></section><section class="journey-group" id="day-3"><figure class="tripImageItem tripBlock__item"><img src="assets/images/ma-pi-leng.jpg" alt="Mã Pí Lèng" loading="lazy"></figure><article class="tripTextItem tripBlock__item"><div class="tripTextItem__wrapper"><h2 class="tripTextItem__title">Mã Pí Lèng</h2><p class="tripTextItem__desc">Qua miền cao nguyên đá.</p><button data-open-chat>Hỏi trợ lý ↗</button></div></article></section><section class="journey-group" id="day-4"><figure class="tripImageItem tripBlock__item"><img src="assets/images/hoi-an.png" alt="Hội An" loading="lazy"></figure><article class="tripTextItem tripBlock__item"><div class="tripTextItem__wrapper"><h2 class="tripTextItem__title">Hội An</h2><p class="tripTextItem__desc">Một nhịp sống bên phố cổ.</p><button data-open-chat>Hỏi trợ lý ↗</button></div></article></section><section class="journey-group" id="day-5"><figure class="tripImageItem tripBlock__item"><img src="assets/images/Cau-vang.png" alt="Cầu Vàng" loading="lazy"></figure><article class="tripTextItem tripBlock__item"><div class="tripTextItem__wrapper"><h2 class="tripTextItem__title">Cầu Vàng</h2><p class="tripTextItem__desc">Dạo bước giữa mây trời.</p><button data-open-chat>Hỏi trợ lý ↗</button></div></article></section><section class="journey-group" id="day-6"><figure class="tripImageItem tripBlock__item"><img src="assets/images/Ly-son.png" alt="Lý Sơn" loading="lazy"></figure><article class="tripTextItem tripBlock__item"><div class="tripTextItem__wrapper"><h2 class="tripTextItem__title">Lý Sơn</h2><p class="tripTextItem__desc">Biển xanh và dấu tích núi lửa.</p><button data-open-chat>Hỏi trợ lý ↗</button></div></article></section></div></main>
+    <footer class="journey-footer">
+      <span class="drag-hint">↔ <span>Kéo để khám phá</span></span>
+      <div
+        class="progress"
+        role="progressbar"
+        aria-label="Tiến độ hành trình"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+      >
+        <span></span>
+      </div>
+      <div class="journey-controls">
+        <button id="previous" aria-label="Chặng trước">←</button
+        ><button id="next" aria-label="Chặng tiếp theo">→</button>
+      </div>
+    </footer>
     <dialog id="chat-dialog" aria-label="Trò chuyện với TripMate AI">
       <button type="button" class="close-chat" aria-label="Đóng trò chuyện">
         ×

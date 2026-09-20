@@ -107,6 +107,8 @@
   }
   const screen = document.body.dataset.screen || "plan",
     draftKey = "tripmate.current-plan.v1";
+  let initializing = true;
+  let referenceOnly = false;
   let plan,
     selectedDestinations = [],
     hasExplicitDestinationSelection = false,
@@ -114,6 +116,7 @@
     dirty = true,
     toastTimer;
   function keep() {
+    if (referenceOnly) return;
     try {
       sessionStorage.setItem(draftKey, JSON.stringify({ plan, dirty }));
     } catch {
@@ -149,6 +152,7 @@
   }
 
   function animate(el) {
+    if (initializing || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     el?.animate?.(
       [
         { opacity: 0, transform: "translateY(12px)" },
@@ -355,8 +359,9 @@
       document.querySelector(".destination-cover").style.background =
         "linear-gradient(125deg," + colors[v.destination] + ",#293d4c)";
     }
+    document.body.classList.toggle('chat-without-plan', referenceOnly);
     if ($("chat-trip-title")) {
-      $("chat-trip-title").textContent = name;
+      $("chat-trip-title").textContent = referenceOnly ? "Chuyến đi tiếp theo của bạn" : name;
       $("chat-trip-meta").textContent =
         v.days +
         " ngày · " +
@@ -365,6 +370,9 @@
         money(c.total) +
         " dự kiến";
     }
+    if (referenceOnly && $("chat-trip-meta")) $("chat-trip-meta").textContent = "Chưa có lịch trình. Bạn vẫn có thể hỏi về điểm đến và tạo chuyến đi bất cứ lúc nào.";
+    if ($("chat-context-label")) $("chat-context-label").textContent = referenceOnly ? "BẮT ĐẦU TỪ MỘT Ý TƯỞNG" : "HÀNH TRÌNH ĐANG CHỈNH";
+    if ($("chat-context-link")) $("chat-context-link").textContent = referenceOnly ? "＋ Tạo lịch trình" : "↗ Xem lịch trình chi tiết";
     if ($("budget-number")) {
       $("budget-number").innerHTML =
         money(c.total) + " <small>/ cả nhóm</small>";
@@ -427,38 +435,111 @@
     renderDay();
     keep();
   }
-  function bubble(text, user = false) {
-    if (!$("studio-messages")) return;
-    const el = document.createElement("div");
-    el.className = "chat-bubble" + (user ? " user" : "");
-    el.textContent = text;
-    $("studio-messages").append(el);
-    animate(el);
-    document.getElementById("studio-messages").scrollTop =
-      document.getElementById("studio-messages").scrollHeight;
+  /* Store plain text and render it safely, including after a reload. */
+  const chatHistoryKey = 'tripmate.chat-history.v2';
+  const suggestionKey = 'tripmate.chat-suggestions.v1';
+  const initialQuestions = ['Gợi ý điểm đến', 'Ăn gì ở Hội An?', 'So sánh Đà Nẵng và Đà Lạt', '3 triệu đi đâu?'];
+  const welcome = '**Chuyến đi tiếp theo của bạn bắt đầu từ đâu?**\nMình là Tripmate. Cùng tìm điểm đến, so sánh chi phí hoặc sắp xếp lịch trình nhé.\n\nBạn có thể nhắn “Hội An có gì chơi?” hoặc “3 triệu cho 2 người đi 3 ngày ở đâu?”.';
+  let chatHistory = [], pendingReply = null;
+  const chatbot = window.TripMateChatbot?.create(E);
+  function saveChatHistory() {
+    try { sessionStorage.setItem(chatHistoryKey, JSON.stringify(chatHistory.slice(-50))); } catch {}
+  }
+  function setSuggestions(items = initialQuestions) {
+    const box = document.querySelector('.quick-questions');
+    if (!box) return;
+    const questions = [...new Set(items.filter(item => typeof item === 'string'))].slice(0,4);
+    box.replaceChildren();
+    for (const question of questions) {
+      const button = document.createElement('button');
+      button.type = 'button'; button.dataset.question = question; button.textContent = question;
+      button.disabled = pendingReply !== null; box.append(button);
+    }
+    try { sessionStorage.setItem(suggestionKey, JSON.stringify(questions)); } catch {}
+  }
+  function renderBotText(text) { return window.TripMateChatFormat ? window.TripMateChatFormat.render(text) : esc(text).replace(/\n/g, '<br>'); }
+  function bubble(text, user = false, remember = true, actions = []) {
+    const messages = $('studio-messages');
+    if (!messages) return;
+    const el = document.createElement('div');
+    el.className = 'chat-bubble' + (user ? ' user' : '');
+    const label = document.createElement('span'); label.className = 'chat-message-label';
+    label.textContent = user ? 'Bạn' : 'Tripmate';
+    const content = document.createElement('div'); content.className = 'chat-message-content';
+    if (user) content.textContent = text; else content.innerHTML = renderBotText(text);
+    el.append(label, content);
+    const safeActions = actions.filter(action => typeof action?.href === 'string' && /^plan\.html(?:\?destination=[\w%-]+)?$/.test(action.href));
+    for (const action of safeActions) {
+      const link = document.createElement('a'); link.className = 'chat-action'; link.href = action.href; link.textContent = action.label;
+      link.addEventListener('click', keep); el.append(link);
+    }
+    messages.append(el);
+    if (remember) { chatHistory.push({text, user, actions:safeActions}); chatHistory = chatHistory.slice(-50); saveChatHistory(); animate(el); }
+    while (messages.children.length > 50) messages.firstElementChild.remove();
+    messages.scrollTop = messages.scrollHeight;
+  }
+  function restoreChatHistory() {
+    if (!$('studio-messages')) return false;
+    try {
+      let data = JSON.parse(sessionStorage.getItem(chatHistoryKey) || '[]');
+      if (Array.isArray(data) && !data.length) {
+        const legacy = JSON.parse(sessionStorage.getItem('tripmate.chat-history.v1') || '[]');
+        if (Array.isArray(legacy)) data = legacy.filter(item => typeof item?.html === 'string').slice(-50).map(item => {
+          const parsed = new DOMParser().parseFromString(item.html.replace(/<br\s*\/?\s*>/gi, '\n'), 'text/html');
+          parsed.querySelectorAll('script,style,iframe,object').forEach(node => node.remove());
+          return { text: parsed.body.textContent || '', user: !!item.user };
+        });
+      }
+      if (!Array.isArray(data)) return false;
+      chatHistory = data.filter(item => typeof item?.text === 'string' && typeof item.user === 'boolean').slice(-50);
+      chatHistory.forEach(item => bubble(item.text, item.user, false, Array.isArray(item.actions) ? item.actions : []));
+      saveChatHistory();
+      const suggestions = JSON.parse(sessionStorage.getItem(suggestionKey) || 'null');
+      setSuggestions(Array.isArray(suggestions) ? suggestions : initialQuestions);
+      return chatHistory.length > 0;
+    } catch { return false; }
+  }
+  function setBusy(busy) {
+    $('studio-chat-form')?.setAttribute('aria-busy', String(busy));
+    $('studio-messages')?.setAttribute('aria-busy', String(busy));
+    document.querySelectorAll('#studio-chat-form button[type="submit"], [data-question]').forEach(button => button.disabled = busy);
+    if ($('chat-status')) $('chat-status').textContent = busy ? 'Đang soạn câu trả lời…' : 'Gợi ý từ dữ liệu có sẵn';
   }
   function ask(text) {
-    if (!text.trim()) return;
-    bubble(text, true);
-    try {
-      const result = E.command(plan, text);
-      if (result) {
-        if (result.plan) {
-          plan = result.plan;
-          dirty = true;
-          const n = text.match(/ngày\s*(\d+)/i);
-          if (n) day = Math.min(plan.days.length, Number(n[1]));
+    const clean = String(text).trim().slice(0,600);
+    if (!clean || pendingReply !== null) return;
+    bubble(clean, true);
+    const typing = document.createElement('div'); typing.className = 'chat-bubble typing-indicator'; typing.setAttribute('aria-label','Tripmate đang trả lời');
+    typing.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
+    $('studio-messages')?.append(typing);
+    if ($('studio-messages')) $('studio-messages').scrollTop = $('studio-messages').scrollHeight;
+    pendingReply = setTimeout(() => {
+      typing.remove();
+      try {
+        const result = chatbot ? chatbot.respond(referenceOnly ? null : plan, clean) : E.command(referenceOnly ? null : plan, clean);
+        if (result?.plan) {
+          plan = result.plan; referenceOnly = false; dirty = true;
+          const number = clean.match(/ngày\s*(\d+)/i);
+          if (number) day = Math.min(plan.days.length, Number(number[1]));
           render();
         }
-        bubble(result.reply);
-      } else
-        bubble(
-          "Mình có thể điều chỉnh lịch trình bạn đang xem. Hãy thử “Đổi địa điểm ngày 2” hoặc “Giảm chi phí”. Để đổi điểm đến, số người hoặc ngân sách, hãy chỉnh thông tin chuyến đi rồi chọn Tạo lịch trình. Đây là trợ lý demo theo kịch bản.",
-        );
-    } catch (e) {
-      bubble(e.message);
-    }
+        bubble(result?.reply || 'Bạn muốn hỏi về điểm đến, chi phí hay lịch trình? Thử chọn một câu gợi ý bên dưới nhé.', false, true, result?.actions || []);
+        setSuggestions(result?.suggestions || initialQuestions);
+      } catch {
+        bubble('Mình chưa xử lý được yêu cầu này. Lịch trình đã lưu vẫn được giữ. Bạn thử hỏi ngắn hơn hoặc mở trang Tạo lịch trình nhé.');
+      } finally { pendingReply = null; setBusy(false); }
+    }, 350);
+    setBusy(true);
   }
+  $('reset-conversation')?.addEventListener('click', () => {
+    clearTimeout(pendingReply); pendingReply = null; chatbot?.reset(); chatHistory = [];
+    $('studio-messages').replaceChildren();
+    try { sessionStorage.removeItem('tripmate.chat-history.v1'); } catch {}
+    saveChatHistory(); setBusy(false); setSuggestions(); bubble(welcome);
+    $('studio-chat-input').value = ''; $('studio-chat-input').style.height = '';
+    $('studio-chat-input').focus({preventScroll:true});
+    toast('Đã bắt đầu hội thoại mới. Lịch trình được giữ nguyên.');
+  });
   function saved() {
     const records = read();
     $("saved-count").textContent = records.length;
@@ -653,11 +734,23 @@
   $("studio-chat-form")?.addEventListener("submit", (e) => {
     e.preventDefault();
     const text = $("studio-chat-input").value;
+    if (pendingReply !== null || !text.trim()) return;
     $("studio-chat-input").value = "";
+    $("studio-chat-input").style.height = "";
     ask(text);
+  });
+  $('studio-chat-input')?.addEventListener('keydown', event => {
+    if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) {
+      event.preventDefault(); $('studio-chat-form').requestSubmit();
+    }
+  });
+  $('studio-chat-input')?.addEventListener('input', event => {
+    if (event.target.tagName !== 'TEXTAREA') return;
+    event.target.style.height = 'auto'; event.target.style.height = Math.min(120,event.target.scrollHeight) + 'px';
   });
   $("focus-chat")?.addEventListener("click", () => go("chat"));
   $("new-trip")?.addEventListener("click", () => {
+    referenceOnly = false;
     form?.reset();
     selectedDestinations = [];
     hasExplicitDestinationSelection = false;
@@ -677,16 +770,18 @@
       'a[href="plan.html"],a[href="chat.html"],a[href="saved.html"]',
     )
     .forEach((a) => a.addEventListener("click", () => keep()));
-  if (!restore()) plan = E.generate(input());
+  if (!restore()) { plan = E.generate(input()); referenceOnly = screen === "chat"; }
+  if (screen === "plan" && window.location?.search) {
+    const destination = new URLSearchParams(window.location.search).get("destination");
+    if (destination && Object.prototype.hasOwnProperty.call(E.destinations, destination)) {
+      plan = E.generate({ ...plan.input, destination, destinations: [destination] });
+      day = 1;
+      dirty = true;
+    }
+  }
   populate();
   render();
   route();
-  bubble(
-    "Xin chào! Mình sẵn sàng điều chỉnh hành trình hiện tại của bạn. Hãy mở trang Tạo lịch trình để đổi thông tin hoặc nhắn mình để đổi địa điểm, giảm chi phí nhé. ✧",
-  );
-  document
-    .querySelectorAll(
-      ".page-intro,.request-panel,.itinerary-column,.assistant-column",
-    )
-    .forEach((el, i) => setTimeout(() => animate(el), i * 70));
+  if (!restoreChatHistory()) { setSuggestions(); bubble(welcome); }
+  initializing = false;
 })();
