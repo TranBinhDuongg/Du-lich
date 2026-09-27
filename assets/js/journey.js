@@ -480,17 +480,11 @@ document.addEventListener("keydown", (event) => {
     const scene = scenes[index];
     document.body.style.setProperty("--scene-bg", scene.bg);
     document.body.style.setProperty("--scene-ink", scene.ink);
-    setTitle(scene.name, direction);
-    document.getElementById("home-baseline").textContent = scene.baseline;
-    document.getElementById("home-description").innerHTML = scene.description;
-    document.getElementById("home-region").textContent =
-      scene.region;
+    // Keep general Vietnam tourism text from HTML — only update counter & dots
     document.getElementById("home-counter").textContent =
       String(index + 1).padStart(2, "0") +
       " / " +
       String(scenes.length).padStart(2, "0");
-    document.getElementById("home-explore").firstChild.textContent =
-      "Khám phá hành trình ";
     dots.forEach((dot, i) =>
       dot.setAttribute("aria-pressed", String(i === index)),
     );
