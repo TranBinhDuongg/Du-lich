@@ -2,41 +2,31 @@
   "an-giang-rung-tram-tra-su": {
     "image": "assets/images/featured/tra-su-enhanced.png",
     "imageAttribution": "Rừng tràm Trà Sư · ảnh có sẵn trong dự án TripMate. · Đã tăng nét bằng AI.",
-    "imageSource": "Ảnh dự án: assets/images/dldt/dldt-file-064.jpg",
-    "originalImage": "assets/images/featured/tra-su.jpg",
-    "imageEnhancement": "AI-assisted restoration and upscaling; original retained"
+    "imageEnhancement": "AI-assisted restoration and upscaling"
   },
   "can-tho-cho-noi-cai-rang": {
     "image": "assets/images/featured/cai-rang-enhanced.png",
     "imageAttribution": "Chợ nổi Cái Răng · ảnh có sẵn trong dự án TripMate. · Đã tăng nét bằng AI.",
-    "imageSource": "Ảnh dự án: assets/images/dldt/dldt-file-054.jpeg",
-    "originalImage": "assets/images/featured/cai-rang.jpeg",
-    "imageEnhancement": "AI-assisted restoration and upscaling; original retained"
+    "imageEnhancement": "AI-assisted restoration and upscaling"
   },
   "bac-lieu-nha-cong-tu-bac-lieu": {
     "image": "assets/images/featured/nha-cong-tu-enhanced.png",
     "imageAttribution": "Nhà Công tử Bạc Liêu · ảnh trong tài liệu Hành trình Bạc Liêu (2N1Đ).docx. · Đã tăng nét bằng AI.",
-    "imageSource": "Hành trình Bạc Liêu (2N1Đ).docx",
-    "originalImage": "assets/images/source/doc-2-image5.jpeg",
-    "imageEnhancement": "AI-assisted restoration and upscaling; original retained"
+    "imageEnhancement": "AI-assisted restoration and upscaling"
   },
   "soc-trang-chua-som-rong": {
     "image": "assets/images/featured/som-rong-enhanced.png",
     "imageAttribution": "Tượng Phật nằm tại Chùa Som Rong · ảnh trong tài liệu Hành trình Sóc Trăng (2N1Đ).docx. · Đã tăng nét bằng AI.",
-    "imageSource": "Hành trình Sóc Trăng (2N1Đ).docx",
-    "originalImage": "assets/images/source/doc-4-image1.jpeg",
-    "imageEnhancement": "AI-assisted restoration and upscaling; original retained"
+    "imageEnhancement": "AI-assisted restoration and upscaling"
   },
   "tay-ninh-nui-ba-den": {
     "image": "assets/images/featured/nui-ba-den-enhanced.png",
-    "originalImage": "assets/images/source/doc-7-image10.png",
     "imageAttribution": "Đỉnh Núi Bà Đen, Tây Ninh. Nguồn: PeaceTour / Gợi ý lịch trình tham quan Núi Bà Đen Tây Ninh trọn vẹn · Đã tăng nét bằng AI.",
-    "imageEnhancement": "AI-assisted restoration and upscaling; original retained"
+    "imageEnhancement": "AI-assisted restoration and upscaling"
   },
   "binh-phuoc-vuon-quoc-gia-bu-gia-map": {
     "image": "assets/images/featured/bu-gia-map-enhanced.png",
-    "originalImage": "assets/images/source/doc-7-image11.png",
-    "imageAttribution": "VQG Bù Gia Mập, Bình Phước. Nguồn: ExoTrails / Khám phá Vườn Quốc gia Bù Gia Mập: 2025 đừng quên ghé thăm thác ... · Đã tăng nét bằng AI.",
-    "imageEnhancement": "AI-assisted restoration and upscaling; original retained"
+    "imageAttribution": "VQG Bù Gia Mập, Bình Phước. Nguồn: ExoTrails / Khám phá Vườn Quốc gia Bù Gia Mập · Đã tăng nét bằng AI.",
+    "imageEnhancement": "AI-assisted restoration and upscaling"
   }
 }
