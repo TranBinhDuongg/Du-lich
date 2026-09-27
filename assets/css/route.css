@@ -401,3 +401,19 @@ body {
     height: 130px;
   }
 }
+/* Clear hierarchy for the trip heading and practical details. */
+.route-hero { padding: 48px 42px 36px; }
+.hero-copy { max-width: 900px; width: 100%; }
+.hero-copy h1 { font-size: clamp(30px, 3.5vw, 46px); line-height: 1.2; letter-spacing: -.7px; margin: 18px 0 20px; text-wrap: balance; }
+.hero-copy h1 > span { display: block; }
+.hero-copy h1 .route-region { font-size: 19px; font-weight: 400; letter-spacing: 0; margin-bottom: 8px; color: #e0e8d7; }
+#route-meta { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 0; font-size: 13px; }
+#route-meta span { white-space: nowrap; }
+.hero-copy .route-price-line { margin: 12px 0 0; font-size: 14px; font-weight: 500; }
+@media (max-width: 740px) {
+ .route-hero { padding: 64px 24px 28px; }
+ .hero-copy h1 { font-size: 30px; margin: 14px 0 18px; }
+ .hero-copy h1 .route-region { font-size: 17px; }
+ #route-meta { gap: 6px 16px; }
+ .hero-copy .route-price-line { font-size: 13px; }
+}

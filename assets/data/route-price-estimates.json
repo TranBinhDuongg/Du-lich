@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-09-27",
+  "method": "Dự toán biên tập cho một người lớn, di chuyển đường bộ từ TP.HCM, phòng tiêu chuẩn ở ghép hai người, ngày thường. Các khoản là giả định lập ngân sách, không phải báo giá nhà cung cấp. Tổng dùng mức trên của khoảng. Không bao gồm vé máy bay, phòng riêng, mua sắm và phụ thu lễ Tết. Nhóm một người có thể phát sinh phụ thu phòng.",
+  "references": [
+    {"url":"https://tourmientay.vn/tour-mien-tay/4-ngay", "observation":"Tour miền Tây tương tự 4 ngày 3 đêm niêm yết 4.050.000–4.200.000 đồng; khác tuyến chi tiết."},
+    {"url":"https://tourtrekking.vn/tour-trekking-bu-gia-map-2n1d/", "observation":"Tour Bù Gia Mập 2 ngày 1 đêm niêm yết 2.290.000 đồng; lịch trình ứng dụng dài 3 ngày nên chỉ dùng đối chiếu."},
+    {"url":"https://intour.com.vn/tour-du-lich-nghi-duong-tai-resort-4-sao-binh-chau.html", "observation":"Tour nghỉ dưỡng Bình Châu 2 ngày 1 đêm niêm yết 1.750.000 đồng; chỉ đối chiếu một chặng của tuyến 5 ngày."}
+  ],
+  "routes": {
+    "an-giang-2n1d": {"min":1900000,"max":2600000},
+    "ho-chi-minh-5n4d": {"min":4800000,"max":6500000},
+    "kien-giang-ca-mau-4n3d": {"min":4000000,"max":5200000},
+    "ha-tien-2n1d": {"min":2100000,"max":2900000},
+    "tay-ninh-2n1d": {"min":1700000,"max":2400000},
+    "binh-duong-2n1d": {"min":1400000,"max":2100000},
+    "binh-phuoc-3n2d": {"min":3200000,"max":4300000},
+    "dong-nam-bo-4n3d": {"min":3900000,"max":5200000},
+    "bac-lieu-2n1d": {"min":2400000,"max":3200000},
+    "soc-trang-2n1d": {"min":2300000,"max":3100000},
+    "mien-tay-4n3d": {"min":3900000,"max":5100000}
+  }
+}

@@ -1,0 +1,48 @@
+const assert=require('node:assert/strict');
+const path=require('node:path');
+const {pathToFileURL}=require('node:url');
+const E=require('../assets/js/planner-engine.js');
+const B=require('../assets/js/chatbot.js');
+const make=(routeId,id)=>({...E.generate({routeId,destination:E.routes.find(r=>r.id===routeId).destinationIds[0],days:2,people:2,budget:3000000,interests:['Văn hóa']}),id});
+const a=make('tien-giang-2n1d','chat-test-a'),b=make('tien-giang-2n1d','chat-test-b');
+const bot=B.create(E);
+assert.match(bot.respond(a,'Lịch trình Tiền Giang').reply,/Ngày|NGÀY/);
+assert.match(bot.respond(a,'giá bao nhiêu vậy?').reply,/1.500.000/);
+assert.match(bot.respond(a,'Ngày 9 đi đâu?').reply,/có 2 ngày/);
+assert.match(bot.respond(a,'Lịch trình Cần Thơ').reply,/lịch trình khác/);
+assert.match(bot.respond(make('bac-lieu-2n1d','x'),'Giá cho 25 người').reply,/57.250.000/);
+assert.ok(!bot.respond(make('an-giang-2n1d','x'),'Khám phá An Giang').reply.includes('lẩu'));
+if(process.argv.includes('--browser'))(async()=>{
+ const {chromium}=require('playwright');const browser=await chromium.launch({channel:'msedge',headless:true});
+ try{
+  const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  const url=pathToFileURL(path.resolve('chat.html')).href;
+  await page.goto(url);
+  await page.evaluate(plans=>localStorage.setItem('tripmate.saved-plans.v1',JSON.stringify(plans)),[a,b]);
+  await page.goto(url+'?trip='+a.id);
+  assert.equal(await page.locator('#trip-faq-items details').count(),a.days.length+4);
+  await page.locator('#trip-faq-items summary').filter({hasText:'Chi phí cho 2 người'}).click();
+  assert.match(await page.locator('#trip-faq-items details[open] .faq-answer').innerText(),/3.000.000/);
+  await page.locator('#trip-faq-items summary').filter({hasText:'Ngày 2 đi đâu?'}).click();
+  assert.ok((await page.locator('#trip-faq-items details[open]').allTextContents()).join('').length>50);
+  const send=async text=>{await page.fill('#studio-chat-input',text);await page.locator('#studio-chat-form button').click();await page.waitForFunction(()=>document.querySelector('#studio-chat-form').getAttribute('aria-busy')==='false');};
+  await send('Ngày 1 đi đâu?');
+  assert.match(await page.locator('#studio-messages').innerText(),/Ngày 1/);
+  await page.selectOption('#chat-trip-select','trip='+b.id);await page.waitForURL('**trip='+b.id);
+  assert.ok(!(await page.locator('#studio-messages').innerText()).includes('Ngày 1 đi đâu?'));
+  await send('Chi phí cho 4 người');
+  assert.match(await page.locator('#studio-messages').innerText(),/6.000.000/);
+  await page.selectOption('#chat-trip-select','trip='+a.id);await page.waitForURL('**trip='+a.id);
+  assert.match(await page.locator('#studio-messages').innerText(),/Ngày 1 đi đâu/);
+  assert.ok(!(await page.locator('#studio-messages').innerText()).includes('Chi phí cho 4 người'));
+  await page.reload();assert.match(await page.locator('#studio-messages').innerText(),/Ngày 1 đi đâu/);
+  await page.locator('#reset-conversation').click();
+  await page.selectOption('#chat-trip-select','trip='+b.id);await page.waitForURL('**trip='+b.id);
+  assert.match(await page.locator('#studio-messages').innerText(),/6.000.000/);
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  assert.deepEqual(errors,[]);
+  await page.screenshot({path:'artifacts/trip-chat-mobile.png',fullPage:true});
+  console.log('PASS: itinerary-specific answers, group pricing, isolated chats for two trips on same route, reload, isolated reset, mobile.');
+ }finally{await browser.close();}
+})().catch(e=>{console.error(e);process.exitCode=1;});

@@ -4,7 +4,7 @@
     $ = (id) => document.getElementById(id),
     form = $("studio-form"),
     key = "tripmate.saved-plans.v1";
-  const money = (n) => Math.round(n).toLocaleString("vi-VN") + " ₫";
+  const money = (n) => (Number.isFinite(n) ? Math.round(n).toLocaleString("vi-VN") + " ₫" : "Chưa có giá");
   const esc = (s) =>
     String(s).replace(
       /[&<>"']/g,
@@ -17,12 +17,7 @@
           "'": "&#39;",
         })[c],
     );
-  const colors = {
-    halong: "#557f80",
-    danang: "#497d9a",
-    hanoi: "#897060",
-    dalat: "#607965",
-  };
+  const colors = {};
   Object.entries(E.destinations).forEach(([id, d]) => {
     colors[id] = d.color || colors[id] || "#557f80";
   });
@@ -33,66 +28,37 @@
     "Văn hóa": "⌂",
     "Check-in": "◎",
   };
-  const provinceOverrides = {
-    "dldt-file-050": "Cần Thơ",
-    "dldt-file-051": "Sóc Trăng",
-    "dldt-file-052": "Sóc Trăng",
-    "dldt-file-053": "Tiền Giang",
-    "dldt-file-054": "Cần Thơ",
-    "dldt-file-055": "Tiền Giang",
-    "dldt-file-056": "Bến Tre",
-    "dldt-file-057": "Kiên Giang",
-    "dldt-file-058": "Đồng Tháp",
-    "dldt-file-059": "Cà Mau",
-    "dldt-file-060": "Cần Thơ",
-    "dldt-file-061": "An Giang",
-    "dldt-file-062": "An Giang",
-    "dldt-file-063": "Cà Mau",
-    "dldt-file-064": "An Giang",
-    "dldt-file-065": "Đồng Tháp",
-    "dldt-file-066": "Kiên Giang",
-    "dldt-file-067": "Kiên Giang",
-    "dldt-file-068": "TP.HCM",
-    "dldt-file-069": "TP.HCM",
-    "dldt-file-070": "Đồng Nai",
-    "dldt-file-071": "TP.HCM",
-    "dldt-file-072": "Bà Rịa - Vũng Tàu",
-    "dldt-file-073": "TP.HCM",
-    "dldt-file-074": "Tây Ninh",
-    "dldt-file-075": "Tây Ninh",
-    "dldt-file-076": "Tây Ninh",
-    "dldt-file-077": "Bà Rịa - Vũng Tàu",
-    "dldt-file-078": "Bà Rịa - Vũng Tàu",
-    "dldt-file-079": "TP.HCM",
-    "dldt-file-080": "TP.HCM",
-    "dldt-file-081": "Đồng Nai",
-  };
-  const dldtDestinations = Object.entries(E.destinations).filter(
-    ([id, destination]) => id.startsWith("dldt-file-") && destination.region,
+  const groupedDestinations = Object.entries(E.destinations).filter(
+    ([, destination]) => destination.region && !destination.canonicalId,
   );
-  const provinceOf = (id) =>
-    provinceOverrides[id] ||
-    E.destinations[id]?.region ||
-    (E.destinations[id] ? "Điểm đến đã lưu" : "Khác");
+  const provinceOf = (id) => E.destinations[id]?.region || "Khác";
   function setDestinationOptions(province, selectedDestination) {
     if (!form?.elements.destination) return;
-    const options =
-      province === "Điểm đến đã lưu" && E.destinations[selectedDestination]
-        ? [[selectedDestination, E.destinations[selectedDestination]]]
-        : dldtDestinations.filter(([id]) => provinceOf(id) === province);
+    const options = groupedDestinations.filter(([id]) => provinceOf(id) === province);
+    // Preserve a selected legacy ID when reopening an existing itinerary.
+    if (E.destinations[selectedDestination] && provinceOf(selectedDestination) === province &&
+        !options.some(([id]) => id === selectedDestination)) {
+      options.push([selectedDestination, E.destinations[selectedDestination]]);
+    }
+    form.elements.destination.disabled = options.length === 0;
+    const addButton = $("add-destination");
+    if (addButton) addButton.disabled = options.length === 0;
+    const notice = $("province-data-note");
+    if (notice) notice.textContent = options.length ? "" : "Chưa có dữ liệu điểm đến tại " + province + ". Hãy chọn tỉnh/thành khác để tạo lịch trình.";
     form.elements.destination.innerHTML = options
       .map(
         ([id, destination]) =>
           '<option value="' + esc(id) + '">' + esc(destination.name) + "</option>",
       )
       .join("");
+    if (!options.length) form.elements.destination.innerHTML = '<option value="">Chưa có dữ liệu điểm đến</option>';
     if (options.some(([id]) => id === selectedDestination))
       form.elements.destination.value = selectedDestination;
   }
   function setProvinceOptions(selectedDestination) {
     if (!form?.elements.province) return;
     let provinces = [
-      ...new Set(dldtDestinations.map(([id]) => provinceOf(id))),
+      ...new Set([...(E.provinces || []), ...groupedDestinations.map(([id]) => provinceOf(id))]),
     ].sort((a, b) => a.localeCompare(b, "vi"));
     const selectedProvince = provinceOf(selectedDestination);
     if (!provinces.includes(selectedProvince)) provinces.unshift(selectedProvince);
@@ -140,7 +106,7 @@
       if (
         !Array.isArray(state.plan.days) ||
         state.plan.days.length !== state.plan.input.days ||
-        !state.plan.days.every((d) => d.activities?.length === 3)
+        !state.plan.days.every((d) => d.activities?.length > 0)
       )
         return false;
       plan = state.plan;
@@ -178,7 +144,7 @@
               p.days.length === p.input.days &&
               p.days.every(
                 (d) =>
-                  d.activities.length === 3 &&
+                  d.activities.length > 0 &&
                   d.activities.every(
                     (a) =>
                       typeof a.name === "string" &&
@@ -250,45 +216,35 @@
   function input() {
     if (!form)
       return {
-        destination: "dldt-file-001",
-        days: 3,
+        destination: E.defaultDestination,
+        days: 2,
         people: 2,
         budget: 3000000,
         interests: ["Ẩm thực", "Biển", "Check-in"],
       };
     const f = new FormData(form);
-    const currentDestination = f.get("destination");
-    const destinations =
-      selectedDestinations.length > 1 || hasExplicitDestinationSelection
-        ? [...selectedDestinations]
-        : [currentDestination || selectedDestinations[0]].filter(Boolean);
-    return {
-      destination: destinations[0],
-      destinations,
-      days: Number(f.get("days")),
-      people: Number(f.get("people")),
-      budget: Number(f.get("budget")),
-      interests: f.getAll("interests"),
-    };
+    const chosen = E.routes.find(r => r.id === f.get("routeId"));
+    const base = chosen ? {routeId: chosen.id, destination: chosen.destinationIds[0], destinations: [...chosen.destinationIds], days: chosen.duration, interests: ["Văn hóa"]} : plan.input;
+    return {...base, people: Number(f.get("people")), budget: Number(f.get("budget"))};
   }
   function populate() {
     if (!form) return;
-    selectedDestinations = destinationIds(plan.input);
-    hasExplicitDestinationSelection = selectedDestinations.length > 1;
-    setProvinceOptions(plan.input.destination);
-    const select = form.elements.destination;
-    if (select.options && !Array.from(select.options).some(o => o.value === plan.input.destination)) {
-      const option = document.createElement("option");
-      option.value = plan.input.destination;
-      option.textContent = E.destinations[plan.input.destination].name;
-      select.append(option);
-    }
-    for (const k of ["destination", "days", "people", "budget"])
-      form.elements[k].value = plan.input[k];
-    form
-      .querySelectorAll("[name=interests]")
-      .forEach((x) => (x.checked = plan.input.interests.includes(x.value)));
-    renderSelectedDestinations();
+    const select = form.elements.routeId;
+    select.innerHTML = E.routes.map(r => '<option value="' + esc(r.id) + '">' + esc(r.name) + '</option>').join('');
+    if (!plan.routeId) select.insertAdjacentHTML('afterbegin', '<option value="">Lịch trình đã lưu của bạn</option>');
+    select.value = plan.routeId || "";
+    for (const k of ["people", "budget"]) form.elements[k].value = plan.input[k];
+    renderPresetOverview();
+  }
+  function renderPresetOverview() {
+    if (!form) return;
+    const chosen = E.routes.find(r => r.id === form.elements.routeId.value);
+    const ids = chosen ? chosen.destinationIds : destinationIds(plan.input);
+    $("preset-overview").innerHTML = '<span class="preset-eyebrow">HÀNH TRÌNH CỦA BẠN</span><h3>' + esc(chosen?.name || 'Lịch trình đã lưu') + '</h3><p class="preset-duration">' + (chosen?.duration || plan.input.days) + ' ngày · ' + ids.length + ' điểm đến</p><ol>' + ids.map(id => '<li>' + esc(E.destinations[id].name) + '</li>').join('') + '</ol>';
+  }
+  function activityPhoto(a) {
+    if (!a.image) return '';
+    return '<img src="' + esc(a.image) + '" alt="' + esc(a.imageAlt || a.name) + '" loading="lazy" style="width:100%;max-width:320px;height:160px;object-fit:cover;border-radius:12px">';
   }
   function renderDay() {
     if (!$("day-tabs")) return;
@@ -313,18 +269,18 @@
           .filter((id) => E.destinations[id]),
       ),
     ].map((id) => E.destinations[id].name);
-    $("day-content").innerHTML =
+    $("day-content").innerHTML = (plan.warnings?.length ? '<p class="day-tip">' + esc(plan.warnings.join(" ").replace("Nguồn ghi", "Khung giờ")) + '</p>' : "") +
       '<div class="day-topline"><div><small>KHÁM PHÁ THEO NHỊP CỦA BẠN</small><h3>Ngày ' +
       day +
       " · " +
-      esc(dayDestinationNames.join(" · ") || destinationLabel(plan.input)) +
-      '</h3></div><button type="button" id="swap-day">↻ Đổi địa điểm</button></div>' +
-      E.scheduleDay(plan, day - 1)
+      esc(plan.days[day - 1].title || dayDestinationNames.join(" · ") || destinationLabel(plan.input)) +
+      '</h3></div></div>' +
+      E.uniquePhotoDay(plan, day - 1)
         .map(
           (a) =>
             '<article class="activity-card"><span class="activity-icon" aria-hidden="true">' +
             (icons[a.tag] || "✧") +
-            '</span><div>' + (a.image ? '<img src="' + esc(a.image) + '" alt="' + esc(a.name) + '" loading="lazy" style="width:100%;max-width:320px;height:160px;object-fit:cover;border-radius:12px">' : '') + '<span class="activity-time">' +
+            '</span><div>' + activityPhoto(a) + '<span class="activity-time">' +
             esc(a.time) +
             "</span><h4>" +
             esc(a.name) +
@@ -335,24 +291,24 @@
               ? esc(a.note)
               : a.cost
                 ? money(a.cost) + "/người"
-                : "Chi phí trải nghiệm: 0 ₫ (dự toán mẫu)") +
+                : "Chưa có giá riêng") +
             "</span></div></div></article>",
         )
         .join("") +
-      '<p class="day-tip">✧ Khung giờ gợi ý, chưa đối chiếu giờ mở cửa và thời gian di chuyển. Bữa ăn và nghỉ đêm dùng dự toán có sẵn.</p>';
+      '<p class="day-tip">✧ Hãy xác nhận giờ khởi hành và dịch vụ trước ngày đi.</p>';
     animate($("day-content"));
   }
   function render() {
     const v = plan.input,
       c = E.costs(plan),
-      name = destinationLabel(v);
+      name = E.routes.find(r => r.id === plan.routeId)?.name || destinationLabel(v);
     if ($("destination-title")) {
       $("destination-title").textContent = name;
       $("trip-meta").textContent =
         v.days + " ngày · " + v.people + " người · " + v.interests.join(" & ");
       const photo =
-        E.destinations[v.destination].image ||
-        (v.destination === "halong" ? "assets/images/Vinh-ha-long.jpg" : null);
+        E.routes.find(r => r.id === plan.routeId)?.image || E.destinations[v.destination].image ||
+        null;
       $("destination-image").hidden = !photo;
       if (photo) $("destination-image").src = photo;
       $("destination-image").alt = "Phong cảnh " + name;
@@ -373,16 +329,18 @@
     if (referenceOnly && $("chat-trip-meta")) $("chat-trip-meta").textContent = "Chưa có lịch trình. Bạn vẫn có thể hỏi về điểm đến và tạo chuyến đi bất cứ lúc nào.";
     if ($("chat-context-label")) $("chat-context-label").textContent = referenceOnly ? "BẮT ĐẦU TỪ MỘT Ý TƯỞNG" : "HÀNH TRÌNH ĐANG CHỈNH";
     if ($("chat-context-link")) $("chat-context-link").textContent = referenceOnly ? "＋ Tạo lịch trình" : "↗ Xem lịch trình chi tiết";
+    if ($('chat-context-link')) $('chat-context-link').href = !referenceOnly && plan.id ? 'route.html?id='+encodeURIComponent(plan.id) : 'plan.html';
     if ($("budget-number")) {
       $("budget-number").innerHTML =
         money(c.total) + " <small>/ cả nhóm</small>";
       $("budget-meter-fill").style.width =
-        Math.min(100, (c.total / c.budgetTotal) * 100) + "%";
+        (c.total === null ? 0 : Math.min(100, (c.total / c.budgetTotal) * 100)) + "%";
       $("budget-status").classList.toggle("over", c.over);
-      $("budget-status").textContent = c.over
+      $("budget-status").textContent = c.unknown || (c.price && c.price.max !== c.price.min) ? c.note : c.over
         ? "Vượt ngân sách " + money(c.total - c.budgetTotal)
         : "Còn dư " + money(c.budgetTotal - c.total) + " so với ngân sách";
       const names = {
+        package: "Giá tour tham khảo",
         stay: "Lưu trú",
         food: "Ăn uống",
         transport: "Di chuyển tại điểm đến",
@@ -395,7 +353,7 @@
             "<div><span>" +
             names[k] +
             "</span><strong>" +
-            money(n * v.people) +
+            money(n === null ? null : n * v.people) +
             "</strong></div>",
         )
         .join("");
@@ -412,9 +370,9 @@
                 '<div class="cost-row"><div><span>' +
                 names[k] +
                 "</span><strong>" +
-                money(n * v.people) +
+                money(n === null ? null : n * v.people) +
                 '</strong></div><div class="bar"><span style="width:' +
-                Math.round(((n * v.people) / c.total) * 100) +
+                (c.total ? Math.round(((n * v.people) / c.total) * 100) : 0) +
                 '%"></span></div></div>',
             )
             .join("") +
@@ -422,7 +380,7 @@
           money(c.total) +
           "</strong></div><p>" +
           money(c.totalPerPerson) +
-          " / người. Chi phí minh họa, chưa gồm vé đến điểm đến.</p>";
+          " / người. " + esc(c.note) + "</p>";
       $("save-plan").textContent = dirty
         ? "♡ Lưu hành trình"
         : "✓ Đã lưu hành trình";
@@ -433,13 +391,30 @@
         : "Đã lưu trên trình duyệt";
     $("saved-count").textContent = read().length;
     renderDay();
+    renderTripFaq();
     keep();
   }
+  function renderTripFaq() {
+    const panel = $('trip-faq'), items = $('trip-faq-items');
+    if (!panel || !items) return;
+    panel.hidden = referenceOnly;
+    items.replaceChildren();
+    if (referenceOnly) return;
+    for (const question of window.TripMateChatbot.questions(plan)) {
+      const row = document.createElement('details');
+      const summary = document.createElement('summary');
+      summary.textContent = question;
+      const answer = document.createElement('div');
+      answer.className = 'faq-answer chat-message-content';
+      answer.innerHTML = renderBotText(chatbot.respond(plan, question).reply);
+      row.append(summary, answer); items.append(row);
+    }
+  }
   /* Store plain text and render it safely, including after a reload. */
-  const chatHistoryKey = 'tripmate.chat-history.v2';
-  const suggestionKey = 'tripmate.chat-suggestions.v1';
-  const initialQuestions = ['Gợi ý điểm đến', 'Ăn gì ở Hội An?', 'So sánh Đà Nẵng và Đà Lạt', '3 triệu đi đâu?'];
-  const welcome = '**Chuyến đi tiếp theo của bạn bắt đầu từ đâu?**\nMình là Tripmate. Cùng tìm điểm đến, so sánh chi phí hoặc sắp xếp lịch trình nhé.\n\nBạn có thể nhắn “Hội An có gì chơi?” hoặc “3 triệu cho 2 người đi 3 ngày ở đâu?”.';
+  let chatHistoryKey = 'tripmate.chat-history.v3.general';
+  let suggestionKey = 'tripmate.chat-suggestions.v2.general';
+  const initialQuestions = ['Ngày 1 đi đâu?', 'Lịch trình từng ngày', 'Chi phí chuyến đi', 'Ăn gì?'];
+  let welcome = 'Chọn một lịch trình để bắt đầu. Mỗi chuyến đi có cuộc trò chuyện riêng.';
   let chatHistory = [], pendingReply = null;
   const chatbot = window.TripMateChatbot?.create(E);
   function saveChatHistory() {
@@ -468,7 +443,7 @@
     const content = document.createElement('div'); content.className = 'chat-message-content';
     if (user) content.textContent = text; else content.innerHTML = renderBotText(text);
     el.append(label, content);
-    const safeActions = actions.filter(action => typeof action?.href === 'string' && /^plan\.html(?:\?destination=[\w%-]+)?$/.test(action.href));
+    const safeActions = actions.filter(action => typeof action?.href === 'string' && /^plan\.html(?:\?(?:destination|route)=[\w%-]+)?$/.test(action.href));
     for (const action of safeActions) {
       const link = document.createElement('a'); link.className = 'chat-action'; link.href = action.href; link.textContent = action.label;
       link.addEventListener('click', keep); el.append(link);
@@ -482,7 +457,7 @@
     if (!$('studio-messages')) return false;
     try {
       let data = JSON.parse(sessionStorage.getItem(chatHistoryKey) || '[]');
-      if (Array.isArray(data) && !data.length) {
+      if (chatHistoryKey === 'tripmate.chat-history.v2' && Array.isArray(data) && !data.length) {
         const legacy = JSON.parse(sessionStorage.getItem('tripmate.chat-history.v1') || '[]');
         if (Array.isArray(legacy)) data = legacy.filter(item => typeof item?.html === 'string').slice(-50).map(item => {
           const parsed = new DOMParser().parseFromString(item.html.replace(/<br\s*\/?\s*>/gi, '\n'), 'text/html');
@@ -534,7 +509,6 @@
   $('reset-conversation')?.addEventListener('click', () => {
     clearTimeout(pendingReply); pendingReply = null; chatbot?.reset(); chatHistory = [];
     $('studio-messages').replaceChildren();
-    try { sessionStorage.removeItem('tripmate.chat-history.v1'); } catch {}
     saveChatHistory(); setBusy(false); setSuggestions(); bubble(welcome);
     $('studio-chat-input').value = ''; $('studio-chat-input').style.height = '';
     $('studio-chat-input').focus({preventScroll:true});
@@ -545,40 +519,13 @@
     $("saved-count").textContent = records.length;
     $("studio-saved").innerHTML = records.length
       ? records
-          .map(
-            (p) =>
-              '<article class="saved-tile"><div class="saved-art" style="background:' +
-              colors[p.input.destination] +
-              '">' +
-              (E.destinations[p.input.destination].image ||
-              p.input.destination === "halong"
-                ? '<img src="' +
-                  (E.destinations[p.input.destination].image ||
-                    "assets/images/Vinh-ha-long.jpg") +
-                  '" alt="' +
-                  esc(destinationLabel(p.input)) +
-                  '">'
-                : "") +
-              "<span>" +
-              esc(destinationLabel(p.input)) +
-              '</span></div><div class="saved-body"><p>' +
-              p.input.days +
-              " ngày · " +
-              p.input.people +
-              " người</p><h3>" +
-              esc(destinationLabel(p.input)) +
-              " theo cách của bạn</h3><p>" +
-              p.input.interests.map(esc).join(" · ") +
-              '</p><strong class="saved-total">' +
-              money(E.costs(p).total) +
-              '</strong><div class="saved-actions"><button data-open="' +
-              esc(p.id) +
-              '">Mở hành trình ↗</button><button class="delete" data-delete="' +
-              esc(p.id) +
-              '" aria-label="Xóa lịch trình ' +
-              esc(destinationLabel(p.input)) +
-              '">Xóa</button></div></div></article>',
-          )
+          .map(p => {
+            const route = E.routes.find(r => r.id === p.routeId);
+            const title = route?.name || [...new Set(destinationIds(p.input).map(id => E.destinations[id].region))].join(' – ');
+            const cost = E.costs(p);
+            const photo = route?.image || E.destinations[p.input.destination].image;
+            return '<article class="saved-tile"><div class="saved-art"><img src="' + esc(photo || 'assets/images/tourism-placeholder.svg') + '" alt="" loading="lazy"></div><div class="saved-body"><h3 title="' + esc(title) + '">' + esc(title) + '</h3><p>' + p.input.days + ' ngày · ' + p.input.people + ' người · ' + destinationIds(p.input).length + ' điểm đến</p><div class="saved-price"><strong class="saved-total">' + money(cost.total) + '</strong><small>' + (cost.total === null ? 'Cần dự toán riêng' : 'dự kiến / nhóm') + '</small></div><div class="saved-actions"><button data-open="' + esc(p.id) + '">Mở hành trình ↗</button><button class="delete" data-delete="' + esc(p.id) + '" aria-label="Xóa lịch trình ' + esc(title) + '">Xóa</button></div></div></article>';
+          })
           .join("")
       : '<div class="empty-library"><span>♡</span><h3>Những chuyến đi đang chờ bạn.</h3><p>Tạo một lịch trình và nhấn Lưu hành trình để giữ lại ở đây.</p><button data-page="plan">Tạo hành trình đầu tiên ↗</button></div>';
   }
@@ -599,7 +546,7 @@
         ? "Những kế hoạch đã lưu, sẵn sàng cho ngày lên đường."
         : screen === "chat"
           ? "Một không gian riêng để trò chuyện và điều chỉnh hành trình của bạn."
-          : "Chọn điều bạn thích. Sắp xếp một hành trình theo cách của riêng bạn.";
+          : "Chọn lịch trình có sẵn, xem các điểm đến và chuẩn bị cho ngày lên đường.";
     if (screen === "saved") saved();
   }
 
@@ -607,12 +554,13 @@
     e.preventDefault();
     try {
       const next = E.generate(input());
-      next.id = plan?.id || null;
+      next.id = next.routeId === plan?.routeId ? plan?.id || null : null;
       plan = next;
       selectedDestinations = [...next.input.destinations];
       day = 1;
       dirty = true;
       $("form-error").textContent = "";
+      populate();
       render();
       toast("Lịch trình mới đã sẵn sàng.");
     } catch (err) {
@@ -620,6 +568,7 @@
     }
   });
   form?.elements.province?.addEventListener("change", (e) => {
+    form.elements.routeId.value = ""; selectedDestinations = []; hasExplicitDestinationSelection = false;
     setDestinationOptions(e.target.value);
     if (
       !hasExplicitDestinationSelection &&
@@ -630,13 +579,20 @@
       renderSelectedDestinations();
     }
   });
+  form?.elements.routeId?.addEventListener("change", () => {
+    const route = E.routes.find(r => r.id === form.elements.routeId.value);
+    if (route) renderPresetOverview();
+  });
+  form?.elements.days?.addEventListener("change", () => { form.elements.routeId.value = ""; });
   form?.elements.destination?.addEventListener?.("change", (e) => {
+    form.elements.routeId.value = ""; selectedDestinations = []; hasExplicitDestinationSelection = false;
     if (!hasExplicitDestinationSelection && selectedDestinations.length <= 1) {
       selectedDestinations = [e.target.value];
       renderSelectedDestinations();
     }
   });
   $("add-destination")?.addEventListener("click", () => {
+    if (form?.elements.routeId) form.elements.routeId.value = "";
     const id = form?.elements.destination?.value;
     if (!id) return;
     const existed = selectedDestinations.includes(id);
@@ -687,6 +643,15 @@
       write([record, ...records.filter((p) => p.id !== record.id)].slice(0, 50))
     ) {
       plan = record;
+      if (screen === 'chat') {
+        chatHistoryKey = 'tripmate.chat-history.v3.trip.'+record.id;
+        suggestionKey = 'tripmate.chat-suggestions.v2.trip.'+record.id;
+        saveChatHistory();
+        history.replaceState(null,'','chat.html?trip='+encodeURIComponent(record.id));
+        const choice = 'trip='+encodeURIComponent(record.id);
+        if (!$('chat-trip-select').querySelector('option[value="'+choice+'"]')) $('chat-trip-select').insertAdjacentHTML('afterbegin','<option value="'+choice+'">'+esc(E.routes.find(r=>r.id===record.routeId)?.name||destinationLabel(record.input))+'</option>');
+        $('chat-trip-select').value=choice;
+      }
       dirty = false;
       render();
       toast("Đã lưu hành trình trên trình duyệt này.");
@@ -752,32 +717,64 @@
   $("new-trip")?.addEventListener("click", () => {
     referenceOnly = false;
     form?.reset();
+    if (form?.elements.province) setProvinceOptions(E.defaultDestination);
     selectedDestinations = [];
     hasExplicitDestinationSelection = false;
     if (form?.elements.province)
       setDestinationOptions(form.elements.province.value);
     plan = E.generate(input());
     selectedDestinations = [...plan.input.destinations];
-    renderSelectedDestinations();
+    populate();
     day = 1;
     dirty = true;
     render();
     go("plan");
-    toast("Bắt đầu bản nháp mới. Hãy chọn sở thích của bạn.");
+    toast("Hãy chọn lịch trình cho chuyến đi mới.");
   });
   document
     .querySelectorAll(
       'a[href="plan.html"],a[href="chat.html"],a[href="saved.html"]',
     )
     .forEach((a) => a.addEventListener("click", () => keep()));
+  if (form?.elements.province) setProvinceOptions(E.defaultDestination);
+  if (form) form.elements.routeId.innerHTML = E.routes.map(r => '<option value="' + esc(r.id) + '">' + esc(r.name) + '</option>').join('');
   if (!restore()) { plan = E.generate(input()); referenceOnly = screen === "chat"; }
+  const requestedRoute = new URLSearchParams(window.location.search).get("route");
+  if (screen === "plan" && E.routes.some(r => r.id === requestedRoute)) {
+    plan = E.generate({...plan.input, routeId: requestedRoute}); day = 1; dirty = true;
+  }
   if (screen === "plan" && window.location?.search) {
     const destination = new URLSearchParams(window.location.search).get("destination");
     if (destination && Object.prototype.hasOwnProperty.call(E.destinations, destination)) {
-      plan = E.generate({ ...plan.input, destination, destinations: [destination] });
+      plan = E.generate({ ...plan.input, destination, destinations: [destination], routeId: E.routes.find(r => r.destinationIds.includes(destination))?.id || null });
       day = 1;
       dirty = true;
     }
+  }
+  if (screen === 'chat') {
+    const params = new URLSearchParams(location.search);
+    const tripId = params.get('trip'), routeId = params.get('route');
+    const savedTrip = tripId ? read().find(p => p.id === tripId) : null;
+    const chosenRoute = E.routes.find(r => r.id === routeId);
+    if (savedTrip) { plan = savedTrip; dirty = false; referenceOnly = false; }
+    else if (chosenRoute) { plan = E.generate({destination:chosenRoute.destinationIds[0],routeId:chosenRoute.id,days:chosenRoute.duration,people:2,budget:3000000,interests:['Văn hóa']}); dirty = true; referenceOnly = false; }
+    else if (tripId || routeId) { referenceOnly = true; }
+    if(chosenRoute&&!savedTrip)plan.chatScope='route.'+chosenRoute.id;
+    const contextId = referenceOnly ? 'general' : plan.id ? 'trip.'+plan.id : plan.chatScope || 'draft.'+(plan.chatId ||= (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())));
+    // Catalog conversations have stable keys; saved trips and drafts remain separate.
+    const scope = contextId;
+    chatHistoryKey = 'tripmate.chat-history.v3.'+scope;
+    suggestionKey = 'tripmate.chat-suggestions.v2.'+scope;
+    const select = $('chat-trip-select');
+    select.innerHTML = '<option value="">Chọn lịch trình</option><optgroup label="Chuyến đi đã lưu">'+read().map(p=>'<option value="trip='+encodeURIComponent(p.id)+'">'+esc(E.routes.find(r=>r.id===p.routeId)?.name || destinationLabel(p.input))+' · '+p.input.people+' người</option>').join('')+'</optgroup><optgroup label="Lịch trình có sẵn">'+E.routes.map(r=>'<option value="route='+encodeURIComponent(r.id)+'">'+esc(r.name)+'</option>').join('')+'</optgroup>';
+    if (!referenceOnly) {
+      const value = plan.id ? 'trip='+encodeURIComponent(plan.id) : chosenRoute ? 'route='+encodeURIComponent(chosenRoute.id) : 'draft';
+      if(value==='draft')select.insertAdjacentHTML('afterbegin','<option value="draft">Lịch trình đang lên kế hoạch</option>');
+      select.value=value;
+      welcome='**'+(E.routes.find(r=>r.id===plan.routeId)?.name || destinationLabel(plan.input))+'**\n\nĐây là cuộc trò chuyện riêng của chuyến đi này. Bạn có thể hỏi về từng ngày, điểm đến, ăn uống hoặc chi phí.';
+    } else if(tripId || routeId) welcome='Không tìm thấy lịch trình này. Hãy chọn một lịch trình khác để trò chuyện.';
+    select.addEventListener('change',()=>{if(select.value && select.value!=='draft')location.href='chat.html?'+select.value;});
+    $('studio-chat-input').placeholder='Hỏi về ngày đi, điểm đến hoặc chi phí…';
   }
   populate();
   render();

@@ -9,9 +9,15 @@
     savedFeedback = document.getElementById("saved-feedback"),
     error = document.getElementById("planner-error");
   const key = "tripmate.saved-plans.v1";
+  form?.elements.routeId?.addEventListener('change', () => {
+    const route=E.routes.find(r=>r.id===form.elements.routeId.value);
+    if(route) form.elements.days.value=route.duration;
+  });
+  form?.elements.destination?.addEventListener('change',()=>{form.elements.routeId.value='';});
+  form?.elements.days?.addEventListener('change',()=>{form.elements.routeId.value='';});
   let activePlan = null,
     opener = null;
-  const money = (n) => Math.round(n).toLocaleString("vi-VN") + " ₫";
+  const money = (n) => (Number.isFinite(n) ? Math.round(n).toLocaleString("vi-VN") + " ₫" : "Chưa có giá");
   const esc = (s) =>
     String(s).replace(
       /[&<>"']/g,
@@ -232,7 +238,7 @@
               p.days.every(
                 (d) =>
                   Array.isArray(d.activities) &&
-                  d.activities.length === 3 &&
+                  d.activities.length > 0 &&
                   d.activities.every(
                     (a) =>
                       typeof a.name === "string" &&
@@ -284,6 +290,7 @@
   function populate() {
     if (!activePlan) return;
     const v = activePlan.input;
+    if (form.elements.routeId) form.elements.routeId.value = activePlan.routeId || "";
     ["destination", "days", "people", "budget"].forEach(
       (k) => (form.elements[k].value = v[k]),
     );
@@ -324,42 +331,34 @@
       " / người</span><strong>" +
       money(c.total) +
       '</strong></div><div class="budget-detail">' +
-      [
-        ["stay", "Lưu trú"],
-        ["food", "Bữa ăn"],
-        ["transport", "Đi lại tại chỗ"],
-        ["activities", "Trải nghiệm & ăn vặt"],
-        ["reserve", "Dự phòng 10%"],
-      ]
+      [["package", "Giá tour theo tài liệu"]]
         .map(
           ([k, label]) =>
             "<div>" +
             label +
             "<b>" +
-            money(c.perPerson[k] * people) +
+            money(c.perPerson[k] === null ? null : c.perPerson[k] * people) +
             "</b></div>",
         )
         .join("") +
       "</div>" +
-      (c.over
+      (c.unknown ? '<p class="budget-note">' + esc(c.note) + '</p>' : c.over
         ? '<p class="budget-alert">Dự toán vượt ngân sách ' +
           money(c.total - c.budgetTotal) +
-          ". Thử “Giảm chi phí”, giảm số ngày hoặc điều chỉnh ngân sách.</p>"
+          ". Hãy chọn tuyến khác hoặc điều chỉnh ngân sách.</p>"
         : '<p class="budget-note">Trong ngân sách ' +
           money(c.budgetTotal) +
           " cho cả nhóm.</p>") +
       "</div>" +
       '<div class="result-actions"><button class="save-plan" data-plan-action="save">' +
       (p.id ? "Lưu thay đổi" : "Lưu lịch trình") +
-      '</button><button data-plan-action="reduce">↓ Giảm chi phí</button><button data-plan-action="chat">✧ Hỏi chatbot</button></div>' +
+      '</button><button data-plan-action="chat">✧ Hỏi chatbot</button></div>' +
       p.days
         .map(
           (day) =>
             '<article class="day-card"><header><h4>Ngày ' +
             day.number +
-            '</h4><button data-change-day="' +
-            day.number +
-            '">Đổi hoạt động ↻</button></header>' +
+            '</h4></header>' +
             E.scheduleDay(p, day.number - 1)
               .map(
                 (a) =>
@@ -374,14 +373,14 @@
                     ? esc(a.note)
                     : a.cost
                       ? money(a.cost) + " / người"
-                      : "Chi phí mẫu: 0 ₫") +
+                      : "Chưa có giá riêng trong tài liệu") +
                   "</span></div>",
               )
               .join("") +
             "</article>",
         )
         .join("") +
-      '<p class="planning-note">Đây là lịch trình theo kịch bản, không phải kết quả AI trực tiếp. Các mức tiền là giả định để lập kế hoạch, không phải báo giá. Chưa gồm vé máy bay/tàu/xe đến điểm đến. Với chuyến dài, một số hoạt động có thể lặp lại; hãy đổi từng ngày để điều chỉnh.</p>';
+      '<p class="planning-note">Lịch trình và giá theo tài liệu nguồn. Hãy xác nhận lại giờ tham quan, dịch vụ và giá trước ngày đi.</p>';
     document.getElementById("return-to-plan").hidden = false;
     lastBudget = c.total;
     animateResult(before, fromBudget, c.total);
@@ -493,15 +492,17 @@
     const data = new FormData(form);
     try {
       activePlan = E.generate({
+        routeId: data.get("routeId") || null,
         destination: data.get("destination"),
         days: data.get("days"),
         people: data.get("people"),
         budget: data.get("budget"),
         interests: data.getAll("interests"),
       });
+      populate();
       renderPlan();
       feedback.textContent =
-        "Đã tạo lịch trình. Bạn có thể đổi từng ngày, giảm chi phí hoặc lưu lại.";
+        "Đã tạo lịch trình từ danh mục mới. Bạn có thể lưu lại và xem chi tiết.";
       result.scrollIntoView({
         block: "nearest",
         behavior: reduceMotion.matches ? "instant" : "smooth",

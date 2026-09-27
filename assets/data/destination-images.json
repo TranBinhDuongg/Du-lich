@@ -1,0 +1,661 @@
+{
+  "an-giang-lang-thoai-ngoc-hau": {
+    "image": "assets/images/destinations/an-giang-lang-thoai-ngoc-hau.webp",
+    "imageAlt": "Lăng Thoại Ngọc Hầu · An Giang",
+    "imageAttribution": "Lăng Thoại Ngọc Hầu · Nguồn: Lăng Thoại Ngọc Hầu · Du lịch An Giang",
+    "imageSource": "https://checkinangiang.vn/vi/langthoaingochau2",
+    "imageOriginalUrl": "https://dltm-cdn.vnptit3.vn/resources/portal/Images/AGG/admin.chaudoc/ban_quan_tri_lang_mieu_nui_sam/lang_thoai_ngoc_hau/hinh_3_637086246589612843.jpg"
+  },
+  "an-giang-mieu-ba-chua-xu-nui-sam": {
+    "image": "assets/images/destinations/an-giang-mieu-ba-chua-xu-nui-sam.webp",
+    "imageAlt": "Miếu Bà Chúa Xứ Núi Sam · An Giang",
+    "imageAttribution": "Miếu Bà Chúa Xứ Núi Sam · Nguồn: Miếu Bà Chúa Xứ Núi Sam Châu Đốc - An Giang",
+    "imageSource": "https://trananhhomes.vn/mieu-ba-chua-xu-nui-sam-chau-doc-an-giang.html",
+    "imageOriginalUrl": "https://trananhhomes.vn/wp-content/uploads/2022/11/mieu-ba-chua-xu-nui-sam-chau-doc-an-giang.jpg"
+  },
+  "an-giang-quan-the-di-tich-nui-sam": {
+    "image": "assets/images/destinations/an-giang-quan-the-di-tich-nui-sam.webp",
+    "imageAlt": "Quần thể di tích Núi Sam · An Giang",
+    "imageAttribution": "Quần thể di tích Núi Sam · Nguồn: Về Châu Đốc đi Vía Bà Chúa Xứ núi Sam",
+    "imageSource": "https://cungphuot.info/ve-chau-doc-di-via-ba-chua-xu-nui-sam-post28672.cp",
+    "imageOriginalUrl": "https://media.cungphuot.info/2023/05/28672/6.jpg"
+  },
+  "an-giang-chua-tay-an": {
+    "image": "assets/images/destinations/an-giang-chua-tay-an.webp",
+    "imageAlt": "Chùa Tây An · An Giang",
+    "imageAttribution": "Chùa Tây An · Nguồn: Chùa Tây An - Điểm đến - Cục Du lịch Quốc gia Việt Nam",
+    "imageSource": "https://vietnamtourism.vn/index.php/tourism/items/1248/2",
+    "imageOriginalUrl": "https://vietnamtourism.vn/imguploads/tourist/2014/T6/01Chuatayan01JPG.jpg"
+  },
+  "an-giang-cho-tinh-bien": {
+    "image": "assets/images/destinations/an-giang-cho-tinh-bien.webp",
+    "imageAlt": "Chợ Tịnh Biên · An Giang",
+    "imageAttribution": "Chợ Tịnh Biên · Nguồn: Tinh Bien Market - A Place to Buy Everything in An Giang",
+    "imageSource": "https://vietnambudgetcarrental.com/tinh-bien-market-a-place-to-buy-everything-in-an-giang.html",
+    "imageOriginalUrl": "https://vietnambudgetcarrental.com/vnt_upload/news/11_2023/tinh-bien-market-a-place-to-buy-everything-in-an-giang.jpg"
+  },
+  "an-giang-nui-cam": {
+    "image": "assets/images/destinations/an-giang-nui-cam.webp",
+    "imageAlt": "Núi Cấm · An Giang",
+    "imageAttribution": "Núi Cấm · Nguồn: Gỡ khó để du lịch Núi Cấm khai thác hết tiềm năng - Tuổi Trẻ Online",
+    "imageSource": "https://tuoitre.vn/go-kho-de-du-lich-nui-cam-khai-thac-het-tiem-nang-20241010112409445.htm",
+    "imageOriginalUrl": "https://cdn2.tuoitre.vn/zoom/700_390/471584752817336320/2024/10/10/nui-cam-17285338316721987861096-49-0-1096-2000-crop-1728534075203463574630.jpg"
+  },
+  "can-tho-nha-co-binh-thuy": {
+    "image": "assets/images/destinations/can-tho-nha-co-binh-thuy.webp",
+    "imageAlt": "Nhà cổ Bình Thủy · Cần Thơ",
+    "imageAttribution": "Nhà cổ Bình Thủy · Nguồn: nha-co-binh-thuy-can-tho-2 - Du Lịch Miền Tây",
+    "imageSource": "https://thamhiemmekong.com/tour-du-lich-mien-tay/tour-mien-tay-5-ngay-4-dem-tu-tp-hcm-my-tho-ben-tre-can-tho-soc-trang-bac-lieu-ca-mau.html/attachment/nha-co-binh-thuy-can-tho-2-2",
+    "imageOriginalUrl": "https://thamhiemmekong.com/wp-content/uploads/2019/04/nha-co-binh-thuy-can-tho-2-1024x768.jpg"
+  },
+  "can-tho-chua-ong": {
+    "image": "assets/images/destinations/can-tho-chua-ong.webp",
+    "imageAlt": "Chùa Ông · Cần Thơ",
+    "imageAttribution": "Chùa Ông · Nguồn: Chùa Ông Cần Thơ - Chốn linh thiêng bậc nhất xứ Tây Đô",
+    "imageSource": "https://www.traveloka.com/vi-vn/explore/destination/chua-ong-can-tho-acc/266913",
+    "imageOriginalUrl": "https://ik.imagekit.io/tvlk/blog/2023/08/chua-ong-can-tho-2-1024x683.jpg?tr=dpr-2%2Cw-675"
+  },
+  "can-tho-ben-ninh-kieu": {
+    "image": "assets/images/destinations/can-tho-ben-ninh-kieu.webp",
+    "imageAlt": "Bến Ninh Kiều · Cần Thơ",
+    "imageAttribution": "Bến Ninh Kiều · Nguồn: Cần Thơ thu hút 3,7 triệu lượt du khách trong 6 tháng đầu năm 2024 - VnEconomy",
+    "imageSource": "https://vneconomy.vn/can-tho-thu-hut-3-7-trieu-luot-du-khach-trong-6-thang-dau-nam-2024.htm",
+    "imageOriginalUrl": "https://media.vneconomy.vn/images/upload/2024/07/04/dien-mao-thanh-pho-can-tho.jpg"
+  },
+  "can-tho-lang-du-lich-my-khanh": {
+    "image": "assets/images/destinations/can-tho-lang-du-lich-my-khanh.webp",
+    "imageAlt": "Làng du lịch Mỹ Khánh · Cần Thơ",
+    "imageAttribution": "Làng du lịch Mỹ Khánh · Nguồn: My Khanh tourist village",
+    "imageSource": "https://travelviet.net/en/travel/can-tho-123/my-khanh-tourist-village",
+    "imageOriginalUrl": "https://images.travelviet.net/vietnam/s3/s3_amazon/8392ee73-8a0e-4518-9915-92fcf964bdf0-lang-du-lich-my-khanhjpg.jpg"
+  },
+  "hau-giang-lung-ngoc-hoang": {
+    "image": "assets/images/destinations/hau-giang-lung-ngoc-hoang.webp",
+    "imageAlt": "Lung Ngọc Hoàng · Hậu Giang",
+    "imageAttribution": "Lung Ngọc Hoàng · Nguồn: Hậu Giang khai thác tiềm năng du lịch sinh thái Lung Ngọc Hoàng",
+    "imageSource": "https://vietnam.vnanet.vn/vietnamese/tin-van/hau-giang-khai-thac-tiem-nang-du-lich-sinh-thai-lung-ngoc-hoang-329144.html",
+    "imageOriginalUrl": "https://imagevietnam.vnanet.vn/MediaUpload/Org/2023/04/21/vna-potal-hau-giang-khai-thac-tiem-nang-du-lich-sinh-thai-lung-ngoc-hoang-668968821-10-7-34.jpg"
+  },
+  "hau-giang-cong-vien-xa-no": {
+    "image": "assets/images/destinations/hau-giang-cong-vien-xa-no.webp",
+    "imageAlt": "Công viên Xà No · Hậu Giang",
+    "imageAttribution": "Công viên Xà No · Nguồn: Công viên Xà No - địa điểm du lịch Hậu Giang khiến nhiều du khách tò mò",
+    "imageSource": "https://dulichviet.com.vn/tin-tuc/cong-vien-xa-no-dia-diem-du-lich-hau-giang-khien-nhieu-du-khach-to-mo",
+    "imageOriginalUrl": "https://dulichviet.com.vn/images/bandidau/cong-vien-xa-no-hau-giang.jpg"
+  },
+  "hau-giang-khu-di-tich-chuong-thien": {
+    "image": "assets/images/destinations/hau-giang-khu-di-tich-chuong-thien.webp",
+    "imageAlt": "Khu di tích Chương Thiện · Hậu Giang",
+    "imageAttribution": "Khu di tích Chương Thiện · Nguồn: Du lịch Hậu Giang trên đường phát triển",
+    "imageSource": "https://thanhnien.vn/du-lich-hau-giang-tren-duong-phat-trien-1851483386.htm",
+    "imageOriginalUrl": "https://thanhnien.mediacdn.vn/Uploaded/dieutrang-qc/2022_07_30/du-lich-hau-giang-2-1300.jpg"
+  },
+  "hau-giang-thien-vien-truc-lam-hau-giang": {
+    "image": "assets/images/destinations/hau-giang-thien-vien-truc-lam-hau-giang.webp",
+    "imageAlt": "Thiền viện Trúc Lâm Hậu Giang · Hậu Giang",
+    "imageAttribution": "Thiền viện Trúc Lâm Hậu Giang · Nguồn: Du lịch Hậu Giang: 12 điểm đến hấp dẫn nhất đang chờ đợi bạn khám phá",
+    "imageSource": "https://mia.vn/cam-nang-du-lich/du-lich-hau-giang-12844",
+    "imageOriginalUrl": "https://mia.vn/media/uploads/blog-du-lich/du-lich-hau-giang-07-1696057574.jpg"
+  },
+  "long-an-hang-cau-vua-tan-tru": {
+    "image": "assets/images/destinations/long-an-hang-cau-vua-tan-tru.webp",
+    "imageAlt": "Hàng cau vua Tân Trụ · Long An",
+    "imageAttribution": "Hàng cau vua Tân Trụ · Nguồn: ‘Con đường hạnh phúc’ đẹp mê mẩn, có một không hai ở miền Tây - Tin tức miền Tây",
+    "imageSource": "https://tintucmientay.baoangiang.com.vn/-con-duong-hanh-phuc-dep-me-man-co-mot-khong-hai-o-mien-tay-a300936.html",
+    "imageOriginalUrl": "https://images.baoangiang.com.vn/image/fckeditor/upload/2021/20210412/images/lac-buoc-tren-con-duong-hanh-phuc-dep-me-man-co-mot-khong-hai-o-mien-tay-1.jpg"
+  },
+  "long-an-canh-dong-bat-tan": {
+    "image": "assets/images/destinations/long-an-canh-dong-bat-tan.webp",
+    "imageAlt": "Cánh Đồng Bất Tận · Long An",
+    "imageAttribution": "Cánh Đồng Bất Tận · Nguồn: Kinh nghiệm du lịch miền Tây 1 ngày: Ăn gì, vui chơi ở đâu?",
+    "imageSource": "https://datviettour.com.vn/tin-tuc/kinh-nghiem-du-lich-mien-tay-1-ngay-an-gi-vui-choi-o-dau",
+    "imageOriginalUrl": "https://datviettour.com.vn/uploads/images/tin-tuc-SEO/mien-nam/mien-tay/danh-thang/kdl-canh-dong-bat-tan-long-an.jpg"
+  },
+  "long-an-lang-noi-tan-lap": {
+    "image": "assets/images/destinations/long-an-lang-noi-tan-lap.webp",
+    "imageAlt": "Làng nổi Tân Lập · Long An",
+    "imageAttribution": "Làng nổi Tân Lập · Nguồn: Những địa điểm du lịch gần Sài Gòn cho bạn hưởng không khí xanh cuối tuần",
+    "imageSource": "https://www.traveloka.com/vi-vn/explore/destination/cuoi-tuan-tai-cac-dia-diem-du-lich-gan-sai-gon-nay/59069",
+    "imageOriginalUrl": "https://ik.imagekit.io/tvlk/blog/2018/07/cac-dia-diem-du-lich-gan-sai-gon-1-1.jpg?tr=q-70%2Cc-at_max%2Cw-1000%2Ch-600"
+  },
+  "tien-giang-con-thoi-son": {
+    "image": "assets/images/destinations/tien-giang-con-thoi-son.webp",
+    "imageAlt": "Cồn Thới Sơn · Tiền Giang",
+    "imageAttribution": "Cồn Thới Sơn · Nguồn: Kinh nghiệm du lịch Cồn Thới Sơn - miệt vườn Tiền Giang",
+    "imageSource": "https://www.traveloka.com/vi-vn/explore/tips/kinh-nghiem-du-lich-con-thoi-son/169549",
+    "imageOriginalUrl": "https://ik.imagekit.io/tvlk/blog/2022/10/kinh-nghiem-du-lich-con-thoi-son-cover.jpg"
+  },
+  "tien-giang-lang-co-dong-hoa-hiep": {
+    "image": "assets/images/destinations/tien-giang-lang-co-dong-hoa-hiep.webp",
+    "imageAlt": "Làng cổ Đông Hòa Hiệp · Tiền Giang",
+    "imageAttribution": "Làng cổ Đông Hòa Hiệp · Nguồn: Tiền Giang tourism thrives in early 2025",
+    "imageSource": "https://vietnamnews.vn/travel/1693414/tien-giang-tourism-thrives-in-early-2025.html",
+    "imageOriginalUrl": "https://image.vietnamnews.vn/uploadvnnews/Article/2025/3/6/407122_lang-co-dong-hoa-hiep-tien-giang-resize-5565.jpeg"
+  },
+  "long-an-moc-hoa-tram": {
+    "image": "assets/images/destinations/long-an-moc-hoa-tram.webp",
+    "imageAlt": "Mộc Hoa Tràm · Long An",
+    "imageAttribution": "Mộc Hoa Tràm · Nguồn: TOUR TRONG NGÀY | KDL CÁNH ĐỒNG BẤT TẬN - MỘC HÓA (LONG AN) - Công ty Du lịch & Sự kiện Khách Sạn Đây Rồi",
+    "imageSource": "https://khachsandayroi.com/blog/tour/tour-trong-ngay-kdl-canh-dong-bat-tan-moc-hoa-long-an/",
+    "imageOriginalUrl": "https://khachsandayroi.com/wp-content/uploads/2022/03/03.jpg"
+  },
+  "tien-giang-chua-vinh-trang": {
+    "image": "assets/images/destinations/tien-giang-chua-vinh-trang.webp",
+    "imageAlt": "Chùa Vĩnh Tràng · Tiền Giang",
+    "imageAttribution": "Chùa Vĩnh Tràng · Nguồn: CHÙA VĨNH TRÀNG - NGÔI CỔ TỰ DANH TIẾNG Ở THÀNH PHỐ MỸ THO. -  - Võ Văn Tường",
+    "imageSource": "https://chuaviettoancau.com/none/chua-vinh-trang-ngoi-co-tu-danh-tieng-o-thanh-pho-my-tho-645.html",
+    "imageOriginalUrl": "https://chuaviettoancau.com/userfiles/2020/02/04_resize-7063.jpg"
+  },
+  "tien-giang-ben-tau-30-4": {
+    "image": "assets/images/destinations/tien-giang-ben-tau-30-4.webp",
+    "imageAlt": "Bến tàu 30/4 · Tiền Giang",
+    "imageAttribution": "Bến tàu 30/4 · Nguồn: Đường thủy ở Mỹ Tho - Tiền Giang - TripHunter",
+    "imageSource": "https://triphunter.vn/places/my-tho-tien-giang/items/duong-thuy",
+    "imageOriginalUrl": "https://triphunter.vn/media/W1siZiIsIjIwMTcvMDgvMjgvNms1Y2ttOXdoeV9CX25fdF91XzMwXzRfdHJpcGh1bnRlci5qcGciXV0/B%E1%BA%BFn-t%C3%A0u-30-4-triphunter.jpg?sha=47deba24062a5b08"
+  },
+  "tien-giang-me-kong-rest-stop": {
+    "image": "assets/images/destinations/tien-giang-me-kong-rest-stop.webp",
+    "imageAlt": "Mê Kông Rest Stop · Tiền Giang",
+    "imageAttribution": "Mê Kông Rest Stop · Nguồn: Chiếc bàn giá hơn 4 tỉ bằng gỗ Giáng Hương tại Tiền Giang",
+    "imageSource": "https://soha.vn/kinh-doanh/chiec-ban-gia-hon-4-ti-bang-go-giang-huong-tai-tien-giang-20150402112413586.htm",
+    "imageOriginalUrl": "https://sohanews.sohacdn.com/k%3A2015/6-e520fcd3bf4b34f2b300644183de836c-ban-8-1427948658069/chiec-ban-gia-hon-4-ti-bang-go-giang-huong-tai-tien-giang.jpg"
+  },
+  "tien-giang-trai-ran-dong-tam": {
+    "image": "assets/images/destinations/tien-giang-trai-ran-dong-tam.webp",
+    "imageAlt": "Trại rắn Đồng Tâm · Tiền Giang",
+    "imageAttribution": "Trại rắn Đồng Tâm · Nguồn: Trại Rắn Đồng Tâm - Điểm du lịch Tiền Giang Mỹ Tho",
+    "imageSource": "https://bazantravel.com/trai-ran-dong-tam-tien-giang/",
+    "imageOriginalUrl": "https://bazantravel.com/cdn/medias/uploads/61/61773-trai-ran-dong-tam1-670x446.jpg"
+  },
+  "ben-tre-con-phung": {
+    "image": "assets/images/destinations/ben-tre-con-phung.webp",
+    "imageAlt": "Cồn Phụng · Bến Tre",
+    "imageAttribution": "Cồn Phụng · Nguồn: Tham Quan Xứ Dừa Với Hoạt Động Thú Vị Ở Khu Du Lịch Cồn Phụng",
+    "imageSource": "https://luhanhvietnam.com.vn/du-lich/tham-quan-thu-vi-o-khu-du-lich-con-phung.html",
+    "imageOriginalUrl": "https://luhanhvietnam.com.vn/du-lich/vnt_upload/news/02_2020/khu-du-lich-con-phung-12.jpg"
+  },
+  "ben-tre-san-chim-vam-ho": {
+    "image": "assets/images/destinations/ben-tre-san-chim-vam-ho.webp",
+    "imageAlt": "Sân chim Vàm Hồ · Bến Tre",
+    "imageAttribution": "Sân chim Vàm Hồ · Nguồn: Vam Ho Bird Sanctuary Ben Tre Guide: Attractions, Tours & Costs",
+    "imageSource": "https://www.legendtravelgroup.com/a/discover-vam-ho-bird-sanctuary-top-experiences-prices-guided-tours-in-vinh-long",
+    "imageOriginalUrl": "https://xa6zemg4r8.cloudimg.io/_images_/g/e653fc792a8893d145e8717f.jpg"
+  },
+  "ben-tre-lo-lam-keo-dua": {
+    "image": "assets/images/destinations/ben-tre-lo-lam-keo-dua.webp",
+    "imageAlt": "Lò làm kẹo dừa · Bến Tre",
+    "imageAttribution": "Lò làm kẹo dừa · Nguồn: Khu du lịch Cồn Phụng - Điểm đến nổi bật của miền Tây sông nước",
+    "imageSource": "https://saigonstartravel.com/khu-du-lich-con-phung-diem-den-noi-bat-cua-mien-tay-song-nuoc",
+    "imageOriginalUrl": "https://bizweb.dktcdn.net/100/539/761/files/keodua.png?v=1741144455127"
+  },
+  "bac-lieu-quan-am-phat-dai": {
+    "image": "assets/images/destinations/bac-lieu-quan-am-phat-dai.webp",
+    "imageAlt": "Quán Âm Phật Đài · Bạc Liêu",
+    "imageAttribution": "Quán Âm Phật Đài · Nguồn: Vietnam Airlines | Quán Âm Phật Đài: Ngôi chùa linh thiêng bậc nhất xứ Bạc Liêu",
+    "imageSource": "https://www.vietnamairlines.com/tw/vi/plan-book/travel/travel-guide/quan-am-phat-dai",
+    "imageOriginalUrl": "https://www.vietnamairlines.com/content/dam/legacy-site-assets/SEO-images/2025%20SEO/Thay%20Anh%20Traffic%20Tieng%20Viet/quan%20am%20phat%20dai/cong-tam-quan.jpeg"
+  },
+  "bac-lieu-chua-xiem-can": {
+    "image": "assets/images/destinations/bac-lieu-chua-xiem-can.webp",
+    "imageAlt": "Chùa Xiêm Cán · Bạc Liêu",
+    "imageAttribution": "Chùa Xiêm Cán · Nguồn: Chùa Xiêm Cán Bạc Liêu – Điểm đến Bạc Liêu ®Hitour",
+    "imageSource": "https://hitour.vn/tin-tuc-du-lich-bac-lieu/diem-den-bac-lieu/chua-xiem-can-bac-lieu",
+    "imageOriginalUrl": "https://hitour.vn/storage/images/upload/tour-du-lich-bac-lieu-30-750x460-type-manager-upload.webp"
+  },
+  "bac-lieu-vuon-nhan-co-bac-lieu": {
+    "image": "assets/images/destinations/bac-lieu-vuon-nhan-co-bac-lieu.webp",
+    "imageAlt": "Vườn nhãn cổ Bạc Liêu · Bạc Liêu",
+    "imageAttribution": "Vườn nhãn cổ Bạc Liêu · Nguồn: Về Bạc Liêu thăm vườn nhãn cổ",
+    "imageSource": "https://bazantravel.com/ve-bac-lieu-tham-vuon-nhan-co/",
+    "imageOriginalUrl": "https://bazantravel.com/cdn/medias/uploads/28/28649-vuon-nhan-co-670x446.jpg"
+  },
+  "bac-lieu-cay-xoai-di-san": {
+    "image": "assets/images/destinations/bac-lieu-cay-xoai-di-san.webp",
+    "imageAlt": "Cây xoài di sản · Bạc Liêu",
+    "imageAttribution": "Cây xoài di sản · Nguồn: Bac Liêu : nouvelle jeunesse pour le manguier tricentenaire",
+    "imageSource": "https://lecourrier.vn/bac-lieu-nouvelle-jeunesse-pour-le-manguier-tricentenaire/1077569.html",
+    "imageOriginalUrl": "https://image.lecourrier.vn/MediaUpload/Org/2022/10/27/102506-34-3501-1.jpg"
+  },
+  "bac-lieu-nha-may-dien-gio-bac-lieu": {
+    "image": "assets/images/destinations/bac-lieu-nha-may-dien-gio-bac-lieu.webp",
+    "imageAlt": "Nhà máy Điện gió Bạc Liêu · Bạc Liêu",
+    "imageAttribution": "Nhà máy Điện gió Bạc Liêu · Nguồn: [02/2026] Cho Thuê Xe Đi Cánh Đồng Quạt Gió Bạc Liêu [GIÁ RẺ, TRỌN GÓI] - Nhieuxe.vn",
+    "imageSource": "https://nhieuxe.vn/thue-xe-di-canh-dong-quat-gio-bac-lieu.html",
+    "imageOriginalUrl": "https://nhieuxe.vn/upload/202406/16/thue-xe-di-canh-dong-quat-gio-bac-lieu-jhl931.jpg"
+  },
+  "bac-lieu-khu-luu-niem-nhac-si-cao-van-lau": {
+    "image": "assets/images/destinations/bac-lieu-khu-luu-niem-nhac-si-cao-van-lau.webp",
+    "imageAlt": "Khu lưu niệm Nhạc sĩ Cao Văn Lầu · Bạc Liêu",
+    "imageAttribution": "Khu lưu niệm Nhạc sĩ Cao Văn Lầu · Nguồn: Khu lưu niệm nhạc sĩ Cao Văn Lầu, Phường 2, Thành phố Bạc Liêu, Bạc Liêu - Vigotrip",
+    "imageSource": "https://vigotrip.com/dia-danh/khu-luu-niem-nhac-si-cao-van-lau-id1575",
+    "imageOriginalUrl": "https://img.vigotrip.com/photo/2024/01/24/061E4F2809BC48FAD91AC4FFAB592BBA.jpg"
+  },
+  "bac-lieu-quang-truong-hung-vuong": {
+    "image": "assets/images/destinations/bac-lieu-quang-truong-hung-vuong.webp",
+    "imageAlt": "Quảng trường Hùng Vương · Bạc Liêu",
+    "imageAttribution": "Quảng trường Hùng Vương · Nguồn: Chiêm ngưỡng những công trình kỷ lục Việt Nam tại quảng trường lớn nhất ĐBSCL",
+    "imageSource": "https://nld.com.vn/thoi-su/chiem-nguong-nhung-cong-trinh-ky-luc-viet-nam-tai-quang-truong-lon-nhat-dbscl-20190501131630066.htm",
+    "imageOriginalUrl": "https://nld.mediacdn.vn/2019/5/1/anh-toan-canh-quang-truong-hung-vuong-chup-tu-flycam-anh-phan-thanh-cuong-15566902824132070049175.jpg"
+  },
+  "bac-lieu-nha-hat-ba-non-la": {
+    "image": "assets/images/destinations/bac-lieu-nha-hat-ba-non-la.webp",
+    "imageAlt": "Nhà hát Ba Nón Lá · Bạc Liêu",
+    "imageAttribution": "Nhà hát Ba Nón Lá · Nguồn: Ghé Bạc Liêu: Mê mẩn kiến trúc nhà hát Ba Nón Lá và hoạt động văn hóa thú vị | Báo điện tử Tiền Phong",
+    "imageSource": "https://hoahoctro.tienphong.vn/ghe-bac-lieu-me-man-kien-truc-nha-hat-ba-non-la-va-hoat-dong-van-hoa-thu-vi-post1685077.tpo",
+    "imageOriginalUrl": "https://cdn.tienphong.vn/images/a6bf4f60924201126af6849ca45a39804469e01b9ebe831855c86cff38f14e5185c620fce9848cfc2a2be30ff35e6a168982ca5d5df3f4420df1d4aaff8b8920e0d55689593e1b6f7912918ab2affeed/dad408c6d7016f5f3610-5079.jpg"
+  },
+  "bac-lieu-nha-tho-tac-say": {
+    "image": "assets/images/destinations/bac-lieu-nha-tho-tac-say.webp",
+    "imageAlt": "Nhà thờ Tắc Sậy · Bạc Liêu",
+    "imageAttribution": "Nhà thờ Tắc Sậy · Nguồn: TOUR BẠC LIÊU - SÓC TRĂNG - CẦN THƠ",
+    "imageSource": "https://tinphattravel.com/vi/tours/tour-trong-nuoc/hanh-trinh-dat-phuong-nam.html",
+    "imageOriginalUrl": "https://tinphattravel.com/uploads/tours/2025_10/noidia/baclieu/nha-tho-tac-say.png"
+  },
+  "tra-vinh-chua-vam-ray": {
+    "image": "assets/images/destinations/tra-vinh-chua-vam-ray.webp",
+    "imageAlt": "Chùa Vàm Ray · Trà Vinh",
+    "imageAttribution": "Chùa Vàm Ray · Nguồn: Chiêm ngưỡng ngôi chùa Khmer lớn nhất Việt Nam",
+    "imageSource": "https://dantocphattrien.vietnamnet.vn/chiem-nguong-ngoi-chua-khmer-lon-nhat-viet-nam-24911.html",
+    "imageOriginalUrl": "https://vnn.1cdn.vn/2021/12/20/uploads-2021-th-c3-a1ng_12-ng-c3-a0y_15-oanh-chua-20khmer-dscn4244.jpg"
+  },
+  "tra-vinh-ao-ba-om": {
+    "image": "assets/images/destinations/tra-vinh-ao-ba-om.webp",
+    "imageAlt": "Ao Bà Om · Trà Vinh",
+    "imageAttribution": "Ao Bà Om · Nguồn: Ao Bà Om “viên ngọc xanh” giữa lòng đất Khmer, nơi lưu dấu hồn thiêng văn hóa Nam Bộ",
+    "imageSource": "https://vov.vn/van-hoa/di-san/ao-ba-om-vien-ngoc-xanh-giua-long-dat-khmer-noi-luu-dau-hon-thieng-van-hoa-nam-bo-post1205071.vov",
+    "imageOriginalUrl": "https://media.vov.vn/sites/default/files/styles/large_watermark/public/2025-06/z6677114358485_d3797e3c80e781df5398a8c55633708a.jpeg.jpg"
+  },
+  "tra-vinh-chua-ang": {
+    "image": "assets/images/destinations/tra-vinh-chua-ang.webp",
+    "imageAlt": "Chùa Âng · Trà Vinh",
+    "imageAttribution": "Chùa Âng · Nguồn: Chùa Âng - Ngôi chùa Khmer cổ tuyệt đẹp ở Trà Vinh",
+    "imageSource": "https://thamhiemmekong.com/thong-tin-du-lich-mien-tay/chua-ang-ngoi-chua-khmer-co-tuyet-dep-o-tra-vinh.html",
+    "imageOriginalUrl": "https://thamhiemmekong.com/wp-content/uploads/2020/03/chua-ang-1.jpg"
+  },
+  "tra-vinh-bao-tang-van-hoa-dan-toc-khmer": {
+    "image": "assets/images/destinations/tra-vinh-bao-tang-van-hoa-dan-toc-khmer.webp",
+    "imageAlt": "Bảo tàng Văn hóa dân tộc Khmer · Trà Vinh",
+    "imageAttribution": "Bảo tàng Văn hóa dân tộc Khmer · Nguồn: Khám phá bảo tàng Văn hóa Dân tộc Khmer Trà Vinh",
+    "imageSource": "https://crystalbay.com/62-kham-pha-bao-tang-van-hoa-dan-toc-khmer-tra-vinh-n56388.html",
+    "imageOriginalUrl": "https://i2.ex-cdn.com/crystalbay.com/files/content/2025/03/27/bao-tang-van-hoa-khmer-2-1609.jpg"
+  },
+  "vinh-long-cu-lao-an-binh": {
+    "image": "assets/images/destinations/vinh-long-cu-lao-an-binh.webp",
+    "imageAlt": "Cù lao An Bình · Vĩnh Long",
+    "imageAttribution": "Cù lao An Bình · Nguồn: Chùa Phước Hậu Vĩnh Long: nơi nổi tiếng với vườn kinh đá độc nhất",
+    "imageSource": "https://luhanhvietnam.com.vn/du-lich/chua-phuoc-hau-vinh-long.html",
+    "imageOriginalUrl": "https://luhanhvietnam.com.vn/du-lich/vnt_upload/news/03_2024/vietnamtourismgovvn_cu_lao_an_binh.jpg"
+  },
+  "vinh-long-lang-nghe-gach-gom-mang-thit": {
+    "image": "assets/images/destinations/vinh-long-lang-nghe-gach-gom-mang-thit.webp",
+    "imageAlt": "Làng nghề gạch gốm Măng Thít · Vĩnh Long",
+    "imageAttribution": "Làng nghề gạch gốm Măng Thít · Nguồn: Vương quốc gạch gốm đỏ Vĩnh Long chuẩn bị tổ chức Festival | VOV.VN  Tỉnh Vĩnh Long hiện đang chuẩn bị tổ chức Festival G",
+    "imageSource": "https://vov.vn/du-lich/vuong-quoc-gach-gom-do-vinh-long-chuan-bi-to-chuc-festival-post1134137.vov",
+    "imageOriginalUrl": "https://media.vov.vn/sites/default/files/styles/large_watermark/public/2024-11/2_25.jpg"
+  },
+  "dong-thap-nha-co-huynh-thuy-le": {
+    "image": "assets/images/destinations/dong-thap-nha-co-huynh-thuy-le.webp",
+    "imageAlt": "Nhà cổ Huỳnh Thủy Lê · Đồng Tháp",
+    "imageAttribution": "Nhà cổ Huỳnh Thủy Lê · Nguồn: Sa Dec Flower Village - Tram Chim National Park Private 2 Days Tour - The Sun Tourist",
+    "imageSource": "https://thesuntourist.com/tour/tour-2d1n-sa-dec-flower-village-tram-chim-national-park/",
+    "imageOriginalUrl": "https://dulichviet.com.vn/images/bandidau/kinh-nghiem-kham-pha-nha-co-huynh-thuy-le-hang-tram-tuoi-tai-dong-thap.jpg"
+  },
+  "dong-thap-lang-hoa-sa-dec": {
+    "image": "assets/images/destinations/dong-thap-lang-hoa-sa-dec.webp",
+    "imageAlt": "Làng hoa Sa Đéc · Đồng Tháp",
+    "imageAttribution": "Làng hoa Sa Đéc · Nguồn: KHÁM PHÁ SẮC XUÂN SA ĐÉC 1 NGÀY – Công ty du lịch Tugo",
+    "imageSource": "https://tugo.vn/products/kham-pha-sac-xuan-sa-dec-1-ngay",
+    "imageOriginalUrl": "https://product.hstatic.net/200000539057/product/17_35130ec432cd45658c30f3240d919c5d_master.png"
+  },
+  "dong-thap-khu-di-tich-nguyen-sinh-sac": {
+    "image": "assets/images/destinations/dong-thap-khu-di-tich-nguyen-sinh-sac.webp",
+    "imageAlt": "Khu di tích Nguyễn Sinh Sắc · Đồng Tháp",
+    "imageAttribution": "Khu di tích Nguyễn Sinh Sắc · Nguồn: Cận cảnh Khu di tích cụ Phó bảng Nguyễn Sinh Sắc ở Đồng Tháp",
+    "imageSource": "https://vov.gov.vn/can-canh-khu-di-tich-cu-pho-bang-nguyen-sinh-sac-o-dong-thap-dtnew-132286",
+    "imageOriginalUrl": "https://admin.vov.gov.vn/UploadFolder/KhoTin/Files/UploadFolder/VOVVN/Files/w800/uploaded/krb8sl5hrwuly8uzveukg/2017_12_14/17_GEEA.JPG"
+  },
+  "dong-thap-khu-di-tich-xeo-quit": {
+    "image": "assets/images/destinations/dong-thap-khu-di-tich-xeo-quit.webp",
+    "imageAlt": "Khu di tích Xẻo Quít · Đồng Tháp",
+    "imageAttribution": "Khu di tích Xẻo Quít · Nguồn: Tour Du Lịch: Đồng Tháp | Tràm Chim (2N1Đ)",
+    "imageSource": "https://datviettour.com.vn/tour-du-lich-dong-thap-tram-chim-2n1d-1508",
+    "imageOriginalUrl": "https://datviettour.com.vn/uploads/images/mien-nam/dong-thap/danh-thang/xeo-quyt.jpg"
+  },
+  "soc-trang-chua-doi": {
+    "image": "assets/images/destinations/soc-trang-chua-doi.webp",
+    "imageAlt": "Chùa Dơi · Sóc Trăng",
+    "imageAttribution": "Chùa Dơi · Nguồn: Ngôi chùa hơn 400 tuổi có hàng nghìn con dơi ở miền Tây | Znews.vn",
+    "imageSource": "https://lifestyle.znews.vn/ngoi-chua-hon-400-tuoi-co-hang-nghin-con-doi-o-mien-tay-post1409062.html",
+    "imageOriginalUrl": "https://photo.znews.vn/Uploaded/qxjwpprjv/2023_03_05/chuadoi_zing_8__1.jpg"
+  },
+  "soc-trang-chua-chen-kieu": {
+    "image": "assets/images/destinations/soc-trang-chua-chen-kieu.webp",
+    "imageAlt": "Chùa Chén Kiểu · Sóc Trăng",
+    "imageAttribution": "Chùa Chén Kiểu · Nguồn: Kỳ II: Chén Kiểu - ngôi chùa của những mảnh sành làm nên “kiệt tác“",
+    "imageSource": "https://dulich.reatimes.vn/ky-ii-chen-kieu-ngoi-chua-cua-nhung-manh-sanh-lam-nen-kiet-tac-202201224000001862.htm",
+    "imageOriginalUrl": "https://cdn1z.reatimes.vn/mediav2/upload/userfiles/images/Ng%E1%BB%8Dc%20N%E1%BB%AF/0312/chua-chen-kieu-soc-trang-01.jpg"
+  },
+  "soc-trang-chua-dat-set": {
+    "image": "assets/images/destinations/soc-trang-chua-dat-set.webp",
+    "imageAlt": "Chùa Đất Sét · Sóc Trăng",
+    "imageAttribution": "Chùa Đất Sét · Nguồn: Chùa Đất Sét - Địa điểm du lịch tâm linh độc đáo",
+    "imageSource": "https://datviettour.com.vn/tin-tuc/chua-dat-set-dia-diem-du-lich-tam-linh-doc-dao",
+    "imageOriginalUrl": "https://datviettour.com.vn/uploads/images/tin-tuc-SEO/mien-nam/soc-trang/danh-thang/chua-dat-set-2.jpg"
+  },
+  "soc-trang-ho-nuoc-ngot": {
+    "image": "assets/images/destinations/soc-trang-ho-nuoc-ngot.webp",
+    "imageAlt": "Hồ Nước Ngọt · Sóc Trăng",
+    "imageAttribution": "Hồ Nước Ngọt · Nguồn: Hồ nước ngọt Sóc Trăng, không gian xanh giữa trung tâm thành phố",
+    "imageSource": "https://mia.vn/cam-nang-du-lich/ho-nuoc-ngot-soc-trang-khong-gian-xanh-giua-trung-tam-thanh-pho-10724",
+    "imageOriginalUrl": "https://mia.vn/media/uploads/blog-du-lich/ho-nuoc-ngot-soc-trang-khong-gian-xanh-giua-trung-tam-thanh-pho-4-1665067488.jpg"
+  },
+  "soc-trang-quang-truong-bach-dang": {
+    "image": "assets/images/destinations/soc-trang-quang-truong-bach-dang.webp",
+    "imageAlt": "Quảng trường Bạch Đằng · Sóc Trăng",
+    "imageAttribution": "Quảng trường Bạch Đằng · Nguồn: Nhạc sàn nước công viên Bạch Đằng Sóc Trăng – dongduongco",
+    "imageSource": "https://dongduongco.com/products/nhac-san-nuoc-cong-vien-bach-dang-soc-trang",
+    "imageOriginalUrl": "https://product.hstatic.net/200000865007/product/462715289_3983105871908625_6122391763546688935_n_2fb0eaba7b7b440b80efdeaad0a57650_grande.jpg"
+  },
+  "soc-trang-chua-kh-leang": {
+    "image": "assets/images/destinations/soc-trang-chua-kh-leang.webp",
+    "imageAlt": "Chùa Kh’leang · Sóc Trăng",
+    "imageAttribution": "Chùa Kh’leang · Nguồn: Chùa Kh leang-Nét văn hóa độc đáo của người Khmer Sóc Trăng",
+    "imageSource": "https://www.qdnd.vn/du-lich/diem-den/chua-kh-leang-net-van-hoa-doc-dao-cua-nguoi-khmer-soc-trang-737524",
+    "imageOriginalUrl": "https://file3.qdnd.vn/data/images/0/2023/08/06/huyquan/chua.jpg"
+  },
+  "soc-trang-bao-tang-van-hoa-khmer": {
+    "image": "assets/images/destinations/soc-trang-bao-tang-van-hoa-khmer.webp",
+    "imageAlt": "Bảo tàng Văn hóa Khmer · Sóc Trăng",
+    "imageAttribution": "Bảo tàng Văn hóa Khmer · Nguồn: Tham quan bảo tàng Khmer Sóc Trăng | Viet Fun Travel",
+    "imageSource": "https://www.vietfuntravel.com.vn/blog/tham-quan-bao-tang-khmer-soc-trang.html",
+    "imageOriginalUrl": "https://www.vietfuntravel.com.vn/image/data/Blog/chia-se/tham-quan-bao-tang-khmer-soc-trang/tham-quan-bao-tang-khmer-soc-trang-h1.jpg"
+  },
+  "soc-trang-chua-phat-hoc-2": {
+    "image": "assets/images/destinations/soc-trang-chua-phat-hoc-2.webp",
+    "imageAlt": "Chùa Phật Học 2 · Sóc Trăng",
+    "imageAttribution": "Chùa Phật Học 2 · Nguồn: Tham quan chùa Phật Học 2 Sóc Trăng nổi tiếng mới nhất 2023",
+    "imageSource": "https://zoomtravel.vn/chua-phat-hoc-2-soc-trang.html",
+    "imageOriginalUrl": "https://zoomtravel.vn/upload/images/chua-phat-hoc-2-soc-trang-3-min.jpg"
+  },
+  "tp-hcm-bao-tang-chung-tich-chien-tranh": {
+    "image": "assets/images/destinations/tp-hcm-bao-tang-chung-tich-chien-tranh.webp",
+    "imageAlt": "Bảo tàng Chứng tích Chiến tranh · TP.HCM",
+    "imageAttribution": "Bảo tàng Chứng tích Chiến tranh · Nguồn: 戰爭博物館及獨立宮徒步之旅 - Klook 客路",
+    "imageSource": "https://www.klook.com/zh-TW/activity/106657-war-museum-independence-palace-day-tour/",
+    "imageOriginalUrl": "https://res.klook.com/images/fl_lossy.progressive%2Cq_65/c_fill%2Cw_1295%2Ch_971/w_80%2Cx_15%2Cy_15%2Cg_south_west%2Cl_Klook_water_br_trans_yhcmh3/activities/tbnwywalpz3lfhmd9mid/%E8%83%A1%E5%BF%97%E6%98%8E%E5%B8%82%E6%88%B0%E7%88%AD%E9%81%BA%E8%B7%A1%E5%8D%9A%E7%89%A9%E9%A4%A8%E7%8D%A8%E7%AB%8B%E5%AE%AE%E5%BE%92%E6%AD%A5%E4%B9%8B%E6%97%85.jpg"
+  },
+  "soc-trang-tan-hue-vien": {
+    "image": "assets/images/destinations/soc-trang-tan-hue-vien.webp",
+    "imageAlt": "Tân Huê Viên · Sóc Trăng",
+    "imageAttribution": "Tân Huê Viên · Nguồn: Chân dung ông trùm bánh Pía Sóc Trăng - Đại gia Thái Tuấn: Chủ dự án Liên Hoa Bảo Tháp 500 tỷ, mượn tiền mừng cưới của anh trai để khởi nghiệp",
+    "imageSource": "https://vietnambusinessinsider.vn/chan-dung-ong-trum-banh-pia-soc-trang-dai-gia-thai-tuan-chu-du-an-lien-hoa-bao-thap-500-ty-muon-tien-mung-cuoi-cua-anh-trai-de-khoi-nghiep-a35600.html",
+    "imageOriginalUrl": "https://vietnambusinessinsider.vn/uploads/images/2024/03/18/chan-dung-ong-trum-banh-pia-soc-trang-dai-gia-thai-tuan-chu-du-an-lien-hoa-bao-thap-500-ty-muon-tien-mung-cuoi-cua-anh-trai-de-khoi-nghiep-7-1710766421.jpeg"
+  },
+  "tp-hcm-cho-binh-tay": {
+    "image": "assets/images/destinations/tp-hcm-cho-binh-tay.webp",
+    "imageAlt": "Chợ Bình Tây · TP.HCM",
+    "imageAttribution": "Chợ Bình Tây · Nguồn: BÌNH CHỌN ĐIỂM ĐẾN DU LỊCH",
+    "imageSource": "https://sso.tuoitre.vn/su-kien/binh-chon-diem-den",
+    "imageOriginalUrl": "https://sso.tuoitre.vn/event/travel-destination-voting/images/thumbnail/cho-binh-tay.jpg"
+  },
+  "tp-hcm-chua-ba-thien-hau": {
+    "image": "assets/images/destinations/tp-hcm-chua-ba-thien-hau.webp",
+    "imageAlt": "Chùa Bà Thiên Hậu · TP.HCM",
+    "imageAttribution": "Chùa Bà Thiên Hậu · Nguồn: Khám phá Chùa Bà Thiên Hậu: Sự hòa quyện độc đáo của kiến trúc trăm tuổi",
+    "imageSource": "https://mytour.vn/vi/blog/bai-viet/kham-pha-ve-dep-kien-truc-an-tuong-cua-chua-ba-thien-hau.html",
+    "imageOriginalUrl": "https://gcs.tripi.vn/public-tripi/tripi-feed/img/473791paj/chua-ba-thien-hau.jpg"
+  },
+  "tp-hcm-dinh-thong-nhat": {
+    "image": "assets/images/destinations/tp-hcm-dinh-thong-nhat.webp",
+    "imageAlt": "Dinh Thống Nhất · TP.HCM",
+    "imageAttribution": "Dinh Thống Nhất · Nguồn: Hội trường Thống Nhất: Thông báo lựa chọn đối tác liên doanh, liên kết",
+    "imageSource": "https://vpcp.chinhphu.vn/hoi-truong-thong-nhat-thong-bao-lua-chon-doi-tac-lien-doanh-lien-ket-11523100312322095.htm",
+    "imageOriginalUrl": "https://bcp.cdnchinhphu.vn/zoom/700_438/350555282988298240/2023/10/3/thumb-1215-16963109772541573996262-16963111044671406304684-0-1-894-1431-crop-16963111087072110752291.jpg"
+  },
+  "tp-hcm-nha-tho-duc-ba": {
+    "image": "assets/images/destinations/tp-hcm-nha-tho-duc-ba.webp",
+    "imageAlt": "Nhà thờ Đức Bà · TP.HCM",
+    "imageAttribution": "Nhà thờ Đức Bà · Nguồn: Theme Tour",
+    "imageSource": "https://www.saigontouristvietnam.com/top-danh-muc/theme-tour",
+    "imageOriginalUrl": "https://www.saigontouristvietnam.com/media/upload/2024/8/2/ed5f3905.webp"
+  },
+  "tp-hcm-buu-dien-thanh-pho": {
+    "image": "assets/images/destinations/tp-hcm-buu-dien-thanh-pho.webp",
+    "imageAlt": "Bưu điện Thành phố · TP.HCM",
+    "imageAttribution": "Bưu điện Thành phố · Nguồn: Bưu điện TP. Hồ Chí Minh lọt top Bưu điện đẹp nhất thế giới",
+    "imageSource": "https://vnpost.vn/vi/guong-dien-hinh-hoc-va-lam-theo-bac/buu-dien-tp-ho-chi-minh-lot-top-buu-dien-dep-nhat-the-gioi",
+    "imageOriginalUrl": "https://vietnampost.vn/uploads/storage/vnp/old/2023/05/12/268ef98f-0230-4094-8593-9131bc8e25cf.jpg"
+  },
+  "tp-hcm-dia-dao-cu-chi": {
+    "image": "assets/images/destinations/tp-hcm-dia-dao-cu-chi.webp",
+    "imageAlt": "Địa đạo Củ Chi · TP.HCM",
+    "imageAttribution": "Địa đạo Củ Chi · Nguồn: Địa Đạo Củ Chi – Di Tích Lịch Sử Đặc Biệt Cấp Quốc Gia",
+    "imageSource": "https://dulichthuduc.com.vn/dia-dao-cu-chi-di-tich-lich-su-dac-biet-cap-quoc-gia.html",
+    "imageOriginalUrl": "https://dulichthuduc.com.vn/vnt_upload/news/DONG-NAM-BO/TP._HCM/dia_dao_cu_chi_du_lich_thu_duc_2.jpg"
+  },
+  "tp-hcm-dao-khi-can-gio": {
+    "image": "assets/images/destinations/tp-hcm-dao-khi-can-gio.webp",
+    "imageAlt": "Đảo Khỉ Cần Giờ · TP.HCM",
+    "imageAttribution": "Đảo Khỉ Cần Giờ · Nguồn: Khám phá Rừng Sác Cần Giờ – Chiến khu huyền thoại của lịch sử – VinWonders",
+    "imageSource": "https://vinwonders.com/vi/wonderpedia/news/rung-sac-can-gio-tphcm/",
+    "imageOriginalUrl": "https://static.vinwonders.com/production/rung-sac-can-gio-5.jpg"
+  },
+  "tp-hcm-rung-sac": {
+    "image": "assets/images/destinations/tp-hcm-rung-sac.webp",
+    "imageAlt": "Rừng Sác · TP.HCM",
+    "imageAttribution": "Rừng Sác · Nguồn: Khám phá di tích lịch sử chiến khu Rừng Sác",
+    "imageSource": "https://vtcnews.vn/kham-pha-di-tich-lich-su-chien-khu-rung-sac-ar920435.html",
+    "imageOriginalUrl": "https://cdn-i.vtcnews.vn/resize/th/upload/2025/01/15/rung-sac-can-gio--09563468.jpg"
+  },
+  "tp-hcm-bai-bien-30-thang-04": {
+    "image": "assets/images/destinations/tp-hcm-bai-bien-30-thang-04.webp",
+    "imageAlt": "Bãi biển 30 tháng 04 · TP.HCM",
+    "imageAttribution": "Bãi biển 30 tháng 04 · Nguồn: カンザー観光！4月30日ビーチを満喫 | ベトナム最新情報ブログ（現地在住ライターによるベトナムの記事）",
+    "imageSource": "https://vietcam-oh.com/blog/local/2016/05/000202.html",
+    "imageOriginalUrl": "https://vietcam-oh.com/blog/local/2016/05/07/IMG_3942.jpg"
+  },
+  "tp-hcm-cho-hai-san-can-gio": {
+    "image": "assets/images/destinations/tp-hcm-cho-hai-san-can-gio.webp",
+    "imageAlt": "Chợ hải sản Cần Giờ · TP.HCM",
+    "imageAttribution": "Chợ hải sản Cần Giờ · Nguồn: Cần Giờ có gì chơi? Khám phá lịch trình và chi phí Du Lịch Cần Giờ",
+    "imageSource": "https://cangiotourist.vn/can-gio-co-gi-choi-kham-pha-lich-trinh-va-chi-phi-du-lich-can-gio",
+    "imageOriginalUrl": "https://cangiotourist.vn/upload/elfinder/Cty%20du%20l%E1%BB%8Bch/can-gio-co-gi-choi-kham-pha-lich-trinh-va-chi-phi-du-lich-can-gio-17.png"
+  },
+  "ba-ria-vung-tau-suoi-khoang-binh-chau": {
+    "image": "assets/images/destinations/ba-ria-vung-tau-suoi-khoang-binh-chau.webp",
+    "imageAlt": "Suối khoáng Bình Châu · Bà Rịa - Vũng Tàu",
+    "imageAttribution": "Suối khoáng Bình Châu · Nguồn: Thuê xe đi Vũng Tàu nghỉ dưỡng thư giãn tại Suối nước nóng Bình Châu",
+    "imageSource": "https://ezbook.vn/thue-xe-di-suoi-nuoc-nong-binh-chau",
+    "imageOriginalUrl": "https://ezbook.vn/assets/images/ckfinder/images/khu%20nuoc%20nong%20binh%20chau%282%29.jpg"
+  },
+  "ba-ria-vung-tau-bien-ho-coc": {
+    "image": "assets/images/destinations/ba-ria-vung-tau-bien-ho-coc.webp",
+    "imageAlt": "Biển Hồ Cốc · Bà Rịa - Vũng Tàu",
+    "imageAttribution": "Biển Hồ Cốc · Nguồn: Biển Hồ Cốc, những bí quyết thưởng ngoạn dịp cuối tuần",
+    "imageSource": "https://mia.vn/cam-nang-du-lich/bien-ho-coc-vung-tau-14255",
+    "imageOriginalUrl": "https://mia.vn/media/uploads/blog-du-lich/bien-ho-coc-2-1704500816.jpg"
+  },
+  "kien-giang-thach-dong": {
+    "image": "assets/images/destinations/kien-giang-thach-dong.webp",
+    "imageAlt": "Thạch Động · Kiên Giang",
+    "imageAttribution": "Thạch Động · Nguồn: Hang động gắn với truyền tích Thạch Sanh giải cứu công chúa nằm ở tỉnh nào?",
+    "imageSource": "https://vietnamnet.vn/hang-dong-gan-voi-truyen-tich-thach-sanh-giai-cuu-cong-chua-nam-o-tinh-nao-2333467.html",
+    "imageOriginalUrl": "https://static-images.vnncdn.net/vps_images_publish/000001/000003/2024/10/19/thach-dong-2-14763.jpeg?s=j6Rv90koy5liBvjQ_DL1zw&width=0"
+  },
+  "kien-giang-lang-mac-cuu": {
+    "image": "assets/images/destinations/kien-giang-lang-mac-cuu.webp",
+    "imageAlt": "Lăng Mạc Cửu · Kiên Giang",
+    "imageAttribution": "Lăng Mạc Cửu · Nguồn: Khám phá Lăng Mạc Cửu: Di tích lịch sử nổi tiếng tại Hà Tiên",
+    "imageSource": "https://crystalbay.com/52-kham-pha-lang-mac-cuu-di-tich-lich-su-noi-tieng-tai-ha-tien-n54959.html",
+    "imageOriginalUrl": "https://i2.ex-cdn.com/crystalbay.com/files/content/2025/01/24/lang-mac-cuu-1-0844.jpg"
+  },
+  "kien-giang-bien-mui-nai": {
+    "image": "assets/images/destinations/kien-giang-bien-mui-nai.webp",
+    "imageAlt": "Biển Mũi Nai · Kiên Giang",
+    "imageAttribution": "Biển Mũi Nai · Nguồn: Biển Mũi Nai, thiên đường du lịch đẹp mê ly ở xứ Hà Tiên",
+    "imageSource": "https://mia.vn/cam-nang-du-lich/bien-mui-nai-thien-duong-du-lich-dep-me-ly-o-xu-ha-tien-11637",
+    "imageOriginalUrl": "https://media.mia.vn/uploads/blog-du-lich/bien-mui-nai-thien-duong-du-lich-dep-me-ly-o-xu-ha-tien-1668950143.jpg"
+  },
+  "kien-giang-den-nguyen-trung-truc": {
+    "image": "assets/images/destinations/kien-giang-den-nguyen-trung-truc.webp",
+    "imageAlt": "Đền Nguyễn Trung Trực · Kiên Giang",
+    "imageAttribution": "Đền Nguyễn Trung Trực · Nguồn: Kiên Giang: Giá trị trường tồn của Lễ hội Đình Thần Nguyễn Trung Trực | Vietnam+ (VietnamPlus)",
+    "imageSource": "https://www.vietnamplus.vn/kien-giang-gia-tri-truong-ton-cua-le-hoi-dinh-than-nguyen-trung-truc-post844664.vnp",
+    "imageOriginalUrl": "https://media.vietnamplus.vn/images/c14f6479e83e315b4cf3a2906cc6a51e875525f3bbe20f9343607ad07a01c92f1418e9bfed4c9f7ed44a70f40df2218fcd8fdeffb3a6334be61237736d0c518aeb65f6a0fbf841c47bdaa4f7d134cf9801c03c9d80cc25a3b21b080466184701/dinh_thanh_nguyen_trung_truc.jpg.webp"
+  },
+  "kien-giang-bai-no": {
+    "image": "assets/images/destinations/kien-giang-bai-no.webp",
+    "imageAlt": "Bãi Nò · Kiên Giang",
+    "imageAttribution": "Bãi Nò · Nguồn: Bãi Nò Quán ở Hà Tiên - TripHunter",
+    "imageSource": "https://triphunter.vn/places/ha-tien/items/bai-no-quan",
+    "imageOriginalUrl": "https://triphunter.vn/media/W1siZiIsIjIwMTkvMTAvMTUvNWo3cG1icXhxbF9iYWlfbm9fcXVhbl90cmlwaHVudGVyLlBORyJdXQ/bai-no-quan-triphunter.PNG?sha=35bfe0a1d5ab6de2"
+  },
+  "kien-giang-cho-dem-ha-tien": {
+    "image": "assets/images/destinations/kien-giang-cho-dem-ha-tien.webp",
+    "imageAlt": "Chợ đêm Hà Tiên · Kiên Giang",
+    "imageAttribution": "Chợ đêm Hà Tiên · Nguồn: Top 6 địa điểm du lịch Hà Tiên Kiên Giang không thể bỏ lỡ",
+    "imageSource": "https://www.traveloka.com/vi-vn/explore/destination/du-lich-ha-tien-acc/221114",
+    "imageOriginalUrl": "https://ik.imagekit.io/tvlk/blog/2023/03/du-lich-ha-tien-1.jpg?tr=q-70%2Cc-at_max%2Cw-500%2Ch-300%2Cdpr-2"
+  },
+  "ca-mau-vuon-quoc-gia-u-minh-ha": {
+    "image": "assets/images/destinations/ca-mau-vuon-quoc-gia-u-minh-ha.webp",
+    "imageAlt": "Vườn quốc gia U Minh Hạ · Cà Mau",
+    "imageAttribution": "Vườn quốc gia U Minh Hạ · Nguồn: Cà Mau phát triển 6 tuyến du lịch tại Vườn Quốc gia U Minh Hạ",
+    "imageSource": "https://baovanhoa.vn/du-lich/ca-mau-phat-trien-6-tuyen-du-lich-tai-vuon-quoc-gia-u-minh-ha-196582.html",
+    "imageOriginalUrl": "https://media.baovanhoa.vn/zoom/1000/uploaded/lehoanghai/2026_01_11/2_LSZU.jpg"
+  },
+  "ca-mau-khu-du-lich-mui-ca-mau": {
+    "image": "assets/images/destinations/ca-mau-khu-du-lich-mui-ca-mau.webp",
+    "imageAlt": "Khu du lịch Mũi Cà Mau · Cà Mau",
+    "imageAttribution": "Khu du lịch Mũi Cà Mau · Nguồn: Khám phá Khu du lịch Mũi Cà Mau tại vùng cực Nam Tổ quốc",
+    "imageSource": "https://mia.vn/cam-nang-du-lich/kham-pha-khu-du-lich-mui-ca-mau-tai-vung-cuc-nam-to-quoc-9623",
+    "imageOriginalUrl": "https://media.mia.vn/uploads/blog-du-lich/kham-pha-khu-du-lich-mui-ca-mau-tai-vung-cuc-nam-to-quoc-1662715357.jpg"
+  },
+  "ca-mau-cot-co-ha-noi-tai-dat-mui": {
+    "image": "assets/images/destinations/ca-mau-cot-co-ha-noi-tai-dat-mui.webp",
+    "imageAlt": "Cột cờ Hà Nội tại Đất Mũi · Cà Mau",
+    "imageAttribution": "Cột cờ Hà Nội tại Đất Mũi · Nguồn: Khám phá bên trong Cột cờ Hà Nội vừa khánh thành tại Mũi Cà Mau",
+    "imageSource": "https://m.nguoiduatin.vn/kham-pha-ben-trong-cot-co-ha-noi-vua-khanh-thanh-tai-mui-ca-mau-204459976.htm",
+    "imageOriginalUrl": "https://nguoiduatin.mediacdn.vn/zoom/700_438/media/huu-viet-tam/2019/12/17/kham-pha-ben-trong-cot-co-ha-noi-tai-mui-ca-mau-1.JPG"
+  },
+  "ca-mau-den-tho-lac-long-quan-va-tuong-me-au-co": {
+    "image": "assets/images/destinations/ca-mau-den-tho-lac-long-quan-va-tuong-me-au-co.webp",
+    "imageAlt": "Đền thờ Lạc Long Quân và tượng Mẹ Âu Cơ · Cà Mau",
+    "imageAttribution": "Đền thờ Lạc Long Quân và tượng Mẹ Âu Cơ · Nguồn: Lần đầu tiên tri ân tưởng niệm Đức Quốc tổ Lạc Long Quân ở Mũi Cà Mau | Báo Dân trí",
+    "imageSource": "https://dantri.com.vn/van-hoa/lan-dau-tien-tri-an-tuong-niem-duc-quoc-to-lac-long-quan-o-mui-ca-mau-20210417190903488.htm",
+    "imageOriginalUrl": "https://cdnphoto.dantri.com.vn/TrWC5qzwbnjmQIcUO-s-WKJIe2E%3D/thumb_w/960/2021/04/17/img-0756-1618673874823.jpg"
+  },
+  "ca-mau-chua-monivongsa-bopharam": {
+    "image": "assets/images/destinations/ca-mau-chua-monivongsa-bopharam.webp",
+    "imageAlt": "Chùa Monivongsa Bopharam · Cà Mau",
+    "imageAttribution": "Chùa Monivongsa Bopharam · Nguồn: Chùa Monivongsa Bopharam",
+    "imageSource": "https://camautourism.vnptit3.vn/vi/chuamonivongsabopharam",
+    "imageOriginalUrl": "https://dltm-cdn.vnptit3.vn/resources/portal/Images/CMU/adminportal/1/r637099279757210717_53551917.png"
+  },
+  "ca-mau-khu-tuong-niem-chu-tich-ho-chi-minh": {
+    "image": "assets/images/destinations/ca-mau-khu-tuong-niem-chu-tich-ho-chi-minh.webp",
+    "imageAlt": "Khu tưởng niệm Chủ tịch Hồ Chí Minh · Cà Mau",
+    "imageAttribution": "Khu tưởng niệm Chủ tịch Hồ Chí Minh · Nguồn: Khu tưởng niệm Bác Hồ ở Cà Mau - Báo Cần Thơ Online",
+    "imageSource": "https://baocantho.com.vn/khu-tuong-niem-bac-ho-o-ca-mau-a133340.html",
+    "imageOriginalUrl": "https://baocantho.com.vn/image/fckeditor/upload/2021/20210518/images/1.gif"
+  },
+  "tay-ninh-thung-lung-ma-thien-lanh": {
+    "image": "assets/images/destinations/tay-ninh-thung-lung-ma-thien-lanh.webp",
+    "imageAlt": "Thung lũng Ma Thiên Lãnh · Tây Ninh",
+    "imageAttribution": "Thung lũng Ma Thiên Lãnh · Nguồn: Ma Thiên Lãnh - Nơi chốn đầy kỳ bí và thiêng liêng",
+    "imageSource": "https://tiepthigiadinh.vn/ma-thien-lanh-vung-dat-dia-linh-nhan-kiet-day-ky-bi-va-thieng-lieng-d4612.html",
+    "imageOriginalUrl": "https://t.cmx-cdn.com/tiepthigiadinh.vn/files/phuongthao/2023/05/31/chinh_phuc_thung_lung_ma_thien_lanh_hoang_so_o_tay_ninh_2a-001220.jpg"
+  },
+  "tay-ninh-ho-dau-tieng": {
+    "image": "assets/images/destinations/tay-ninh-ho-dau-tieng.webp",
+    "imageAlt": "Hồ Dầu Tiếng · Tây Ninh",
+    "imageAttribution": "Hồ Dầu Tiếng · Nguồn: Khám phá 15 địa điểm du lịch Tây Ninh hấp dẫn nhất",
+    "imageSource": "https://pgdhoathanh.giaoductayninh.vn/van-hoa-giai-tri/kham-pha-15-dia-diem-du-lich-tay-ninh-hap-dan-nhat-136801",
+    "imageOriginalUrl": "https://cdn.tgdd.vn/Files/2021/06/22/1362180/kham-pha-10-dia-diem-du-lich-tay-ninh-hap-dan-nhat-202111011432062447.jpg"
+  },
+  "binh-duong-nha-tho-chanh-toa-phu-cuong": {
+    "image": "assets/images/destinations/binh-duong-nha-tho-chanh-toa-phu-cuong.webp",
+    "imageAlt": "Nhà thờ Chánh tòa Phú Cường · Bình Dương",
+    "imageAttribution": "Nhà thờ Chánh tòa Phú Cường · Nguồn: Nhà thờ đẹp nhất tỉnh Bình Dương | Znews.vn",
+    "imageSource": "https://znews.vn/nha-tho-dep-nhat-tinh-binh-duong-post737099.html",
+    "imageOriginalUrl": "https://photo.znews.vn/w660/Uploaded/tmuitg/2017_04_13/21.jpg"
+  },
+  "binh-duong-cong-vien-bach-dang": {
+    "image": "assets/images/destinations/binh-duong-cong-vien-bach-dang.webp",
+    "imageAlt": "Công viên Bạch Đằng · Bình Dương",
+    "imageAttribution": "Công viên Bạch Đằng · Nguồn: Hàng ngàn người háo hức với chương trình nhạc nước ở Bình Dương",
+    "imageSource": "https://vov.vn/xa-hoi/hang-ngan-nguoi-hao-huc-voi-chuong-trinh-nhac-nuoc-o-binh-duong-post1091911.vov",
+    "imageOriginalUrl": "https://media.vov.vn/sites/default/files/styles/large_watermark/public/2024-04/nguoi_dan_su_dung_dien_thoai_de_ghi_lai_man_bieu_dien_nhac_nuoc_soi_dong_anh_thien_ly.jpg"
+  },
+  "binh-duong-vuon-nha-gom": {
+    "image": "assets/images/destinations/binh-duong-vuon-nha-gom.webp",
+    "imageAlt": "Vườn Nhà Gốm · Bình Dương",
+    "imageAttribution": "Vườn Nhà Gốm · Nguồn: Giới Thiệu về Vườn Nhà Gốm – vuonnhagom.vn",
+    "imageSource": "https://vuonnhagom.vn/pages/gioithieu",
+    "imageOriginalUrl": "https://file.hstatic.net/1000382508/file/30071076475_5509994363599204169_n__1__8bdc0a5b40ee4ab48b9c31a34d45d949_grande.jpg"
+  },
+  "binh-duong-vuon-cay-an-trai-lai-thieu": {
+    "image": "assets/images/destinations/binh-duong-vuon-cay-an-trai-lai-thieu.webp",
+    "imageAlt": "Vườn cây ăn trái Lái Thiêu · Bình Dương",
+    "imageAttribution": "Vườn cây ăn trái Lái Thiêu · Nguồn: Vườn cây ăn trái Lái Thiêu vào mùa, hút khách",
+    "imageSource": "https://truyenhinh.baobinhduong.vn/video/xem-video/vuon-cay-an-trai-lai-thieu-vao-mua-hut-khach-7996.html",
+    "imageOriginalUrl": "https://cdn.baobinhduong.vn/image/media/2023/20230521/video/thumbnail/690x420/7996_lt2.jpg"
+  },
+  "binh-duong-khu-du-lich-thuy-chau": {
+    "image": "assets/images/destinations/binh-duong-khu-du-lich-thuy-chau.webp",
+    "imageAlt": "Khu du lịch Thủy Châu · Bình Dương",
+    "imageAttribution": "Khu du lịch Thủy Châu · Nguồn: Khu Du Lịch Sinh Thái Thủy Châu – Không Gian Xanh Giải Nhiệt Cuối Tuần",
+    "imageSource": "https://dulichthuduc.com.vn/khu-du-lich-sinh-thai-thuy-chau-khong-gian-xanh-giai-nhiet-cuoi-tuan.html",
+    "imageOriginalUrl": "https://dulichthuduc.com.vn/vnt_upload/news/DONG-NAM-BO/binh-duong/KDL_sinh_thai_thuy_chau_du_lich_thu_duc_5.jpg"
+  },
+  "binh-phuoc-ho-thac-mo": {
+    "image": "assets/images/destinations/binh-phuoc-ho-thac-mo.webp",
+    "imageAlt": "Hồ Thác Mơ · Bình Phước",
+    "imageAttribution": "Hồ Thác Mơ · Nguồn: Lễ 30.4 và 1.5: Đi du lịch nơi đây không mất phí, có khung cảnh tuyệt đẹp",
+    "imageSource": "https://thanhnien.vn/le-304-va-15-di-du-lich-noi-day-khong-mat-phi-co-khung-canh-tuyet-dep-185230408131115587.htm",
+    "imageOriginalUrl": "https://images2.thanhnien.vn/528068263637045248/2023/4/8/photo-1680929314472-1680929314951816349364.jpeg"
+  },
+  "binh-phuoc-trang-co-bu-lach": {
+    "image": "assets/images/destinations/binh-phuoc-trang-co-bu-lach.webp",
+    "imageAlt": "Trảng cỏ Bù Lạch · Bình Phước",
+    "imageAttribution": "Trảng cỏ Bù Lạch · Nguồn: Trảng cỏ Bù Lạch",
+    "imageSource": "https://vietnam.vnanet.vn/vietnamese/tin-tuc/trang-co-bu-lach-34317.html",
+    "imageOriginalUrl": "https://imagevietnam.vnanet.vn/Upload/2012/6/13/13-6DL14BaoAnh1362012141815783.jpg"
+  },
+  "ca-mau-cho-nam-can": {
+    "image": "assets/images/destinations/ca-mau-cho-nam-can.webp",
+    "imageAlt": "Chợ Năm Căn · Cà Mau",
+    "imageAttribution": "Chợ Năm Căn · Nguồn: Một góc chợ Năm Căn · Bùi Thụy Đào Nguyên · CC BY-SA 3.0",
+    "imageSource": "https://commons.wikimedia.org/wiki/File:Một_góc_chợ_Năm_Căn.jpg",
+    "imageOriginalUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/M%E1%BB%99t_g%C3%B3c_ch%E1%BB%A3_N%C4%83m_C%C4%83n.jpg/960px-M%E1%BB%99t_g%C3%B3c_ch%E1%BB%A3_N%C4%83m_C%C4%83n.jpg",
+    "imageLicense": "https://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  "binh-phuoc-doi-bang-lang": {
+    "image": "assets/images/destinations/binh-phuoc-doi-bang-lang.webp",
+    "imageAlt": "Đồi Bằng Lăng · Bình Phước",
+    "imageAttribution": "Đồi Bằng Lăng · Nguồn: Địa Long / Báo Bình Phước · Núi Bà Rá - Cảnh thiêng hữu tình",
+    "imageSource": "https://baoquangninh.vn/nui-ba-ra-canh-thieng-huu-tinh-2524964.html",
+    "imageOriginalUrl": "https://assets.baoquangninh.vn/images/vpm40m-qo2gHMGNaJzDQpL2EltFV6qmQpMX2a7Qo1AEApeZx5C7yH0r0_4zRJBlVA_tUfLgpfU5nI9oRJOxsPw/images1482065_VH1.jpg.avif"
+  },
+  "tay-ninh-ho-da": {
+    "image": "assets/images/destinations/tay-ninh-ho-da.webp",
+    "imageAlt": "Hồ Đá · Tây Ninh",
+    "imageAttribution": "Hồ Đá · Nguồn: Ma Thiên Lãnh - Nơi chốn đầy kỳ bí và thiêng liêng",
+    "imageSource": "https://tiepthigiadinh.vn/ma-thien-lanh-vung-dat-dia-linh-nhan-kiet-day-ky-bi-va-thieng-lieng-d4612.html",
+    "imageOriginalUrl": "https://t.cmx-cdn.com/tiepthigiadinh.vn/files/phuongthao/2023/05/31/chinh_phuc_thung_lung_ma_thien_lanh_hoang_so_o_tay_ninh_2a-001220.jpg"
+  },
+  "ben-tre-vuon-trai-cay-cai-mon": {
+    "image": "assets/images/destinations/ben-tre-vuon-trai-cay-cai-mon.webp",
+    "imageAlt": "Vườn trái cây Cái Mơn · Bến Tre",
+    "imageAttribution": "Vườn trái cây Cái Mơn · Nguồn: # Giá vé vào tham quan vườn trái cây Cái Mơn mới nhất 2025 | Viet Fun Travel",
+    "imageSource": "https://www.vietfuntravel.com.vn/blog/gia-ve-vao-tham-quan-vuon-trai-cay-cai-mon.html",
+    "imageOriginalUrl": "https://www.vietfuntravel.com.vn/image/data/Mien-tay-n/vuon-cai-mon/gia-ve-vao-vuon-trai-cay-cai-mon-h1.jpg"
+  },
+  "ben-tre-cho-lach": {
+    "image": "assets/images/destinations/ben-tre-cho-lach.webp",
+    "imageAlt": "Chợ Lách · Bến Tre",
+    "imageAttribution": "Chợ Lách · Nguồn: Công bố bộ nhận diện thương hiệu Làng Văn hóa du lịch Chợ Lách - VnEconomy",
+    "imageSource": "https://vneconomy.vn/cong-bo-bo-nhan-dien-thuong-hieu-lang-van-hoa-du-lich-cho-lach.htm",
+    "imageOriginalUrl": "https://media.vneconomy.vn/images/upload/2024/07/17/c4hu-22b.jpg"
+  }
+}

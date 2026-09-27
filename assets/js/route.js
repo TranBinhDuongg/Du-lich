@@ -13,27 +13,10 @@
             "'": "&#39;",
           })[c],
       ),
-    money = (n) => Math.round(n).toLocaleString("vi-VN") + " ₫";
-  const stopPhotos = {
-    "Ngắm cầu Trường Tiền": ["hue-truong-tien.jpg", "Cầu Trường Tiền"],
-    "Dạo bến Ninh Kiều": ["can-tho-ninh-kieu.jpg", "Bến Ninh Kiều"],
-    "Biển Mỹ Khê": ["da-nang-my-khe.jpg", "Bãi biển Mỹ Khê"],
-    "Dạo phố cổ Hội An": ["hoi-an.png", "Phố cổ Hội An"],
-    "Ngắm đèo Mã Pí Lèng": ["ma-pi-leng.jpg", "Đèo Mã Pí Lèng"],
-    "Tham quan thác Bản Giốc": ["ban-giuoc.jpg", "Thác Bản Giốc"],
-    "Ngắm Cổng Tò Vò": ["ly-son-to-vo.jpg", "Cổng Tò Vò"],
-    "Khám phá cảnh quan Hang Câu": ["ly-son-hang-cau.jpg", "Hang Câu"],
-  };
+    money = (n) => (Number.isFinite(n) ? Math.round(n).toLocaleString("vi-VN") + " ₫" : "Chưa có giá");
   function stopPhoto(a) {
-    if (a.image) return '<img class="stop-photo" src="' + esc(a.image) + '" alt="' + esc(a.name) + '" loading="lazy">';
-    const p = stopPhotos[a.name];
-    return p
-      ? '<img class="stop-photo" src="assets/images/' +
-          p[0] +
-          '" alt="' +
-          esc(p[1]) +
-          '" loading="lazy">'
-      : "";
+    if (!a.image) return '';
+    return '<img class="stop-photo" src="' + esc(a.image) + '" alt="' + esc(a.imageAlt || a.name) + '" loading="lazy">';
   }
   function destinationIds(input) {
     return input.destinations?.length ? input.destinations : [input.destination];
@@ -76,7 +59,7 @@
         !p.days.every(
           (d) =>
             Array.isArray(d.activities) &&
-            d.activities.length === 3 &&
+            d.activities.length > 0 &&
             d.activities.every(
               (a) =>
                 typeof a.name === "string" &&
@@ -91,14 +74,17 @@
         c = E.costs(p);
       $("route-content").hidden = false;
       $("route-error").textContent = "";
-      $("route-title").textContent = destinationLabel(p.input) + " — theo cách của bạn";
-      $("route-meta").textContent =
-        p.input.days +
-        " ngày · " +
-        p.input.people +
-        " người · " +
-        p.input.interests.join(" · ");
+      const tripRoute = E.routes.find(r => r.id === p.routeId);
+      const regions = [...new Set(destinationIds(p.input).map(id => E.destinations[id].region))];
+      const title = tripRoute?.name || (regions.length <= 2 ? regions.join(" – ") : regions.slice(0, 2).join(" – ") + " và vùng lân cận");
+      const titleParts = title.split(" · ");
+      $("route-title").innerHTML = titleParts.length > 1 ? '<span class="route-region">' + esc(titleParts[0]) + '</span><span>' + esc(titleParts.slice(1).join(" · ")) + '</span>' : esc(title);
+      $("route-meta").innerHTML = '<span>' + p.input.days + ' ngày</span><span>' + p.input.people + ' người</span><span>' + destinationIds(p.input).length + ' điểm đến</span>';
       $("route-total").textContent = money(c.total);
+      $("route-price-line").textContent = c.unknown ? 'Cần dự toán riêng' : (c.price?.estimated ? 'Ước tính: ' : 'Tham khảo: ') + (c.price?.max && c.price.max !== c.price.min ? money(c.price.min) + ' – ' + money(c.price.max) : money(c.totalPerPerson)) + ' / người';
+      $("route-cost-note").textContent = c.note;
+      $("route-warning").hidden = !p.warnings?.length;
+      $("route-warning").textContent = (p.warnings || []).join(' ').replace('Nguồn ghi', 'Khung giờ');
       $("route-days").innerHTML = p.days
         .map(
           (day, i) =>
@@ -118,7 +104,7 @@
               " · " +
               esc(dayDestinationLabel(day, p.input)) +
               "</h2></div></header><ol>" +
-              E.scheduleDay(p, i)
+              E.uniquePhotoDay(p, i)
                 .map(
                   (a, j) =>
                     '<li><span class="stop-marker">' +
@@ -136,7 +122,7 @@
                       ? esc(a.note)
                       : a.cost
                         ? money(a.cost) + " / người"
-                        : "Chi phí trải nghiệm: 0 ₫ (dự toán mẫu)") +
+                        : "Chưa có giá riêng") +
                     "</p></article></li>",
                 )
                 .join("") +
@@ -145,10 +131,8 @@
           .join("") +
         '<div class="route-finish">✓ &nbsp; Kết thúc hành trình · Mang những kỷ niệm về nhà</div>';
       const photo =
-        d.image ||
-        (p.input.destination === "halong"
-          ? "assets/images/Vinh-ha-long.jpg"
-          : null);
+        E.routes.find(r => r.id === p.routeId)?.image || d.image ||
+        null;
       $("route-photo").hidden = !photo;
       if (photo) {
         $("route-photo").src = photo;
@@ -157,7 +141,7 @@
       }
       for (const [button, target] of [
         ["edit-route", "plan.html"],
-        ["chat-route", "chat.html"],
+        ["chat-route", "chat.html?trip=" + encodeURIComponent(p.id)],
       ])
         $(button).onclick = () => {
           try {

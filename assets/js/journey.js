@@ -57,58 +57,7 @@ document.addEventListener("keydown", (event) => {
   const title = document.getElementById("home-title");
   const status = document.getElementById("home-status");
   const footer = document.querySelector(".journey-footer");
-  const scenes = [
-    {
-      name: "Việt Nam",
-      region: "KHÁM PHÁ VIỆT NAM",
-      image: "assets/images/Vinh-ha-long.jpg",
-      bg: "#0a3d4a",
-      ink: "#b2ebf2",
-      baseline: "Một Việt Nam, muôn hành trình.",
-      description:
-        "Từ núi rừng đến biển đảo, từ phố cổ đến miền sông nước.<br>Cùng Tripmate khám phá cảnh sắc, văn hóa và hương vị Việt Nam.",
-    },
-    {
-      name: "Bản Giốc",
-      image: "assets/images/ban-giuoc.jpg",
-      bg: "#254b41",
-      ink: "#e1efc8",
-      baseline: "Thác nước giữa núi rừng.",
-      description: "Thác nước giữa núi rừng.",
-    },
-    {
-      name: "Mã Pí Lèng",
-      image: "assets/images/ma-pi-leng.jpg",
-      bg: "#354b42",
-      ink: "#e7e7ce",
-      baseline: "Qua miền cao nguyên đá.",
-      description: "Qua miền cao nguyên đá.",
-    },
-    {
-      name: "Hội An",
-      image: "assets/images/hoi-an.png",
-      bg: "#765126",
-      ink: "#ffe0b2",
-      baseline: "Một nhịp sống bên phố cổ.",
-      description: "Một nhịp sống bên phố cổ.",
-    },
-    {
-      name: "Cầu Vàng",
-      image: "assets/images/Cau-vang.png",
-      bg: "#355a55",
-      ink: "#e2efce",
-      baseline: "Dạo bước giữa mây trời.",
-      description: "Dạo bước giữa mây trời.",
-    },
-    {
-      name: "Lý Sơn",
-      image: "assets/images/Ly-son.png",
-      bg: "#174d63",
-      ink: "#c7e9e9",
-      baseline: "Biển xanh và dấu tích núi lửa.",
-      description: "Biển xanh và dấu tích núi lửa.",
-    },
-  ];
+  const scenes = window.TripMateFeatured.map(d => ({name:d.name,region:d.region,image:d.image,bg:"#173f42",ink:"#e7e7ce",baseline:d.region,description:d.description,destinationId:d.id}));
   let current = 0,
     desired = 0,
     busy = false,
@@ -145,15 +94,27 @@ document.addEventListener("keydown", (event) => {
   }));
   dotBar.style.setProperty('--dot-edge', (50 / scenes.length) + '%');
   const dots = Array.from(dotBar.querySelectorAll('[data-slide]'));
+  // Local files need embedded image data to remain origin-clean for WebGL.
+  // Hosted pages keep loading the original images without the offline bundle.
+  const texturesReady = location.protocol === "file:"
+    ? new Promise((resolve) => {
+        const script = document.createElement("script");
+        script.src = "assets/js/texture-assets.js?v=featured-20260927";
+        script.onload = script.onerror = resolve;
+        document.head.append(script);
+      })
+    : Promise.resolve();
   const images = scenes.map((scene) => {
     const img = new Image();
     const ready = new Promise((resolve) => {
       img.onload = () => resolve(img);
       img.onerror = () => resolve(null);
     });
-    img.src =
-      (location.protocol === "file:" && window.TRIPMATE_TEXTURES && window.TRIPMATE_TEXTURES[scene.image]) ||
-      scene.image;
+    texturesReady.then(() => {
+      img.src =
+        (location.protocol === "file:" && window.TRIPMATE_TEXTURES && window.TRIPMATE_TEXTURES[scene.image]) ||
+        scene.image;
+    });
     return { img, ready, texture: null };
   });
   let gl = null,
@@ -519,11 +480,11 @@ document.addEventListener("keydown", (event) => {
     const scene = scenes[index];
     document.body.style.setProperty("--scene-bg", scene.bg);
     document.body.style.setProperty("--scene-ink", scene.ink);
-    setTitle("Việt Nam", direction);
-    document.getElementById("home-baseline").textContent = scenes[0].baseline;
-    document.getElementById("home-description").innerHTML = scenes[0].description;
+    setTitle(scene.name, direction);
+    document.getElementById("home-baseline").textContent = scene.baseline;
+    document.getElementById("home-description").innerHTML = scene.description;
     document.getElementById("home-region").textContent =
-      "KHÁM PHÁ VIỆT NAM";
+      scene.region;
     document.getElementById("home-counter").textContent =
       String(index + 1).padStart(2, "0") +
       " / " +
@@ -841,6 +802,5 @@ document.addEventListener("keydown", (event) => {
   updateCopy(0, 1);
   initGL();
 })();
-
 
 

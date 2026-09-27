@@ -51,7 +51,7 @@ function sendMessage(text) {
       const response = getReply(clean);
       const message = addMessage(typeof response === 'string' ? response : response.reply, "bot");
       for (const action of response.actions || []) {
-        if (!/^plan\.html(?:\?destination=[\w%-]+)?$/.test(action.href)) continue;
+        if (!/^plan\.html(?:\?(?:destination|route)=[\w%-]+)?$/.test(action.href)) continue;
         const link = document.createElement('a'); link.className = 'chat-action'; link.href = action.href; link.textContent = action.label; message.append(link);
       }
     } catch { addMessage('Mình chưa xử lý được yêu cầu. Bạn thử hỏi ngắn hơn nhé.', 'bot'); }
