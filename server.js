@@ -99,9 +99,15 @@ async function handler(req,res){
       if(req.method!=='POST')return json(res,405,{error:'Chỉ chấp nhận POST.'});
       if(req.headers.origin&&new URL(req.headers.origin).host!==req.headers.host)return json(res,403,{error:'Nguồn yêu cầu không hợp lệ.'});
       if(!req.headers['content-type']?.startsWith('application/json'))return json(res,415,{error:'Yêu cầu phải là JSON.'});
-      let raw='',size=0;
-      for await(const chunk of req){size+=chunk.length;if(size>250000)return json(res,413,{error:'Yêu cầu quá lớn.'});raw+=chunk;}
-      let body;try{body=JSON.parse(raw);if(!body||typeof body!=='object')throw Error();}catch{return json(res,400,{error:'JSON không hợp lệ.'});}
+      let body;
+      if(req.body!==undefined){
+        body=req.body;
+        if(!body||typeof body!=='object')return json(res,400,{error:'JSON không hợp lệ.'});
+      }else{
+        let raw='',size=0;
+        for await(const chunk of req){size+=chunk.length;if(size>250000)return json(res,413,{error:'Yêu cầu quá lớn.'});raw+=chunk;}
+        try{body=JSON.parse(raw);if(!body||typeof body!=='object')throw Error();}catch{return json(res,400,{error:'JSON không hợp lệ.'});}
+      }
       return json(res,200,await generate(body));
     }
     if(req.method!=='GET'&&req.method!=='HEAD')return json(res,405,{error:'Phương thức không hỗ trợ.'});
