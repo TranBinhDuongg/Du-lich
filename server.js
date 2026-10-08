@@ -50,7 +50,7 @@ async function requestWithRetry(fetcher,url,options) {
 }
 async function generate(body, fetcher=fetch) {
   const key=process.env.GEMINI_API_KEY;
-  if(!key||key==='your_gemini_api_key') throw Object.assign(Error('Chưa cấu hình Tripmate. Hãy nhập GEMINI_API_KEY trong file .env rồi khởi động lại.'),{status:503});
+  if(!key||key==='your_gemini_api_key') throw Object.assign(Error('Chưa cấu hình Tripmate. Hãy đặt GEMINI_API_KEY trong biến môi trường của máy chủ.'),{status:503});
   if(!['plan','chat'].includes(body.action)) throw Object.assign(Error('Yêu cầu không hợp lệ.'),{status:400});
   if(body.action==='chat'&&(typeof body.message!=='string'||!body.message.trim()||body.message.length>4000)) throw Object.assign(Error('Câu hỏi phải từ 1 đến 4.000 ký tự.'),{status:400});
   let input=null;
@@ -67,7 +67,7 @@ async function generate(body, fetcher=fetch) {
     method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':key},signal:AbortSignal.timeout(55000),
     body:JSON.stringify({systemInstruction:{parts:[{text:system}]},contents:[...history,{role:'user',parts:[{text:JSON.stringify({action:body.action,message:body.message||'Tạo lịch trình phù hợp yêu cầu.',input,plan:body.plan?{input,days:body.plan.days}:null,catalog,route:input?.routeId?E.routes.find(r=>r.id===input.routeId):null,tripDetails,preferences:typeof body.preferences==='string'?body.preferences.slice(0,2000):''})}]}],generationConfig:{responseFormat:{text:{mimeType:'APPLICATION_JSON',schema:JSON.parse(JSON.stringify(schema,(k,v)=>k==='type'?v.toLowerCase():v))}},maxOutputTokens:16000}})
   });
-  if(!response.ok)throw Object.assign(Error(response.status===429?'Tripmate đang hết hạn mức hoặc có quá nhiều yêu cầu. Hãy thử lại sau.':response.status===401?'Tripmate từ chối xác thực. Hãy sao chép đúng API key vào .env và khởi động lại máy chủ.':response.status===400||response.status===403?'Tripmate không chấp nhận cấu hình hiện tại. Kiểm tra API key và tên model trong .env.':response.status===404?'Không tìm thấy model Tripmate. Hãy đổi GEMINI_MODEL trong .env.':'Không thể kết nối Tripmate lúc này. Hãy thử lại sau.'),{status:502});
+  if(!response.ok)throw Object.assign(Error(response.status===429?'Tripmate đang hết hạn mức hoặc có quá nhiều yêu cầu. Hãy thử lại sau.':response.status===401?'Tripmate từ chối xác thực. Hãy kiểm tra GEMINI_API_KEY trong cấu hình máy chủ.':response.status===400||response.status===403?'Tripmate không chấp nhận cấu hình hiện tại. Kiểm tra GEMINI_API_KEY và GEMINI_MODEL trong cấu hình máy chủ.':response.status===404?'Không tìm thấy model Tripmate. Hãy kiểm tra GEMINI_MODEL trong cấu hình máy chủ.':'Không thể kết nối Tripmate lúc này. Hãy thử lại sau.'),{status:502});
   const payload=await response.json();
   let data;
   try {data=JSON.parse((payload.candidates?.[0]?.content?.parts||[]).map(p=>p.text||'').join(''));}catch{throw Error('Tripmate chưa trả về câu trả lời hoàn chỉnh. Hãy thử lại.');}
