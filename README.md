@@ -18,6 +18,14 @@ Máy chủ tự khởi động lại khi bạn lưu thay đổi trong `.env` ho�
 
 ## Đưa ứng dụng lên web
 
+`https://www.perusi.io.vn` hiện được phục vụ bởi Vercel. `api/gemini.mjs` cung cấp endpoint `/api/gemini` trên Vercel và dùng chung logic với máy chủ local. Sau khi Vercel triển khai commit mới từ GitHub:
+
+1. Mở Vercel Dashboard, chọn project gắn với `www.perusi.io.vn`, vào **Settings > Environment Variables**.
+2. Thêm `GEMINI_API_KEY` với giá trị key của bạn cho môi trường **Production**. Không lưu key trong GitHub.
+3. Chọn **Redeploy** để Vercel nhận biến mới. Mở lại `https://www.perusi.io.vn/api/gemini`; GET sẽ trả `405` (endpoint chỉ nhận POST), không còn `404`.
+
+Nếu project Vercel chưa kết nối repo này, hãy import `TranBinhDuongg/Du-lich` vào đúng project đang gắn domain rồi triển khai lại.
+
 Ứng dụng cần máy chủ Node.js để gọi Gemini an toàn; GitHub Pages chỉ phục vụ tệp tĩnh nên không chạy được API này. Repo đã có `render.yaml` để triển khai thành web service trên Render:
 
 1. Đẩy mã nguồn lên GitHub.
