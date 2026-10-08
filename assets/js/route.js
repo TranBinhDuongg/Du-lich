@@ -84,7 +84,7 @@
       $("route-price-line").textContent = c.unknown ? 'Cần dự toán riêng' : (c.price?.estimated ? 'Ước tính: ' : 'Tham khảo: ') + (c.price?.max && c.price.max !== c.price.min ? money(c.price.min) + ' – ' + money(c.price.max) : money(c.totalPerPerson)) + ' / người';
       $("route-cost-note").textContent = c.note;
       $("route-warning").hidden = !p.warnings?.length;
-      $("route-warning").textContent = (p.warnings || []).join(' ').replace('Nguồn ghi', 'Khung giờ');
+      $("route-warning").textContent = (p.warnings || []).join(' ').replaceAll('Gemini', 'Tripmate').replace('Nguồn ghi', 'Khung giờ');
       $("route-days").innerHTML = p.days
         .map(
           (day, i) =>
@@ -117,13 +117,13 @@
                     esc(a.tag || "Trải nghiệm") +
                     "</span></div><h3>" +
                     esc(a.name) +
-                    "</h3><p>" +
+                    "</h3>" + (a.location ? '<p>⌖ '+esc(a.location)+'</p>' : '') + (a.travelGuidance ? '<p>↗ '+esc(a.travelGuidance)+'</p>' : '') + "<p>" +
                     (a.note
                       ? esc(a.note)
                       : a.cost
                         ? money(a.cost) + " / người"
                         : "Chưa có giá riêng") +
-                    "</p></article></li>",
+                    "</p>" + (p.aiGenerated ? '<p>'+ (a.cost ? money(a.cost)+' / người · ước tính' : 'Không dự toán chi riêng')+'</p>' : '') + "</article></li>",
                 )
                 .join("") +
               "</ol></section>",

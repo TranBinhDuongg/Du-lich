@@ -7,13 +7,13 @@
     <title>Tripmate AI · Tạo lịch trình</title>
     <link rel="stylesheet" href="assets/css/workspace.css?v=compact-saved-20260927" />
     <script src="assets/js/tourism-data.js?v=compact-saved-20260927" defer></script><script src="assets/js/planner-engine.js?v=unique-photos-20260927" defer></script>
-    <script src="assets/js/chat-format.js" defer></script><script src="assets/js/chatbot.js?v=trip-faq-20260927" defer></script>
-    <script src="assets/js/workspace.js?v=trip-faq-20260927" defer></script>
+    <script src="assets/js/chat-format.js" defer></script><script src="assets/js/chatbot.js?v=short-chat-20260928" defer></script>
+    <script src="assets/js/workspace.js?v=tripmate-20261001" defer></script>
     <link rel="stylesheet" href="assets/css/page-transition.css?v=ready-20260920" />
     <script src="assets/js/page-transition.js?v=ready-20260920"></script>
     <link rel="stylesheet" href="assets/css/function-menu.css?v=1" />
     <script src="assets/js/menu.js?v=2" defer></script>
-  <script src="assets/js/floating-menu.js?v=1" defer></script><link rel="stylesheet" href="assets/css/chat-ui.css?v=trip-faq-20260927" />
+  <script src="assets/js/floating-menu.js?v=1" defer></script><link rel="stylesheet" href="assets/css/chat-ui.css?v=chat-file-20260928" />
 </head>
   <body data-screen="plan">
     <header class="studio-header">
@@ -149,18 +149,37 @@
               <span class="icon-box">⌖</span
               ><span
                 >Chuyến đi của bạn<small
-                  >Chọn một hành trình có sẵn</small
+                  >Lên kế hoạch cùng Tripmate</small
                 ></span
               ><span class="summary-arrow">⌄</span>
             </summary>
             <form id="studio-form">
+              <label class="field">Cách lên kế hoạch<select name="planMode"><option value="route">Từ tuyến tham khảo</option><option value="custom">Chọn tỉnh/thành phố và điểm đến</option></select></label>
+              <div id="ai-custom-fields" hidden>
+                <label class="field">Tỉnh / thành phố<select name="province" aria-label="Chọn tỉnh hoặc thành phố"></select></label>
+                <label class="field">Điểm đến<select name="destination"></select></label>
+                <p id="province-data-note" class="form-footnote" role="status" aria-live="polite"></p>
+                <label class="field">Số ngày<input name="days" type="number" min="1" max="14" value="2"></label>
+                <fieldset class="ai-interests"><legend>Sở thích của bạn</legend>
+                  <label><input name="interests" type="checkbox" value="Ẩm thực" checked> Ẩm thực</label>
+                  <label><input name="interests" type="checkbox" value="Biển"> Biển</label>
+                  <label><input name="interests" type="checkbox" value="Thiên nhiên"> Thiên nhiên</label>
+                  <label><input name="interests" type="checkbox" value="Văn hóa" checked> Văn hóa</label>
+                  <label><input name="interests" type="checkbox" value="Check-in"> Check-in</label>
+                </fieldset>
+              </div>
               <label class="field">Chọn lịch trình<select name="routeId" aria-label="Chọn lịch trình"></select></label>
               <section id="preset-overview" class="preset-overview" aria-live="polite" aria-label="Thông tin lịch trình"></section>
               <label class="field">Số người<input type="number" name="people" min="1" max="100" value="2" required></label>
               <label class="field">Ngân sách / người<div class="money-input"><input name="budget" type="number" min="100000" max="100000000" step="10000" value="3000000" required><span>VNĐ</span></div></label>
+              <label class="field">Khởi hành từ đâu?<input name="origin" maxlength="200" placeholder="Ví dụ: Quận 1, TP. Hồ Chí Minh" required></label>
+              <label class="field">Ngày khởi hành<input name="departureDate" type="date"></label>
+              <label class="field">Phương tiện<select name="transport"><option>Tư vấn phương tiện phù hợp</option><option>Ô tô riêng</option><option>Xe khách</option><option>Xe máy</option><option>Máy bay và xe tại điểm đến</option></select></label>
+              <label class="field">Chỗ nghỉ mong muốn<select name="accommodation"><option>Phù hợp ngân sách</option><option>Khách sạn 2–3 sao</option><option>Khách sạn 4–5 sao</option><option>Homestay</option><option>Resort</option></select></label>
               <p id="form-error" class="error" role="alert"></p>
-              <button class="button primary generate" type="submit"><span>✧</span> Áp dụng lịch trình <span>↗</span></button>
-              <p class="form-footnote">Ngân sách giúp bạn đối chiếu chi phí. Các điểm đến và giờ tham quan được giữ theo lịch trình đã chọn.</p>
+              <label class="field">Mong muốn thêm<textarea name="preferences" maxlength="2000" rows="3" placeholder="Ví dụ: đi cùng trẻ nhỏ, ít đi bộ, thích món địa phương…"></textarea></label>
+              <button class="button primary generate" type="submit">✧ Tạo lịch trình với Tripmate ↗</button>
+              <p class="form-footnote">Lịch trình trọn chuyến gồm đi lại, ăn sáng/trưa/tối, tham quan, chỗ nghỉ và quay về, kèm dự toán từng khoản.</p>
             </form>
           </details>
           <div class="gentle-note">

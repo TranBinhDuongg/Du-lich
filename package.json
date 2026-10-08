@@ -1,0 +1,1 @@
+{"name":"tripmate-ai","version":"1.0.0","private":true,"scripts":{"start":"node --watch --watch-path=.env --watch-path=server.js --env-file=.env server.js","test":"node --test"},"engines":{"node":">=22"}}

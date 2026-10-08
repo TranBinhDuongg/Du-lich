@@ -2,9 +2,10 @@
   'use strict';
   const normalize=s=>String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/[^a-z0-9]+/g,' ').trim();
   const money=n=>n.toLocaleString('vi-VN')+' ₫';
-  function questions(plan){
-    if(!plan)return [];
-    return ['Chuyến đi có những điểm đến nào?', ...plan.days.map((_,i)=>'Ngày '+(i+1)+' đi đâu?'), 'Chi phí cho '+plan.input.people+' người là bao nhiêu?', 'Ăn gì trong chuyến đi?', 'Lưu trú ở đâu?'];
+  function shortName(route){
+    if(!route)return 'Chuyến đi của bạn';
+    const names={'mien-tay-4n3d':'Miền Tây','ho-chi-minh-5n4d':'TP.HCM & vùng ven','kien-giang-ca-mau-4n3d':'Kiên Giang – Cà Mau','ha-tien-2n1d':'Hà Tiên','dong-nam-bo-4n3d':'Đông Nam Bộ'};
+    return names[route.id]||route.name.split(' · ')[0];
   }
   function create(E){
     let focus=null;
@@ -24,14 +25,14 @@
       const currentDays=plan?.days||route?.days||[];
       if(/\b(diem den|nhung dia diem)\b/.test(q)){
         const ids=plan.input.destinations?.length?plan.input.destinations:[plan.input.destination];
-        return result('**'+route.name+'**\n\n'+[...new Set(ids)].map(id=>'• '+E.destinations[id].name).join('\n'));
+        return result('**'+shortName(route)+'**\n\n'+[...new Set(ids)].map(id=>'• '+E.destinations[id].name).join('\n'));
       }
       const requestedDay=q.match(/\bngay (\d+)\b/);
       if(requestedDay){
         const day=Number(requestedDay[1]);
         if(day<1||day>currentDays.length)return result('Chuyến đi này có '+currentDays.length+' ngày. Hãy chọn ngày từ 1 đến '+currentDays.length+'.');
         const activities=currentDays[day-1].activities;
-        return result('**Ngày '+day+' · '+(route?.name||'Chuyến đi của bạn')+'**\n\n'+activities.map(a=>'• '+a.time+' — '+a.name).join('\n'));
+        return result('**Ngày '+day+' · '+shortName(route)+'**\n\n'+activities.map(a=>'• '+a.time+' — '+a.name).join('\n'));
       }
       const adjustment=E.command(plan,text);if(adjustment)return result(adjustment.reply);
       if(/thoi tiet|du bao|hom nay/.test(q))return result('Tài liệu không có thời tiết trực tiếp. Mình có thể tra các điểm đến và lịch trình được cung cấp.');
@@ -44,21 +45,21 @@
         const lodging=/khach san|luu tru|ngu o dau/.test(q);
         const items=currentDays.flatMap((d,i)=>d.activities.filter(a=>a.tag===(lodging?'Lưu trú':'Ẩm thực')).map(a=>({...a,day:i+1})));
         if(!items.length)return result('Lịch trình này chưa ghi rõ thông tin '+(lodging?'lưu trú':'ăn uống')+'.');
-        return result('**'+route.name+'**\n\n'+items.map(a=>'• Ngày '+a.day+' · '+a.time+' — '+a.note).join('\n\n'),defaults,[action(route)]);
+        return result('**'+shortName(route)+'**\n\n'+items.map(a=>'• Ngày '+a.day+' · '+a.time+' — '+a.note).join('\n\n'),defaults,[action(route)]);
       }
       if(route&&/\b(chi phi|gia|ngan sach|bao nhieu tien|het bao nhieu)\b/.test(q)){
         const people=Number(q.match(/\b(\d+) (nguoi|khach)\b/)?.[1]||plan?.input.people||2);
         if(people<1||people>100)return result('Số người cần từ 1 đến 100.');
         const c=E.costs({routeId:route.id,input:{people,budget:plan?.input.budget||3000000}});
-        return result('**'+route.name+'**\n\n'+(c.unknown?c.note:money(c.totalPerPerson)+'/người · '+money(c.total)+' cho '+people+' người dự kiến. '+c.note),defaults,[action(route)]);
+        return result('**'+shortName(route)+'**\n\n'+(c.unknown?c.note:money(c.totalPerPerson)+'/người · '+money(c.total)+' cho '+people+' người dự kiến. '+c.note),defaults,[action(route)]);
       }
       if(route&&(found.length||/lich trinh|ngay|tham quan|di dau|co gi choi/.test(q))&&!/nhung tuyen|cac tuyen|danh sach/.test(q)){
-        return result('**'+route.name+' · '+currentDays.length+' ngày**\n\n'+currentDays.map((d,i)=>'**'+(d.title||'Ngày '+(i+1))+'**\n'+d.activities.map(a=>'• '+a.time+' — '+a.name).join('\n')).join('\n\n'),defaults,[action(route)]);
+        return result('**'+shortName(route)+' · '+currentDays.length+' ngày**\n\n'+currentDays.map((d,i)=>'**'+(d.title||'Ngày '+(i+1))+'**\n'+d.activities.map(a=>'• '+a.time+' — '+a.name).join('\n')).join('\n\n'),defaults,[action(route)]);
       }
-      if(/tuyen|dia diem|di dau|goi y|kham pha|tro giup|xin chao/.test(q))return result('Hiện có '+E.routes.length+' lịch trình:\n\n'+E.routes.map(r=>'• '+r.name+' ('+r.duration+'N'+r.nights+'Đ)').join('\n'),defaults,E.routes.slice(0,3).map(action));
+      if(/tuyen|dia diem|di dau|goi y|kham pha|tro giup|xin chao/.test(q))return result('Hiện có '+E.routes.length+' lịch trình:\n\n'+E.routes.map(r=>'• '+shortName(r)+' ('+r.duration+'N'+r.nights+'Đ)').join('\n'),defaults,E.routes.slice(0,3).map(action));
       return result('Mình chưa tìm thấy thông tin này trong lịch trình đang chọn. Bạn có thể hỏi tên địa điểm, lịch trình hoặc giá của một tuyến trong danh mục.',defaults);
     }
     return {respond,reset(){focus=null;}};
   }
-  const api={create,normalize,questions};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.TripMateChatbot=api;
+  const api={create,normalize,shortName};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.TripMateChatbot=api;
 })(typeof window!=='undefined'?window:globalThis);

@@ -1,12 +1,4 @@
 /* Shared, escaped rich text in full-page and popup chats. */
-.trip-faq { padding: 22px 24px; margin-bottom: 20px; }
-.trip-faq h2 { margin: 0 0 6px; font-size: 18px; color: #294b3e; }
-.trip-faq > p { margin: 0 0 14px; font-size: 12px; color: #68796c; }
-.trip-faq details { border-top: 1px solid #e0e6d9; }
-.trip-faq summary { cursor: pointer; padding: 13px 24px 13px 0; font-size: 13px; line-height: 1.5; color: #315e4c; }
-.trip-faq summary:focus-visible { outline: 2px solid #315e4c; outline-offset: 2px; border-radius: 4px; }
-.faq-answer { padding: 4px 0 16px; font-size: 13px; color: #435c4e; line-height: 1.7; }
-.trip-faq[hidden] { display: none; }
 .chat-bubble { white-space: normal; }
 .chat-message-content { overflow-wrap: anywhere; min-width: 0; }
 .chat-message-content p { margin: 0 0 10px; line-height: 1.7; }

@@ -43,6 +43,11 @@
     return plan;
   }
   function costs(plan){
+    if(plan.aiGenerated && plan.estimates){
+      const perPerson=Object.fromEntries(['stay','food','transport','activities','reserve'].map(k=>[k,Number.isFinite(plan.estimates[k])&&plan.estimates[k]>=0?plan.estimates[k]:0]));
+      const totalPerPerson=Object.values(perPerson).reduce((a,b)=>a+b,0),total=totalPerPerson*plan.input.people,budgetTotal=plan.input.budget*plan.input.people;
+      return {perPerson,totalPerPerson,total,budgetTotal,over:total>budgetTotal,unknown:false,price:null,note:'Dự toán do Tripmate đề xuất, chưa phải báo giá dịch vụ. Hãy xác nhận giá trước khi đi.'};
+    }
     const route=routes.find(r=>r.id===plan.routeId);
     const published=route?.price;
     const price=published?.minPeople&&plan.input.people<published.minPeople ? route.estimatedPrice || published : published;
